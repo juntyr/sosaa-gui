@@ -1,0 +1,62 @@
+!==============================================================================!
+!
+! A minimal SOSAA initialisation namelist file
+!
+!==============================================================================!
+
+&NML_MAIN
+  WORK_DIR   = './sosaa',   ! main root dir, absolute, same as code dir
+  CODE_DIR   = './sosaa',   ! main root dir, absolute, same as work dir
+  CASE_DIR   = 'cases',     ! part of work dir, relative
+  CHEM_DIR   = 'chemistry', ! part of work dir, relative
+  INPUT_DIR  = './input',   ! input root, absolute
+  OUTPUT_DIR = 'output',    ! part of case dir, relative
+  STATION    = 'hyytiala',  ! part of input dir, relative
+/
+
+&NML_FLAG
+  flag_emis       = 2, ! 2 = new megan code
+  flag_chem       = 1, ! 1 = chemistry included
+  flag_gasdrydep  = 0, ! 0 = gas dry deposition not included
+  flag_aero       = 0, ! 1 = aerosol dynamics included
+  flag_debug      = 0, ! 0 = no output
+  flag_vapor      = 0, ! 0 = save everything
+  flag_model_type = 1, ! 1 = station mode
+  flag_mix_chem   = 1, ! 1 = calculate vertical mixing of chemical species
+  flag_mix_aero   = 1, ! 1 = calculate vertical mixing of aerosol particles
+/
+
+&AER_FLAG
+  options%nucleation     = .true.,
+  options%condensation   = .true.,
+  options%coagulation    = .true.,
+  options%dry_deposition = .true.,
+  options%snow_scavenge  = .false.,
+/
+
+&NML_GRID
+  masl = 181.0d0,    ! meters above sea level of the simulation site
+  lat_deg = 61.85d0, ! latitude in degrees of the simulation site
+  lon_deg = 24.28d0, ! longitude in degrees of the simulation site
+/
+
+&NML_TIME
+  dt_obs          = 1800.0d0,
+  start_date      = 2022, 4, 1, 00, 00, 00, ! UTC for trajectory
+  aero_start_date = 2022, 4, 1, 00, 00, 00, ! UTC for trajectory
+  end_date        = 2022, 4, 2, 00, 00, 00, ! UTC for trajectory
+  dt_mete         = 10.0d0,
+  dt_emis         = 60.0d0,
+  dt_chem         = 60.0d0,
+  dt_depo         = 60.0d0,
+  dt_aero         = 60.0d0,
+  dt_uhma         = 10.0d0,
+  time_zone       = 2.0d0,
+/
+
+&NML_OUTPUT
+  output_list_spc = '', ! list of species that should be output
+  output_list_emi = '', ! list of output emission rates from emitted species
+  output_list_Vd  = '', ! list of dry deposition velocities (list of species)
+  output_list_vap = '', ! list of condensable species that should be output
+/
