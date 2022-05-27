@@ -23,36 +23,36 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 =============================================================================
 """
 
-import signal
-import time
+from PyQt5 import QtWidgets, QtGui
 
-# Enable GUI termination using ctrl-c
-signal.signal(signal.SIGINT, signal.SIG_DFL)
-
-from PyQt5 import QtWidgets
-
-from src.gui import QtSosaaGui
-from src.qt import setup_qt_scaling, setup_qt_style
-from src.version import sosaa_version, sosaa_version_pretty
-
-
-__version__ = sosaa_version
+from ..layouts import gui
+from ..resources import resource_path
+from ..version import sosaa_version_pretty
+from .style import init_gui_style
+from .loadsave import init_gui_loadsave
+from .dirs import init_dirs_gui
+from .modules import init_modules_gui
+from .output import init_gui_output
+from .scenario import init_scenario_gui
 
 
-if __name__ == "__main__":
-    print(
-        f"{sosaa_version_pretty} started at: {time.strftime('%B %d %Y, %H:%M:%S', time.localtime())}",
-        flush=True,
-    )
+class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
+    """Main program window."""
 
-    setup_qt_scaling()
+    def __init__(self):
+        super(QtSosaaGui, self).__init__()
+        self.setupUi(self)
 
-    app = QtWidgets.QApplication([])
+        self.currentInitFileToSave = None
 
-    gui = QtSosaaGui()
-    gui.setGeometry(30, 30, 900, 700)
-    gui.show()
+        self.setWindowTitle(sosaa_version_pretty)
+        self.setWindowIcon(QtGui.QIcon(resource_path("icons/thebox_ico.png")))
 
-    setup_qt_style()
+        self.actionQuit_Ctrl_Q.triggered.connect(self.close)
 
-    app.exec_()
+        init_gui_style(self)
+        init_gui_loadsave(self)
+        init_dirs_gui(self)
+        init_modules_gui(self)
+        init_scenario_gui(self)
+        init_gui_output(self)

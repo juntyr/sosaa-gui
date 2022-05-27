@@ -23,36 +23,37 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 =============================================================================
 """
 
-import signal
-import time
-
-# Enable GUI termination using ctrl-c
-signal.signal(signal.SIGINT, signal.SIG_DFL)
+from pathlib import Path
 
 from PyQt5 import QtWidgets
 
-from src.gui import QtSosaaGui
-from src.qt import setup_qt_scaling, setup_qt_style
-from src.version import sosaa_version, sosaa_version_pretty
 
+def browsePath(title, save=False, directory=False, origin=None):
+    pathSelector = QtWidgets.QFileDialog()
 
-__version__ = sosaa_version
-
-
-if __name__ == "__main__":
-    print(
-        f"{sosaa_version_pretty} started at: {time.strftime('%B %d %Y, %H:%M:%S', time.localtime())}",
-        flush=True,
+    pathSelector.setAcceptMode(
+        pathSelector.AcceptMode.AcceptSave
+        if save
+        else pathSelector.AcceptMode.AcceptOpen
     )
 
-    setup_qt_scaling()
+    pathSelector.setOption(pathSelector.DontUseNativeDialog)
 
-    app = QtWidgets.QApplication([])
+    if not save:
+        pathSelector.setFileMode(pathSelector.FileMode.ExistingFile)
 
-    gui = QtSosaaGui()
-    gui.setGeometry(30, 30, 900, 700)
-    gui.show()
+    if directory:
+        pathSelector.setFileMode(pathSelector.FileMode.Directory)
+        pathSelector.setOption(pathSelector.ShowDirsOnly)
+        pathSelector.setOption(pathSelector.DontResolveSymlinks)
 
-    setup_qt_style()
+    pathSelector.setWindowTitle(title)
 
-    app.exec_()
+    pathSelector.setDirectory(origin or str(Path.cwd()))
+
+    if pathSelector.exec() == 1:
+        path = Path(pathSelector.selectedFiles()[0]).resolve()
+    else:
+        path = None
+
+    return path

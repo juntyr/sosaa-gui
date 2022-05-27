@@ -45,7 +45,7 @@ def _update_gui_from_main_settings(settings, gui):
     main_dir = main.get("work_dir")
     # Pretty-print the main dir if relative to the working dir
     if main_dir.startswith(str(Path.cwd())):
-        main_dir = str(Path(main_dir).relative_to(Path.cwd()))
+        main_dir = f"./{Path(main_dir).relative_to(Path.cwd())}"
     gui.main_dir.setText(main_dir)
 
     gui.chem_dir.setText(main.get("chem_dir"))
@@ -54,7 +54,7 @@ def _update_gui_from_main_settings(settings, gui):
     # Pretty-print the input dir if relative to the working dir
     input_dir = main.get("input_dir")
     if input_dir.startswith(str(Path.cwd())):
-        input_dir = str(Path(input_dir).relative_to(Path.cwd()))
+        input_dir = f"./{Path(input_dir).relative_to(Path.cwd())}"
     gui.input_dir.setText(input_dir)
 
     gui.station.setText(main.get("station"))
