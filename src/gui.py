@@ -38,7 +38,7 @@ from .resources import resource_path
 from .settings import (
     print_settings,
     load_settings,
-    write_settings,
+    save_settings,
     default_settings_path,
     minimal_settings_path,
 )
@@ -299,7 +299,7 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
                 return
 
-            write_settings(self, path)
+            save_settings(self, path)
 
             if str(path) != default_settings_path:
                 self.currentInitFileToSave = path
