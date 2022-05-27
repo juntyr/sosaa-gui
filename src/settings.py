@@ -57,6 +57,10 @@ set_config("settings", "version", str(_version_major))
 _version_minor = 0
 
 
+default_settings_path = resource_path("conf/defaults.init")
+minimal_settings_path = resource_path("conf/minimal.init")
+
+
 def _update_gui_from_main_settings(gui):
     main = _settings.get("nml_main", dict())
 
@@ -274,7 +278,7 @@ def _update_gui_from_output_settings(gui):
         )
     )
 
-    gui.description.setPlainText(output.get("description", ""))
+    gui.description.setPlainText(output.get("!description", ""))
 
 
 def _update_gui_from_custom_settings(gui):
@@ -336,6 +340,12 @@ def load_settings(gui, path):
     # Hack to ensure that _settings is not mistaken as a local variable
     globals()["_settings"] = f90nml.reads(content)
 
+    # Hack to ensure that the description is found as !description
+    output = globals()["_settings"].get("nml_output")
+    if output is not None:
+        if output.get("description") is not None:
+            output["!description"] = output.pop("description")
+
     _settings.indent = "  "
     _settings.end_comma = True
     _settings.uppercase = True
@@ -343,14 +353,6 @@ def load_settings(gui, path):
     raw = "\n".join(m.group(1) for m in _raw_setting_pattern.finditer(content))
 
     _update_gui_from_settings(gui, raw)
-
-
-def load_default_settings(gui):
-    load_settings(gui, resource_path("conf/defaults.init"))
-
-
-def load_minimal_settings(gui):
-    load_settings(gui, resource_path("conf/minimal.init"))
 
 
 def _update_main_settings_from_gui(gui):

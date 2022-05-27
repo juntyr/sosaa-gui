@@ -23,8 +23,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 =============================================================================
 """
 
-from .resources import open_resource
-
-
-with open_resource("required/version.txt") as file:
-    sosaa_version = f"SOSAA Model {next(file).strip()} GUI"
+# Version string for the SOSAA simulation
+sosaa_version = "0.1.0"
+# Pretty-printed version string for the SOSAA GUI
+sosaa_version_pretty = f"SOSAA Model {sosaa_version} GUI"

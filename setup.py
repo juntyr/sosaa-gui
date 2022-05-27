@@ -45,7 +45,9 @@ if pyt == "y" or pyt == "Y":
     else:
         user = ""
 
-    outpyt = os.system(f"{python} -m pip install {user} PyQt5 f90nml darkdetect netCDF4")
+    outpyt = os.system(
+        f"{python} -m pip install {user} PyQt5 f90nml darkdetect netCDF4"
+    )
 
     if outpyt != 0:
         print(
@@ -58,7 +60,9 @@ if pyt == "y" or pyt == "Y":
             quit()
 
         outpyt = os.system(f"{python} -m pip install --upgrade setuptools")
-        outpyt += os.system(f"{python} -m pip install {user} PyQt5 f90nml darkdetect netCDF4")
+        outpyt += os.system(
+            f"{python} -m pip install {user} PyQt5 f90nml darkdetect netCDF4"
+        )
 
         if outpyt != 0:
             print("Unfortunately still some Python modules failed to install.")

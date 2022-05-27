@@ -30,12 +30,14 @@ from PyQt5.QtGui import QColor, QPalette
 from .resources import resource_path
 
 
+# Convert a HSL colour to an RNG hex string
 def hsl_to_hex(hue, saturation, lightness):
     r, g, b = colorsys.hsv_to_rgb(hue / 360, saturation / 100, lightness / 100)
 
     return f"#{round(r*255):02X}{round(g*255):02X}{round(b*255):02X}"
 
 
+# Generate a system of colours from a colour hue
 def _coloursystem_from_hue(hue):
     return {
         "G0": hsl_to_hex(hue, 0, 0),
@@ -73,6 +75,7 @@ def _coloursystem_from_hue(hue):
     }
 
 
+# Generate a light/dark QPalette from a colour hue
 def get_style_palette(hue, dark):
     coloursystem = _coloursystem_from_hue(hue)
 

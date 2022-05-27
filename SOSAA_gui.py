@@ -33,12 +33,15 @@ from PyQt5 import QtWidgets
 
 from src.gui import QtSosaaGui
 from src.qt import setup_qt_scaling, setup_qt_style
-from src.version import sosaa_version
+from src.version import sosaa_version, sosaa_version_pretty
+
+
+__version__ = sosaa_version
 
 
 if __name__ == "__main__":
     print(
-        f"{sosaa_version} started at: {time.strftime('%B %d %Y, %H:%M:%S', time.localtime())}"
+        f"{sosaa_version_pretty} started at: {time.strftime('%B %d %Y, %H:%M:%S', time.localtime())}"
     )
 
     setup_qt_scaling()

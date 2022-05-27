@@ -1,62 +1,109 @@
 !==============================================================================!
 !
-! A minimal SOSAA initialisation namelist file
+! A template of the SOSAA initialisation namelist file
 !
 !==============================================================================!
 
+! Note: Options not configurable through the GUI have only their default value
+!       documented.
+
 &NML_MAIN
-  WORK_DIR   = './sosaa',   ! main root dir, absolute, same as code dir
-  CODE_DIR   = './sosaa',   ! main root dir, absolute, same as work dir
-  CASE_DIR   = 'cases',     ! part of work dir, relative
-  CHEM_DIR   = 'chemistry', ! part of work dir, relative
-  INPUT_DIR  = './input',   ! input root, absolute
-  OUTPUT_DIR = 'output',    ! part of case dir, relative
-  STATION    = 'hyytiala',  ! part of input dir, relative
+  WORK_DIR               = './sosaa',   ! main root dir, absolute path,
+                                        ! same as code dir
+  CODE_DIR               = './sosaa',   ! main root dir, absolute path,
+                                        ! same as work dir
+  CASE_DIR               = 'cases',     ! part of work dir, relative path
+  CHEM_DIR               = 'chemistry', ! part of work dir, relative path
+  INPUT_DIR              = './input',   ! input root, absolute path
+  OUTPUT_DIR             = 'output',    ! part of case dir, relative path
+  STATION                = 'hyytiala',  ! part of input dir, relative path
 /
 
 &NML_FLAG
-  flag_emis       = 2, ! 2 = new megan code
-  flag_chem       = 1, ! 1 = chemistry included
-  flag_gasdrydep  = 0, ! 0 = gas dry deposition not included
-  flag_aero       = 0, ! 1 = aerosol dynamics included
-  flag_debug      = 0, ! 0 = no output
-  flag_vapor      = 0, ! 0 = save everything
-  flag_model_type = 1, ! 1 = station mode
-  flag_mix_chem   = 1, ! 1 = calculate vertical mixing of chemical species
-  flag_mix_aero   = 1, ! 1 = calculate vertical mixing of aerosol particles
+  flag_emis              = 2,           ! 2 = new megan code
+                                        ! 0 = emissions excluded
+  flag_chem              = 1,           ! 1 = chemistry included
+                                        ! 0 = chemistry excluded
+  flag_gasdrydep         = 0,           ! 1 = gas dry deposition included
+                                        ! 0 = gas dry deposition excluded
+  flag_aero              = 0,           ! 1 = aerosol dynamics included
+                                        ! 0 = aerosol dynamics excluded
+  flag_emis_soil         = 0,           ! 0 = no soil VOC emissions
+  flag_debug             = 0,           ! 1 = output debug messages
+                                        ! 0 = no output
+  flag_vapor             = 0,           ! 1 = select which vapours to save in
+                                        !      output_list_vap
+                                        ! 0 = save all vapours
+  flag_outlist           = 0,           ! 0 = configure the output lists in
+                                        !      this init file
+  flag_model_type        = 1,           ! 2 = trajectory mode
+                                        ! 1 = station mode
+  flag_mix_chem          = 1,           ! 1 = vertical mixing of chemical
+                                        !      species included
+                                        ! 0 = vertical mixing of chemical
+                                        !      species excluded
+  flag_mix_aero          = 1,           ! 1 = vertical mixing of aerosol
+                                        !      particles included
+                                        ! 1 = vertical mixing of aerosol
+                                        !      particles excluded
+  use_parallel_aerosol   = .true.,      ! .true. = compute aerosol in parallel
 /
 
 &AER_FLAG
-  options%nucleation     = .true.,
-  options%condensation   = .true.,
-  options%coagulation    = .true.,
-  options%dry_deposition = .true.,
-  options%snow_scavenge  = .false.,
+  options%nucleation     = .true.,      ! .true.  = aerosol nucleation included
+                                        ! .false. = aerosol nucleation excluded
+  options%condensation   = .true.,      ! .true.  = aerosol condensation
+                                        !            included
+                                        ! .false. = aerosol condensation
+                                        !            excluded
+  options%coagulation    = .true.,      ! .true.  = aerosol coagulation included
+                                        ! .false. = aerosol coagulation excluded
+  options%dry_deposition = .true.,      ! .true.  = aerosol dry deposition
+                                        !            included
+                                        ! .false. = aerosol dry deposition
+                                        !            excluded
+  options%snow_scavenge  = .false.,     ! .true.  = aerosol snow scavenge
+                                        !            included
+                                        ! .false. = aerosol snow scavenge
+                                        !            excluded
 /
 
 &NML_GRID
-  masl = 181.0d0,    ! meters above sea level of the simulation site
-  lat_deg = 61.85d0, ! latitude in degrees of the simulation site
-  lon_deg = 24.28d0, ! longitude in degrees of the simulation site
+  masl                   = 181.0d0,     ! meters above sea level of the
+                                        !  simulation site
+  lat_deg                = 61.85d0,     ! latitude in degrees of the
+                                        !  simulation site
+  lon_deg                = 24.28d0,     ! longitude in degrees of the
+                                        !  simulation site
 /
 
 &NML_TIME
-  dt_obs          = 1800.0d0,
-  start_date      = 2022, 4, 1, 00, 00, 00, ! UTC for trajectory
-  aero_start_date = 2022, 4, 1, 00, 00, 00, ! UTC for trajectory
-  end_date        = 2022, 4, 2, 00, 00, 00, ! UTC for trajectory
-  dt_mete         = 10.0d0,
-  dt_emis         = 60.0d0,
-  dt_chem         = 60.0d0,
-  dt_depo         = 60.0d0,
-  dt_aero         = 60.0d0,
-  dt_uhma         = 10.0d0,
-  time_zone       = 2.0d0,
+  dt_obs                 = 1800.0d0,    ! time step of the input observations
+  start_date             = 2022,4,1,    ! start date of the simulation
+                           00,00,00,    !  in the form of yyyy,mm,dd,HH,MM,SS
+                                        ! local for station, UTC for trajectory
+  aero_start_date        = 2022,4,1,    ! start date of the aerosol simulation
+                           00,00,00,    !  in the form of yyyy,mm,dd,HH,MM,SS
+                                        ! local for station, UTC for trajectory
+  end_date               = 2022,4,2,    ! end date of the simulation
+                           00,00,00,    !  in the form of yyyy,mm,dd,HH,MM,SS
+                                        ! local for station, UTC for trajectory
+  dt_mete                = 10.0d0,      ! time step [s] for the meteorology
+  dt_emis                = 60.0d0,      ! time step [s] for the emissions
+  dt_chem                = 60.0d0,      ! time step [s] for the chemistry
+  dt_depo                = 60.0d0,      ! time step [s] for the gas deposition
+  dt_aero                = 60.0d0,      ! time step [s] for the aerosols
+  dt_uhma                = 10.0d0,      ! time step [s] for the UHMA module
+  time_zone              = 2.0d0,       ! time zone [h] of the simulation site
+                                        !  +0 in trajectory mode which uses UTC
 /
 
 &NML_OUTPUT
-  output_list_spc = '', ! list of species that should be output
-  output_list_emi = '', ! list of output emission rates from emitted species
-  output_list_Vd  = '', ! list of dry deposition velocities (list of species)
-  output_list_vap = '', ! list of condensable species that should be output
+  output_list_spc        = '',          ! list of species that will be output
+  output_list_emi        = '',          ! list of species whose emission rates
+                                        !  will be output
+  output_list_Vd         = '',          ! list of species whose dry deposition
+                                        !  velocities will be output
+  output_list_vap        = '',          ! list of condensable species that will
+                                        !  be output
 /

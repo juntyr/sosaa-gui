@@ -36,14 +36,14 @@ from .config import get_config, set_config, remove_config
 from .layouts import gui
 from .resources import resource_path
 from .settings import (
-    load_default_settings,
     print_settings,
     load_settings,
-    load_minimal_settings,
     write_settings,
+    default_settings_path,
+    minimal_settings_path,
 )
 from .style import hsl_to_hex, get_style_palette
-from .version import sosaa_version
+from .version import sosaa_version_pretty
 from .qt import operating_system
 
 
@@ -54,7 +54,7 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         super(QtSosaaGui, self).__init__()
         self.setupUi(self)
 
-        self.setWindowTitle(sosaa_version)
+        self.setWindowTitle(sosaa_version_pretty)
         self.setWindowIcon(QtGui.QIcon(resource_path("icons/thebox_ico.png")))
 
         self.actionQuit_Ctrl_Q.triggered.connect(self.close)
@@ -246,9 +246,10 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         def loadSettings():
             path = browsePath(title="Choose INITFILE")
 
-            if str(path) != resource_path("conf/defaults.init") and str(
-                path
-            ) != resource_path("conf/minimal.init"):
+            if (
+                str(path) != default_settings_path
+                and str(path) != minimal_settings_path
+            ):
                 self.currentInitFileToSave = path
             else:
                 self.currentInitFileToSave = None
@@ -269,13 +270,16 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         def loadMinimalSettings():
             self.currentInitFileToSave = None
 
-            load_minimal_settings(self)
+            load_settings(self, minimal_settings_path)
 
             self.hideCurrentInitFile()
 
         self.actionLoad_minimal_settings.triggered.connect(loadMinimalSettings)
 
-        load_default_settings(self)
+        if Path(default_settings_path).exists():
+            load_settings(self, default_settings_path)
+        else:
+            load_settings(self, minimal_settings_path)
 
         self.actionPrint.triggered.connect(lambda: print_settings(self))
 
@@ -283,7 +287,7 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
             if path is None:
                 path = browsePath(title="Save INITFILE", save=True)
 
-            if path is None or str(path) == resource_path("conf/minimal.init"):
+            if path is None or str(path) == minimal_settings_path:
                 msg = QtWidgets.QMessageBox()
                 msg.setIcon(QtWidgets.QMessageBox.Critical)
                 msg.setText("Invalid INITFILE path")
@@ -297,7 +301,7 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
             write_settings(self, path)
 
-            if str(path) != resource_path("conf/defaults.init"):
+            if str(path) != default_settings_path:
                 self.currentInitFileToSave = path
 
                 self.showCurrentInitFile(path)
@@ -312,6 +316,10 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         )
         self.actionSave_to_current.triggered.connect(
             lambda: saveSettings(path=self.currentInitFileToSave)
+        )
+
+        self.saveDefaults.clicked.connect(
+            lambda: saveSettings(path=default_settings_path)
         )
 
         self.setAcceptDrops(True)
@@ -694,7 +702,7 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
         self.currentInitFile.setText(str(path))
 
-        self.setWindowTitle(f"{sosaa_version}: {path}")
+        self.setWindowTitle(f"{sosaa_version_pretty}: {path}")
         self.saveCurrentButton.setToolTip(f"Save to {path.name}")
 
     def hideCurrentInitFile(self):
@@ -707,7 +715,7 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
         self.currentInitFile.setText("")
 
-        self.setWindowTitle(sosaa_version)
+        self.setWindowTitle(sosaa_version_pretty)
         self.saveCurrentButton.setToolTip("")
 
     def dragEnterEvent(self, e):
@@ -719,9 +727,7 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
     def dropEvent(self, e):
         path = Path(e.mimeData().text().replace("file://", "").strip()).resolve()
 
-        if str(path) != resource_path("conf/defaults.init") and str(
-            path
-        ) != resource_path("conf/minimal.init"):
+        if str(path) != default_settings_path and str(path) != minimal_settings_path:
             self.currentInitFileToSave = path
         else:
             self.currentInitFileToSave = None

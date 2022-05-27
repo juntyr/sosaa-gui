@@ -39,10 +39,8 @@ try:
 except:
     operating_system = "Linux"
 
-with open_resource("required/version.txt") as file:
-    sosaa_version = f"SOSAA Model {next(file).strip()} GUI"
 
-
+# Set the GUI scaling factor for QT based on the operating system
 def setup_qt_scaling():
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
 
@@ -93,6 +91,7 @@ def setup_qt_scaling():
         )
 
 
+# Set the QT style for the GUI application
 def setup_qt_style():
     styles = QtWidgets.QStyleFactory.keys()
 

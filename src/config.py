@@ -31,6 +31,7 @@ from .resources import resource_path, open_resource
 _CONFIG_PATH = "conf/config.ini"
 
 
+# Get a configuration value from the INI file
 def get_config(*args, **kwargs):
     gui_config = configparser.ConfigParser()
 
@@ -41,6 +42,7 @@ def get_config(*args, **kwargs):
     return gui_config.get(*args, **kwargs)
 
 
+# Write a configuration value to the INI file
 def set_config(section, option, value):
     gui_config = configparser.ConfigParser()
 
@@ -57,6 +59,7 @@ def set_config(section, option, value):
         gui_config.write(file)
 
 
+# Remove a configuration option from section in the INI file
 def remove_config(section, option):
     if not pathlib.Path(resource_path(_CONFIG_PATH)).exists():
         return
