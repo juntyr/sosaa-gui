@@ -41,7 +41,7 @@ minimal_settings_path = resource_path("conf/minimal.init")
 
 
 def load_settings(gui, path):
-    print(f"Loading INITFILE from {path} ...")
+    print(f"Loading INITFILE from {path} ...", flush=True)
 
     with open(path, "r") as file:
         content = file.read()
@@ -72,28 +72,32 @@ def load_settings(gui, path):
 def print_settings(gui):
     update_settings_from_gui(_settings, gui)
 
-    print("\n" * 10)
-    print(f"! {'='*76} !")
-    print(f"! {f'SOSAA INITFILE {_version_major}.{_version_minor}'.center(76)} !")
+    print("\n" * 10, flush=True)
+    print(f"! {'='*76} !", flush=True)
     print(
-        f"! {('Created at: ' + time.strftime('%B %d %Y, %H:%M:%S', time.localtime())).center(76)} !"
+        f"! {f'SOSAA INITFILE {_version_major}.{_version_minor}'.center(76)} !",
+        flush=True,
     )
-    print(f"! {'='*76} !")
+    print(
+        f"! {('Created at: ' + time.strftime('%B %d %Y, %H:%M:%S', time.localtime())).center(76)} !",
+        flush=True,
+    )
+    print(f"! {'='*76} !", flush=True)
 
     # Hack to ensure that _version_minor is not mistaken as a local variable
     globals()["_version_minor"] += 1
 
-    print()
-    print(_settings)
+    print(flush=True)
+    print(_settings, flush=True)
 
-    print()
-    print(_raw_settings_header)
-    print(gui.rawEdit.toPlainText())
-    print(_raw_settings_footer)
+    print(flush=True)
+    print(_raw_settings_header, flush=True)
+    print(gui.rawEdit.toPlainText(), flush=True)
+    print(_raw_settings_footer, flush=True)
 
 
 def save_settings(gui, path):
-    print(f"Saving INITFILE to {path} ...")
+    print(f"Saving INITFILE to {path} ...", flush=True)
 
     update_settings_from_gui(_settings, gui)
 

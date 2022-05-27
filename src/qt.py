@@ -80,14 +80,16 @@ def setup_qt_scaling():
             sf = 1
 
             print(
-                f"Failed to get the scaling factor of the screen, falling back to {sf:3.2f}."
+                f"Failed to get the scaling factor of the screen, falling back to {sf:3.2f}.",
+                flush=True,
             )
 
         os.environ["QT_SCALE_FACTOR"] = f"{sf:3.2f}"
 
     if "-NS" in args:
         print(
-            f"Scaling factor overriden to {os.environ['QT_SCALE_FACTOR']} from the commandline."
+            f"Scaling factor overriden to {os.environ['QT_SCALE_FACTOR']} from the commandline.",
+            flush=True,
         )
 
 
@@ -98,4 +100,4 @@ def setup_qt_style():
     if "Fusion" in styles:
         QCoreApplication.instance().setStyle(QtWidgets.QStyleFactory.create("Fusion"))
     else:
-        print(f"Available styles: {styles}")
+        print(f"Available styles: {styles}", flush=True)

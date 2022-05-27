@@ -41,7 +41,8 @@ __version__ = sosaa_version
 
 if __name__ == "__main__":
     print(
-        f"{sosaa_version_pretty} started at: {time.strftime('%B %d %Y, %H:%M:%S', time.localtime())}"
+        f"{sosaa_version_pretty} started at: {time.strftime('%B %d %Y, %H:%M:%S', time.localtime())}",
+        flush=True,
     )
 
     setup_qt_scaling()

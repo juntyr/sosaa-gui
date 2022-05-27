@@ -127,11 +127,12 @@ def _update_gui_from_flag_settings(settings, gui):
     aer_snow_scavenge = aer.get("snow_scavenge")
     gui.aer_snow_scavenge.setChecked(aer_snow_scavenge)
 
-    # flag_model_type affects flag_station_model and flag_trajectory_model
+    # flag_model_type affects flag_station_model, flag_trajectory_model, and time_zone
     flag_station_model = flag.get("flag_model_type", 1) == 1
     gui.flag_station_model.setChecked(flag_station_model)
     gui.flag_trajectory_model.setChecked(not flag_station_model)
     gui.group_trajectory_model.setEnabled(not flag_station_model)
+    gui.time_zone.setEnabled(flag_station_model)
 
     flag_vapor = flag.get("flag_vapor", 0) != 0
     gui.flag_vapor.setChecked(flag_vapor)
@@ -226,7 +227,11 @@ def _update_gui_from_time_settings(settings, gui):
     gui.dt_aero.setValue(float(time.get("dt_aero", 60)))
     gui.dt_uhma.setValue(float(time.get("dt_uhma", 10)))
 
-    gui.time_zone.setValue(float(time.get("time_zone", 2.0)))
+    # In trajectory mode all times are in UTC+0
+    time_zone = float(time.get("time_zone", 2.0))
+    if gui.flag_trajectory_model.isChecked():
+        time_zone = 0.0
+    gui.time_zone.setValue(time_zone)
 
     if gui.time_zone.value() >= 0.0:
         gui.time_zone.setPrefix("UTC+")

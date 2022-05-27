@@ -60,12 +60,14 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         self.actionQuit_Ctrl_Q.triggered.connect(self.close)
 
         def buttonStyle(icon):
-            return f"background-image: url('{resource_path(icon)}');\nbackground-repeat: no-repeat;"
+            icon_path_escaped = resource_path(icon).replace("\\", "\\\\")
+
+            return f"background-image: url('{icon_path_escaped}');\nbackground-repeat: no-repeat;"
 
         self.saveCurrentButton.setStyleSheet(buttonStyle("icons/saveia.png"))
         self.saveButton.setStyleSheet(buttonStyle("icons/saveas.png"))
         self.loadButton.setStyleSheet(buttonStyle("icons/load.png"))
-        self.saveDefaults.setStyleSheet(buttonStyle("icons/defaults.png"))
+        self.saveDefaults.setStyleSheet(buttonStyle("icons/pack.png"))
         self.recompile.setStyleSheet(buttonStyle("icons/recompile.png"))
 
         self.currentInitFileToSave = None
@@ -116,7 +118,7 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
             )
             self.saveButton.setStyleSheet(buttonStyle("icons/saveas.png"))
             self.loadButton.setStyleSheet(buttonStyle("icons/load.png"))
-            self.saveDefaults.setStyleSheet(buttonStyle("icons/defaults.png"))
+            self.saveDefaults.setStyleSheet(buttonStyle("icons/pack.png"))
             self.recompile.setStyleSheet(buttonStyle("icons/recompile.png"))
 
         def loadDefaultStyle():
@@ -255,7 +257,7 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                 self.currentInitFileToSave = None
 
             if path is not None:
-                load_settings(self, self.currentInitFileToSave)
+                load_settings(self, path)
 
             if self.currentInitFileToSave is None:
                 self.hideCurrentInitFile()
@@ -517,6 +519,9 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
             )
 
             if self.flag_trajectory_model.isChecked():
+                self.time_zone.setValue(0.0)
+                self.time_zone.setEnabled(False)
+
                 fullDays = self.trajectory_duration.value()
 
                 if fullDays < 0:
@@ -544,6 +549,7 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
             else:
                 self.start_date.setEnabled(True)
                 self.end_date.setEnabled(True)
+                self.time_zone.setEnabled(True)
 
         self.modelTypeGroup.idToggled.connect(changeModelType)
 
@@ -691,7 +697,9 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
     def showCurrentInitFile(self, path):
         def buttonStyle(icon):
-            return f"background-image: url('{resource_path(icon)}');\nbackground-repeat: no-repeat;"
+            icon_path_escaped = resource_path(icon).replace("\\", "\\\\")
+
+            return f"background-image: url('{icon_path_escaped}');\nbackground-repeat: no-repeat;"
 
         self.saveCurrentButton.setStyleSheet(buttonStyle("icons/save.png"))
         self.saveCurrentButton.setEnabled(True)
@@ -707,7 +715,9 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
     def hideCurrentInitFile(self):
         def buttonStyle(icon):
-            return f"background-image: url('{resource_path(icon)}');\nbackground-repeat: no-repeat;"
+            icon_path_escaped = resource_path(icon).replace("\\", "\\\\")
+
+            return f"background-image: url('{icon_path_escaped}');\nbackground-repeat: no-repeat;"
 
         self.saveCurrentButton.setEnabled(False)
         self.actionSave_to_current.setEnabled(False)

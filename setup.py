@@ -25,7 +25,7 @@ import sys
 import os
 
 if sys.version_info.major < 3 or sys.version_info.minor < 4:
-    print("Using SOSAA GUI requires Python 3.4 (preferrably 3.6 or later)")
+    print("Using SOSAA GUI requires Python 3.4 (preferrably 3.6 or later)", flush=True)
     quit()
 
 csc = "--csc" in sys.argv
@@ -51,7 +51,8 @@ if pyt == "y" or pyt == "Y":
 
     if outpyt != 0:
         print(
-            "Unfortunately the Python module installation did not work, updating setuptools could help."
+            "Unfortunately the Python module installation did not work, updating setuptools could help.",
+            flush=True,
         )
 
         upgr = input("Proceed and try again? (y/n)?: ")
@@ -65,9 +66,11 @@ if pyt == "y" or pyt == "Y":
         )
 
         if outpyt != 0:
-            print("Unfortunately still some Python modules failed to install.")
+            print(
+                "Unfortunately still some Python modules failed to install.", flush=True
+            )
             quit()
 
-print()
-print("Congratulations! You can now run:")
-print(f"$ {python} SOSAA_gui.py")
+print(flush=True)
+print("Congratulations! You can now run:", flush=True)
+print(f"$ {python} SOSAA_gui.py", flush=True)
