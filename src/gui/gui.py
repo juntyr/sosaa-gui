@@ -32,19 +32,19 @@ from pathlib import Path
 from PyQt5 import QtWidgets, QtGui, QtCore, QtWidgets
 from PyQt5.QtCore import QCoreApplication
 
-from .config import get_config, set_config, remove_config
-from .layouts import gui
-from .resources import resource_path
-from .settings import (
+from ..config import get_config, set_config, remove_config
+from ..layouts import gui
+from ..resources import resource_path
+from ..settings import (
     print_settings,
     load_settings,
     save_settings,
     default_settings_path,
     minimal_settings_path,
 )
-from .style import hsl_to_hex, get_style_palette
-from .version import sosaa_version_pretty
-from .qt import operating_system
+from ..style import hsl_to_hex, get_style_palette
+from ..version import sosaa_version_pretty
+from ..qt import operating_system
 
 
 class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):

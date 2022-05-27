@@ -31,7 +31,7 @@ signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 from PyQt5 import QtWidgets
 
-from src.gui import QtSosaaGui
+from src.gui.gui import QtSosaaGui
 from src.qt import setup_qt_scaling, setup_qt_style
 from src.version import sosaa_version, sosaa_version_pretty
 
