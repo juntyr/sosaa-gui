@@ -1,0 +1,2 @@
+include sosaa_gui/icons/*
+include sosaa_gui/conf/minimal.init
