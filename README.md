@@ -20,3 +20,10 @@ Finally, you can launch the GUI using
 ```bash
 sosaa-gui
 ```
+
+## Usage Notes
+
+If you experience problems with the UI scaling, try launching the GUI as follows:
+```bash
+QT_SCREEN_SCALE_FACTORS="1.17;1.17" sosaa-gui
+```
