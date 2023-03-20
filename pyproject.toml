@@ -4,7 +4,7 @@ version = "0.1.0"
 requires-python = ">=3.7"
 license = { file = "LICENSE" }
 authors = [
-    { name = "Juniper Langenstein", email = "juniper.langenstein@helsinki.fi" },
+    { name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" },
     { name = "Petri Clusius", email = "petri.clusius@helsinki.fi" },
     { name = "Multi-Scale Modelling group", email = "sosaa@helsinki.fi" }
 ]
