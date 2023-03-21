@@ -10,7 +10,8 @@ class About(QtWidgets.QDialog):
         self.ab = about.Ui_Dialog()
         self.ab.setupUi(self)
         self.ab.okgreat.clicked.connect(self.reject)
-        self.ab.logo.setPixmap(QtGui.QPixmap(resource_path("icons/ARCALogoHR.png")))
+        self.setWindowIcon(QtGui.QIcon(resource_path("icons/thebox_ico.png")))
+        # TODO: self.ab.logo.setPixmap(QtGui.QPixmap(resource_path("icons/ARCALogoHR.png")))
 
 
 def init_gui_help(gui):

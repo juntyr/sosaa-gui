@@ -17,15 +17,44 @@ class Ui_Dialog(object):
         Dialog.resize(683, 509)
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.credits = QtWidgets.QTextBrowser(Dialog)
-        self.credits.setMinimumSize(QtCore.QSize(0, 0))
-        self.credits.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.credits.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.credits.setLineWidth(0)
-        self.credits.setReadOnly(True)
-        self.credits.setTextInteractionFlags(QtCore.Qt.TextBrowserInteraction)
-        self.credits.setObjectName("credits")
-        self.verticalLayout.addWidget(self.credits)
+        self.label = QtWidgets.QLabel(Dialog)
+        self.label.setWordWrap(True)
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label)
+        self.line = QtWidgets.QFrame(Dialog)
+        self.line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
+        self.verticalLayout.addWidget(self.line)
+        self.label_2 = QtWidgets.QLabel(Dialog)
+        self.label_2.setWordWrap(True)
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout.addWidget(self.label_2)
+        self.label_3 = QtWidgets.QLabel(Dialog)
+        self.label_3.setText("")
+        self.label_3.setObjectName("label_3")
+        self.verticalLayout.addWidget(self.label_3)
+        self.label_4 = QtWidgets.QLabel(Dialog)
+        self.label_4.setWordWrap(True)
+        self.label_4.setObjectName("label_4")
+        self.verticalLayout.addWidget(self.label_4)
+        self.label_5 = QtWidgets.QLabel(Dialog)
+        self.label_5.setText("")
+        self.label_5.setObjectName("label_5")
+        self.verticalLayout.addWidget(self.label_5)
+        self.label_6 = QtWidgets.QLabel(Dialog)
+        self.label_6.setWordWrap(True)
+        self.label_6.setObjectName("label_6")
+        self.verticalLayout.addWidget(self.label_6)
+        self.line_2 = QtWidgets.QFrame(Dialog)
+        self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_2.setObjectName("line_2")
+        self.verticalLayout.addWidget(self.line_2)
+        self.label_7 = QtWidgets.QLabel(Dialog)
+        self.label_7.setWordWrap(True)
+        self.label_7.setObjectName("label_7")
+        self.verticalLayout.addWidget(self.label_7)
         self.frame = QtWidgets.QFrame(Dialog)
         self.frame.setMinimumSize(QtCore.QSize(0, 120))
         self.frame.setFrameShape(QtWidgets.QFrame.NoFrame)
@@ -96,23 +125,34 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "About SOSAA"))
-        self.credits.setHtml(
+        self.label.setText(
             _translate(
                 "Dialog",
-                '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">\n'
-                '<html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">\n'
-                "p, li { white-space: pre-wrap; }\n"
-                "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-                '<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:\'Sans Serif\'; font-weight:700; text-decoration: underline;">SOSAA: The m</span><span style=" font-weight:700; text-decoration: underline;">odel to Simulate the Concentration of Organic Vapours, Sulphuric Acid and Aerosol Particles</span></p>\n'
-                '<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';"><br /></p>\n'
-                '<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:\'Sans Serif\';">Multiscale Modelling Group, Institute for Atmospheric and Earth System Research (INAR), Helsinki, Finland</span></p>\n'
-                '<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';"><br /></p>\n'
-                '<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:\'Sans Serif\';">Development team (alphabetically): </span></p>\n'
-                '<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:\'Sans Serif\';">Michael Boy (team leader), Dean Chen, Petri Clusius, Rosa Gieres, Ditte Morgensen, Sampo Smolander, Juniper Tyree, Luxi Zhou, Putian Zhou.</span></p>\n'
-                '<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';"><br /></p>\n'
-                '<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:\'Sans Serif\'; color:#720000;">Contact the SOSAA team at sosaa@helsinki.fi<br /></span></p>\n'
-                '<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:\'Sans Serif\'; color:#720000;"><br /></span><span style=" font-family:\'Sans Serif\'; font-weight:600; text-decoration: underline; color:#000000;">LICENCE</span></p>\n'
-                '<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:\'Sans Serif\'; color:#000000;">This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions; see the LICENCE file in the SOSAA GUI root directory.</span></p></body></html>',
+                '<html><head/><body><p align="center"><span style=" font-weight:700;">SOSAA</span></p><p align="center"><span style=" font-weight:700;">The model to Simulate the Concentration of Organic Vapours, Sulphuric Acid and Aerosol Particles</span></p></body></html>',
+            )
+        )
+        self.label_2.setText(
+            _translate(
+                "Dialog",
+                '<html><head/><body><p align="center">Multiscale Modelling Group, Institute for Atmospheric and Earth System Research (INAR), Helsinki, Finland</p></body></html>',
+            )
+        )
+        self.label_4.setText(
+            _translate(
+                "Dialog",
+                '<html><head/><body><p align="center">Development team (alphabetically): </p><p align="center">Michael Boy (team leader), Dean Chen, Petri Clusius, Rosa Gieres, Ditte Morgensen, Sampo Smolander, Juniper Tyree, Luxi Zhou, and Putian Zhou.</p></body></html>',
+            )
+        )
+        self.label_6.setText(
+            _translate(
+                "Dialog",
+                '<html><head/><body><p align="center">Contact the SOSAA team at <a href="mailto:sosaa@helsinki.fi"><span style=" text-decoration: underline; color:#007af4;">sosaa@helsinki.fi</span></a></p></body></html>',
+            )
+        )
+        self.label_7.setText(
+            _translate(
+                "Dialog",
+                '<html><head/><body><p align="center"><span style=" font-weight:700;">LICENCE</span></p><p align="center">This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions; see the LICENCE file in the SOSAA GUI root directory.</p></body></html>',
             )
         )
         self.okgreat.setText(_translate("Dialog", "OK"))
