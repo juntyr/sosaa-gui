@@ -1,5 +1,3 @@
-import os
-
 import darkdetect
 
 from PyQt5 import QtWidgets, QtGui

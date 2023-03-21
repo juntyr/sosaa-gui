@@ -2,8 +2,6 @@ import colorsys
 
 from PyQt5.QtGui import QColor, QPalette
 
-from .resources import resource_path
-
 
 # Convert a HSL colour to an RNG hex string
 def hsl_to_hex(hue, saturation, lightness):

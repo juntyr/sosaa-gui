@@ -2,7 +2,6 @@ from pathlib import Path
 
 from PyQt5 import QtWidgets
 
-from ..resources import resource_path
 from ..settings import (
     print_settings,
     load_settings,

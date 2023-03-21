@@ -4,8 +4,6 @@ import sys
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtCore import QCoreApplication
 
-from .resources import open_resource
-
 try:
     import platform
 

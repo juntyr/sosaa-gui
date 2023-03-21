@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets, QtGui
+from PyQt5 import QtWidgets, QtGui, QtCore
 
 from ..layouts import gui
 from ..resources import resource_path
@@ -9,6 +9,7 @@ from .dirs import init_dirs_gui
 from .modules import init_modules_gui
 from .output import init_gui_output
 from .scenario import init_scenario_gui
+from .compile import init_compile_gui
 
 
 class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
@@ -31,3 +32,4 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         init_modules_gui(self)
         init_scenario_gui(self)
         init_gui_output(self)
+        init_compile_gui(self)
