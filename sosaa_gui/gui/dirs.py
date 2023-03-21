@@ -19,6 +19,36 @@ def init_dirs_gui(gui):
 
     gui.browse_main.clicked.connect(changeMainDirectory)
 
+    def changeCodeDirectory():
+        main_dir = Path(gui.main_dir.text()).resolve()
+
+        path = browsePath(
+            title="Choose the source code directory",
+            directory=True,
+            origin=str(main_dir),
+        )
+
+        if path is None:
+            return
+
+        if not str(path).startswith(str(main_dir)):
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Critical)
+            msg.setText("Invalid source code directory")
+            msg.setInformativeText(
+                "The source code directory must be inside the main directory."
+            )
+            msg.setWindowTitle("Error selecting directory")
+            msg.exec_()
+
+            return
+
+        path = path.relative_to(main_dir)
+
+        gui.code_dir.setText(str(path))
+
+    gui.browse_code.clicked.connect(changeCodeDirectory)
+
     def changeChemistryDirectory():
         main_dir = Path(gui.main_dir.text()).resolve()
 
@@ -78,30 +108,13 @@ def init_dirs_gui(gui):
     gui.browse_case.clicked.connect(changeCaseDirectory)
 
     def changeOutputDirectory():
-        case_dir = Path(gui.main_dir.text()).resolve() / gui.case_dir.text()
-
-        path = browsePath(
-            title="Choose the output directory",
-            directory=True,
-            origin=str(case_dir),
-        )
+        path = browsePath(title="Choose the output directory", directory=True)
 
         if path is None:
             return
 
-        if not str(path).startswith(str(case_dir)):
-            msg = QtWidgets.QMessageBox()
-            msg.setIcon(QtWidgets.QMessageBox.Critical)
-            msg.setText("Invalid output directory")
-            msg.setInformativeText(
-                "The output directory must be inside the case directory."
-            )
-            msg.setWindowTitle("Error selecting directory")
-            msg.exec_()
-
-            return
-
-        path = path.relative_to(case_dir)
+        if str(path).startswith(str(Path.cwd())):
+            path = f"./{path.relative_to(Path.cwd())}"
 
         gui.output_dir.setText(str(path))
 

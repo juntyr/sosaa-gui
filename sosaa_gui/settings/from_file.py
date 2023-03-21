@@ -22,6 +22,7 @@ def _update_gui_from_main_settings(settings, gui):
         main_dir = f"./{Path(main_dir).relative_to(Path.cwd())}"
     gui.main_dir.setText(main_dir)
 
+    gui.code_dir.setText(main.get("code_dir"))
     gui.chem_dir.setText(main.get("chem_dir"))
     gui.case_dir.setText(main.get("case_dir"))
 
@@ -31,7 +32,11 @@ def _update_gui_from_main_settings(settings, gui):
         input_dir = f"./{Path(input_dir).relative_to(Path.cwd())}"
     gui.input_dir.setText(input_dir)
 
-    gui.output_dir.setText(main.get("output_dir"))
+    # Pretty-print the output dir if relative to the working dir
+    output_dir = main.get("output_dir")
+    if output_dir.startswith(str(Path.cwd())):
+        output_dir = f"./{Path(output_dir).relative_to(Path.cwd())}"
+    gui.output_dir.setText(output_dir)
 
 
 def _update_gui_from_flag_settings(settings, gui):

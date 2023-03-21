@@ -1,27 +1,64 @@
-from PyQt5 import QtCore, QtWidgets
+import os
+from pathlib import Path
+
+from PyQt5 import QtCore
 
 
 def init_compile_gui(gui):
-    app = QtWidgets.QApplication.instance()
+    gui.compile_start.setEnabled(True)
+    gui.compile_stop.setEnabled(False)
 
-    def closeTerminal(gui):
+    def startCompilation():
         terminal = gui.terminal_compile
 
-        if getattr(terminal, "process", None) is not None:
-            terminal.process.shouldRestart = False
-            terminal.process.kill()
-
-    def restartTerminal(gui):
-        terminal = gui.terminal_compile
+        gui.compile_start.setEnabled(False)
+        gui.compile_stop.setEnabled(True)
 
         if getattr(terminal, "process", None) is not None:
-            if not terminal.process.shouldRestart:
-                return
+            return
 
         terminal.process = QtCore.QProcess(terminal)
-        terminal.process.shouldRestart = True
-        terminal.process.finished.connect(lambda: restartTerminal(gui))
-        terminal.process.start("urxvt", ["-embed", str(int(terminal.winId())), "+sb"])
+        terminal.process.start(
+            "urxvt",
+            [
+                "-embed",
+                str(int(terminal.winId())),
+                "+sb",
+                "-hold",
+                "-e",
+                os.environ.get("SHELL", "sh"),
+                "-x",
+                "-c",
+                " ".join(
+                    [
+                        "cd",
+                        str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
+                        "&&",
+                        "make",
+                        f"SOSAA_ROOT={Path(gui.main_dir.text()).resolve()}",
+                        f"CODE_DIR={Path(gui.main_dir.text()).resolve() / gui.code_dir.text()}",
+                        # f"CHEMALL_DIR={???}",
+                        f"CASE_DIR={Path(gui.main_dir.text()).resolve() / gui.case_dir.text()}",
+                        # f"CHEM={???}",
+                        # f"CASE={???}",
+                        f"ALT_NAME={gui.compile_exe.text()}",
+                    ]
+                ),
+            ],
+        )
 
-    app.lastWindowClosed.connect(lambda: closeTerminal(gui))
-    restartTerminal(gui)
+    gui.compile_start.clicked.connect(startCompilation)
+
+    def stopCompilation():
+        terminal = gui.terminal_compile
+
+        gui.compile_start.setEnabled(True)
+        gui.compile_stop.setEnabled(False)
+
+        if getattr(terminal, "process", None) is None:
+            return
+
+        terminal.process.kill()
+        terminal.process = None
+
+    gui.compile_stop.clicked.connect(stopCompilation)

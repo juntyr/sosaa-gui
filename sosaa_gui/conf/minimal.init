@@ -12,7 +12,8 @@
                                         ! same as code dir
   CODE_DIR               = 'src',       ! part of work dir, relative path
   CASE_DIR               = 'cases',     ! part of work dir, relative path
-  CHEM_DIR               = 'chemistry', ! part of work dir, relative path
+  CHEM_DIR               = 'chemistry/sample_aerosol', ! part of work dir,
+                                                       !  relative path
   INPUT_DIR              = './input',   ! input root, absolute path
   OUTPUT_DIR             = './output',  ! output root, absolute path
   STATION                = 'traj',      ! pseudo-station for trajectory mode
