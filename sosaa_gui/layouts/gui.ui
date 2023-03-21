@@ -726,6 +726,13 @@
                   </layout>
                  </item>
                  <item>
+                  <widget class="QGroupBox" name="groupBox_8">
+                   <property name="title">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <layout class="QGridLayout" name="gridLayout_9">
                    <item row="0" column="1">
                     <widget class="QLineEdit" name="case_dir">
@@ -779,6 +786,13 @@
                     </spacer>
                    </item>
                   </layout>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_10">
+                   <property name="title">
+                    <string/>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -2390,18 +2404,32 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
+         <layout class="QGridLayout" name="horizontalLayout_4">
+          <item row="0" column="1">
+           <widget class="QPushButton" name="compile_stop">
+            <property name="text">
+             <string>Stop Compilation</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
            <widget class="QPushButton" name="compile_start">
             <property name="text">
              <string>Run Compilation</string>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="compile_stop">
+          <item row="1" column="0">
+           <widget class="QPushButton" name="compile_clean">
             <property name="text">
-             <string>Stop Compilation</string>
+             <string>Clean SOSAA Artefacts</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="compile_cleanchem">
+            <property name="text">
+             <string>Clean Chemistry Artefacts</string>
             </property>
            </widget>
           </item>
