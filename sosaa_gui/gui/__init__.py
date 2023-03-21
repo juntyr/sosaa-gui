@@ -10,6 +10,7 @@ from .modules import init_modules_gui
 from .output import init_gui_output
 from .scenario import init_scenario_gui
 from .compile import init_compile_gui
+from .help import init_gui_help
 
 
 class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
@@ -28,8 +29,10 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
         init_gui_style(self)
         init_gui_loadsave(self)
+        init_gui_output(self)
+        init_gui_help(self)
+
         init_dirs_gui(self)
         init_modules_gui(self)
         init_scenario_gui(self)
-        init_gui_output(self)
         init_compile_gui(self)

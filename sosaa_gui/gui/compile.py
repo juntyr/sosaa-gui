@@ -41,8 +41,17 @@ def init_compile_gui(gui):
                         f"CASE_DIR={Path(gui.main_dir.text()).resolve() / gui.case_dir.text()}",
                         # f"CHEM={???}",
                         # f"CASE={???}",
-                        f"ALT_NAME={gui.compile_exe.text()}",
                     ]
+                    + (
+                        [f"ALT_NAME={gui.compile_exe.text()}"]
+                        if len(gui.compile_exe.text()) > 0
+                        else []
+                    )
+                    + (
+                        [f"INIT_FILE={Path(gui.currentInitFile.text()).resolve()}"]
+                        if len(gui.currentInitFile.text()) > 0
+                        else []
+                    )
                 ),
             ],
         )
@@ -62,3 +71,8 @@ def init_compile_gui(gui):
         terminal.process = None
 
     gui.compile_stop.clicked.connect(stopCompilation)
+
+    def recompile():
+        pass
+
+    gui.recompile.clicked.connect(recompile)

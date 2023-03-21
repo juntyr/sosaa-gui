@@ -9,11 +9,7 @@ from ..qt import operating_system
 
 def init_gui_output(gui):
     def openOutputDirectory():
-        output_dir = (
-            Path(gui.main_dir.text()).resolve()
-            / gui.case_dir.text()
-            / gui.output_dir.text()
-        )
+        output_dir = Path(gui.output_dir.text()).resolve()
 
         if not output_dir.exists():
             msg = QtWidgets.QMessageBox()
@@ -40,11 +36,7 @@ def init_gui_output(gui):
     gui.actionOpen_output_directory.triggered.connect(openOutputDirectory)
 
     def createOutputDirectories():
-        output_dir = (
-            Path(gui.main_dir.text()).resolve()
-            / gui.case_dir.text()
-            / gui.output_dir.text()
-        )
+        output_dir = Path(gui.output_dir.text()).resolve()
 
         output_dir_str = str(output_dir)
 
