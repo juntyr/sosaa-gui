@@ -10,12 +10,11 @@
 &NML_MAIN
   WORK_DIR               = './sosaa',   ! main root dir, absolute path,
                                         ! same as code dir
-  CODE_DIR               = './sosaa',   ! main root dir, absolute path,
-                                        ! same as work dir
+  CODE_DIR               = 'src',       ! part of work dir, relative path
   CASE_DIR               = 'cases',     ! part of work dir, relative path
   CHEM_DIR               = 'chemistry', ! part of work dir, relative path
   INPUT_DIR              = './input',   ! input root, absolute path
-  OUTPUT_DIR             = 'output',    ! part of case dir, relative path
+  OUTPUT_DIR             = './output',  ! output root, absolute path
   STATION                = 'traj',      ! pseudo-station for trajectory mode
 /
 
