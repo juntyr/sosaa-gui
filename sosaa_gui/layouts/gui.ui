@@ -2375,7 +2375,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_6">
+      <widget class="QWidget" name="compile_tab">
        <attribute name="title">
         <string>Compile SOSAA</string>
        </attribute>
