@@ -527,58 +527,33 @@
               <string>Directory paths</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_39">
-              <item row="16" column="0">
-               <widget class="QGroupBox" name="groupBox_20">
-                <property name="title">
-                 <string/>
-                </property>
-                <layout class="QGridLayout" name="gridLayout">
-                 <item row="0" column="1">
-                  <widget class="QLabel" name="label_32">
-                   <property name="minimumSize">
-                    <size>
-                     <width>71</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>Station</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="2">
-                  <widget class="QLineEdit" name="station"/>
-                 </item>
-                 <item row="0" column="3">
-                  <widget class="QToolButton" name="browse_station">
-                   <property name="text">
-                    <string>...</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="4">
-                  <spacer name="horizontalSpacer_5">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Fixed</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>12</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <layout class="QGridLayout" name="gridLayout_7">
+              <item row="5" column="0">
+               <layout class="QGridLayout" name="gridLayout_4">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_28">
+                  <property name="minimumSize">
+                   <size>
+                    <width>83</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Input</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="input_dir">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>18</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
                 <item row="0" column="2">
-                 <widget class="QToolButton" name="browse_main">
+                 <widget class="QToolButton" name="browse_input">
                   <property name="font">
                    <font>
                     <bold>false</bold>
@@ -589,37 +564,8 @@
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="1">
-                 <widget class="QLineEdit" name="main_dir">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>18</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="placeholderText">
-                   <string/>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0">
-                 <widget class="QLabel" name="label">
-                  <property name="minimumSize">
-                   <size>
-                    <width>83</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Main</string>
-                  </property>
-                 </widget>
-                </item>
                 <item row="0" column="3">
-                 <spacer name="horizontalSpacer">
+                 <spacer name="horizontalSpacer_4">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
                   </property>
@@ -799,33 +745,10 @@
                 </layout>
                </widget>
               </item>
-              <item row="5" column="0">
-               <layout class="QGridLayout" name="gridLayout_4">
-                <item row="0" column="0">
-                 <widget class="QLabel" name="label_28">
-                  <property name="minimumSize">
-                   <size>
-                    <width>83</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Input</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QLineEdit" name="input_dir">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>18</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
+              <item row="1" column="0">
+               <layout class="QGridLayout" name="gridLayout_7">
                 <item row="0" column="2">
-                 <widget class="QToolButton" name="browse_input">
+                 <widget class="QToolButton" name="browse_main">
                   <property name="font">
                    <font>
                     <bold>false</bold>
@@ -836,8 +759,37 @@
                   </property>
                  </widget>
                 </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="main_dir">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>18</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="placeholderText">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label">
+                  <property name="minimumSize">
+                   <size>
+                    <width>83</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>Main</string>
+                  </property>
+                 </widget>
+                </item>
                 <item row="0" column="3">
-                 <spacer name="horizontalSpacer_4">
+                 <spacer name="horizontalSpacer">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
                   </property>
@@ -1465,138 +1417,17 @@
              <layout class="QVBoxLayout" name="verticalLayout_12">
               <item>
                <layout class="QGridLayout" name="gridLayout_14">
-                <item row="3" column="1">
-                 <widget class="QLabel" name="station_name">
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label_14">
                   <property name="text">
-                   <string>Hyytiälä</string>
+                   <string>Trajectory duration</string>
                   </property>
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QRadioButton" name="flag_station_model">
+                 <widget class="QLabel" name="label_2">
                   <property name="text">
-                   <string>Station</string>
-                  </property>
-                  <property name="checked">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="1">
-                 <widget class="QDoubleSpinBox" name="masl">
-                  <property name="suffix">
-                   <string> m</string>
-                  </property>
-                  <property name="minimum">
-                   <double>-435.000000000000000</double>
-                  </property>
-                  <property name="maximum">
-                   <double>8850.000000000000000</double>
-                  </property>
-                  <property name="value">
-                   <double>181.000000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="10" column="0">
-                 <widget class="QLabel" name="label_22">
-                  <property name="text">
-                   <string>Longitude</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1">
-                 <widget class="QGroupBox" name="group_trajectory_model">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="title">
-                   <string/>
-                  </property>
-                  <layout class="QHBoxLayout" name="horizontalLayout">
-                   <item>
-                    <widget class="QLabel" name="label_14">
-                     <property name="text">
-                      <string>Trajectory duration</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QSpinBox" name="trajectory_duration">
-                     <property name="suffix">
-                      <string> full days</string>
-                     </property>
-                     <property name="minimum">
-                      <number>-10</number>
-                     </property>
-                     <property name="maximum">
-                      <number>10</number>
-                     </property>
-                     <property name="value">
-                      <number>-7</number>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item row="7" column="0">
-                 <widget class="QLabel" name="label_20">
-                  <property name="text">
-                   <string>Altitude (MASL)</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="0">
-                 <widget class="QLabel" name="label_25">
-                  <property name="text">
-                   <string>Station Name</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="0">
-                 <widget class="QLabel" name="label_12">
-                  <property name="text">
-                   <string>Time Zone</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="10" column="1">
-                 <widget class="QDoubleSpinBox" name="lon_deg">
-                  <property name="suffix">
-                   <string>° E</string>
-                  </property>
-                  <property name="minimum">
-                   <double>-180.000000000000000</double>
-                  </property>
-                  <property name="maximum">
-                   <double>180.000000000000000</double>
-                  </property>
-                  <property name="value">
-                   <double>24.280000000000001</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="0">
-                 <widget class="QLabel" name="label_26">
-                  <property name="text">
-                   <string>Latitude</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="1">
-                 <widget class="QDoubleSpinBox" name="lat_deg">
-                  <property name="suffix">
-                   <string>° N</string>
-                  </property>
-                  <property name="minimum">
-                   <double>-90.000000000000000</double>
-                  </property>
-                  <property name="maximum">
-                   <double>90.000000000000000</double>
-                  </property>
-                  <property name="value">
-                   <double>61.850000000000001</double>
+                   <string>Trajectory</string>
                   </property>
                  </widget>
                 </item>
@@ -1607,29 +1438,33 @@
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="1">
-                 <widget class="QRadioButton" name="flag_trajectory_model">
+                <item row="2" column="1">
+                 <widget class="QLabel" name="label_3">
                   <property name="text">
-                   <string>Trajectory</string>
+                   <string>UTC+0.00</string>
                   </property>
                  </widget>
                 </item>
-                <item row="6" column="1">
-                 <widget class="QDoubleSpinBox" name="time_zone">
-                  <property name="prefix">
-                   <string>UTC+</string>
+                <item row="1" column="1">
+                 <widget class="QSpinBox" name="trajectory_duration">
+                  <property name="suffix">
+                   <string> full days</string>
                   </property>
                   <property name="minimum">
-                   <double>-12.000000000000000</double>
+                   <number>-10</number>
                   </property>
                   <property name="maximum">
-                   <double>14.000000000000000</double>
-                  </property>
-                  <property name="singleStep">
-                   <double>1.000000000000000</double>
+                   <number>10</number>
                   </property>
                   <property name="value">
-                   <double>2.000000000000000</double>
+                   <number>-7</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="label_12">
+                  <property name="text">
+                   <string>Time Zone</string>
                   </property>
                  </widget>
                 </item>
