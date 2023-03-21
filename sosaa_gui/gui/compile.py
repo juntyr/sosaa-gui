@@ -1,17 +1,21 @@
 import os
 from pathlib import Path
 
-from PyQt5 import QtCore
+from PyQt5 import QtCore, QtWidgets
 
 
 def init_compile_gui(gui):
     gui.compile_start.setEnabled(True)
+    gui.compile_clean.setEnabled(True)
+    gui.compile_cleanchem.setEnabled(True)
     gui.compile_stop.setEnabled(False)
 
     def startCompilation():
         terminal = gui.terminal_compile
 
         gui.compile_start.setEnabled(False)
+        gui.compile_clean.setEnabled(False)
+        gui.compile_cleanchem.setEnabled(False)
         gui.compile_stop.setEnabled(True)
 
         if getattr(terminal, "process", None) is not None:
@@ -62,6 +66,8 @@ def init_compile_gui(gui):
         terminal = gui.terminal_compile
 
         gui.compile_start.setEnabled(True)
+        gui.compile_clean.setEnabled(True)
+        gui.compile_cleanchem.setEnabled(True)
         gui.compile_stop.setEnabled(False)
 
         if getattr(terminal, "process", None) is None:
@@ -72,7 +78,85 @@ def init_compile_gui(gui):
 
     gui.compile_stop.clicked.connect(stopCompilation)
 
+    def cleanSosaa():
+        terminal = gui.terminal_compile
+
+        gui.compile_start.setEnabled(False)
+        gui.compile_clean.setEnabled(False)
+        gui.compile_cleanchem.setEnabled(False)
+        gui.compile_stop.setEnabled(True)
+
+        if getattr(terminal, "process", None) is not None:
+            return
+
+        terminal.process = QtCore.QProcess(terminal)
+        terminal.process.start(
+            "urxvt",
+            [
+                "-embed",
+                str(int(terminal.winId())),
+                "+sb",
+                "-hold",
+                "-e",
+                os.environ.get("SHELL", "sh"),
+                "-x",
+                "-c",
+                " ".join(
+                    [
+                        "cd",
+                        str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
+                        "&&",
+                        "make",
+                        "clean",
+                    ]
+                ),
+            ],
+        )
+
+    gui.compile_clean.clicked.connect(cleanSosaa)
+
+    def cleanChemistry():
+        terminal = gui.terminal_compile
+
+        gui.compile_start.setEnabled(False)
+        gui.compile_clean.setEnabled(False)
+        gui.compile_cleanchem.setEnabled(False)
+        gui.compile_stop.setEnabled(True)
+
+        if getattr(terminal, "process", None) is not None:
+            return
+
+        terminal.process = QtCore.QProcess(terminal)
+        terminal.process.start(
+            "urxvt",
+            [
+                "-embed",
+                str(int(terminal.winId())),
+                "+sb",
+                "-hold",
+                "-e",
+                os.environ.get("SHELL", "sh"),
+                "-x",
+                "-c",
+                " ".join(
+                    [
+                        "cd",
+                        str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
+                        "&&",
+                        "make",
+                        "cleanchem",
+                    ]
+                ),
+            ],
+        )
+
+    gui.compile_cleanchem.clicked.connect(cleanChemistry)
+
     def recompile():
-        pass
+        gui.tabWidget.setCurrentWidget(
+            gui.tabWidget.findChild(QtWidgets.QWidget, "compile_tab")
+        )
+
+        startCompilation()
 
     gui.recompile.clicked.connect(recompile)
