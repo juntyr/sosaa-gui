@@ -119,34 +119,3 @@ def init_dirs_gui(gui):
         gui.input_dir.setText(str(path))
 
     gui.browse_input.clicked.connect(changeInputDirectory)
-
-    def changeStationDirectory():
-        input_dir = Path(gui.input_dir.text()).resolve()
-
-        path = browsePath(
-            title="Choose the station directory",
-            directory=True,
-            origin=str(input_dir),
-        )
-
-        if path is None:
-            return
-
-        if not str(path).startswith(str(input_dir)):
-            msg = QtWidgets.QMessageBox()
-            msg.setIcon(QtWidgets.QMessageBox.Critical)
-            msg.setText("Invalid station directory")
-            msg.setInformativeText(
-                "The station directory must be inside the input directory."
-            )
-            msg.setWindowTitle("Error selecting directory")
-            msg.exec_()
-
-            return
-
-        path = path.relative_to(input_dir)
-
-        gui.station.setText(str(path))
-        gui.station_name.setText(str(path.stem).capitalize())
-
-    gui.browse_station.clicked.connect(changeStationDirectory)

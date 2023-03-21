@@ -16,7 +16,7 @@
   CHEM_DIR               = 'chemistry', ! part of work dir, relative path
   INPUT_DIR              = './input',   ! input root, absolute path
   OUTPUT_DIR             = 'output',    ! part of case dir, relative path
-  STATION                = 'hyytiala',  ! part of input dir, relative path
+  STATION                = 'traj',      ! pseudo-station for trajectory mode
 /
 
 &NML_FLAG
@@ -36,8 +36,7 @@
                                         ! 0 = save all vapours
   flag_outlist           = 0,           ! 0 = configure the output lists in
                                         !      this init file
-  flag_model_type        = 1,           ! 2 = trajectory mode
-                                        ! 1 = station mode
+  flag_model_type        = 2,           ! 2 = trajectory mode
   flag_mix_chem          = 1,           ! 1 = vertical mixing of chemical
                                         !      species included
                                         ! 0 = vertical mixing of chemical
@@ -68,34 +67,25 @@
                                         !            excluded
 /
 
-&NML_GRID
-  masl                   = 181.0d0,     ! meters above sea level of the
-                                        !  simulation site
-  lat_deg                = 61.85d0,     ! latitude in degrees of the
-                                        !  simulation site
-  lon_deg                = 24.28d0,     ! longitude in degrees of the
-                                        !  simulation site
-/
-
 &NML_TIME
   dt_obs                 = 1800.0d0,    ! time step of the input observations
   start_date             = 2022,4,1,    ! start date of the simulation
                            00,00,00,    !  in the form of yyyy,mm,dd,HH,MM,SS
-                                        ! local for station, UTC for trajectory
+                                        ! in UTC for trajectory mode
   aero_start_date        = 2022,4,1,    ! start date of the aerosol simulation
                            00,00,00,    !  in the form of yyyy,mm,dd,HH,MM,SS
-                                        ! local for station, UTC for trajectory
+                                        ! in UTC for trajectory mode
   end_date               = 2022,4,2,    ! end date of the simulation
                            00,00,00,    !  in the form of yyyy,mm,dd,HH,MM,SS
-                                        ! local for station, UTC for trajectory
+                                        ! in UTC for trajectory mode
   dt_mete                = 10.0d0,      ! time step [s] for the meteorology
   dt_emis                = 60.0d0,      ! time step [s] for the emissions
   dt_chem                = 60.0d0,      ! time step [s] for the chemistry
   dt_depo                = 60.0d0,      ! time step [s] for the gas deposition
   dt_aero                = 60.0d0,      ! time step [s] for the aerosols
   dt_uhma                = 10.0d0,      ! time step [s] for the UHMA module
-  time_zone              = 2.0d0,       ! time zone [h] of the simulation site
-                                        !  +0 in trajectory mode which uses UTC
+  time_zone              = 0.0d0,       ! time zone [h] is +0 UTC
+                                        !  in trajectory mode
 /
 
 &NML_OUTPUT

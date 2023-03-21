@@ -4,7 +4,6 @@ from pathlib import Path
 def update_settings_from_gui(settings, gui):
     _update_main_settings_from_gui(settings, gui)
     _update_flag_settings_from_gui(settings, gui)
-    _update_grid_settings_from_gui(settings, gui)
     _update_time_settings_from_gui(settings, gui)
     _update_output_settings_from_gui(settings, gui)
     _update_custom_settings_from_gui(settings, gui)
@@ -21,7 +20,8 @@ def _update_main_settings_from_gui(settings, gui):
                 "chem_dir": str(Path(gui.chem_dir.text())),
                 "input_dir": str(Path(gui.input_dir.text()).resolve()),
                 "output_dir": str(Path(gui.output_dir.text())),
-                "station": str(Path(gui.station.text())),
+                # Note: always enable trajectory mode
+                "station": "traj",
             }
         }
     )
@@ -43,7 +43,8 @@ def _update_flag_settings_from_gui(settings, gui):
                 "flag_outlist": 0,
                 # Note: The format flag is always set to 1
                 "flag_format": 1,
-                "flag_model_type": 1 if gui.flag_station_model.isChecked() else 2,
+                # Note: always enable trajectory mode
+                "flag_model_type": 2,
                 "flag_mix_chem": 1 if gui.flag_mix_chem.isChecked() else 0,
                 "flag_aero": 1 if gui.flag_aero.isChecked() else 0,
                 "flag_mix_aero": 1 if gui.flag_mix_aero.isChecked() else 0,
@@ -60,18 +61,6 @@ def _update_flag_settings_from_gui(settings, gui):
                     # "wet_deposition": gui.aer_wet_deposition.isChecked(),
                     "snow_scavenge": gui.aer_snow_scavenge.isChecked(),
                 },
-            },
-        }
-    )
-
-
-def _update_grid_settings_from_gui(settings, gui):
-    settings.patch(
-        {
-            "NML_GRID": {
-                "masl": gui.masl.value(),
-                "lat_deg": gui.lat_deg.value(),
-                "lon_deg": gui.lon_deg.value(),
             },
         }
     )
@@ -108,7 +97,8 @@ def _update_time_settings_from_gui(settings, gui):
                 "dt_depo": gui.dt_depo.value(),
                 "dt_aero": gui.dt_aero.value(),
                 "dt_uhma": gui.dt_uhma.value(),
-                "time_zone": gui.time_zone.value(),
+                # Note: time_zone is always +0 UTC in trajectory mode
+                "time_zone": 0.0,
             },
         }
     )

@@ -7,7 +7,6 @@ from PyQt5 import QtWidgets
 def update_gui_from_settings(settings, gui, raw):
     _update_gui_from_main_settings(settings, gui)
     _update_gui_from_flag_settings(settings, gui)
-    _update_gui_from_grid_settings(settings, gui)
     _update_gui_from_time_settings(settings, gui)
     _update_gui_from_output_settings(settings, gui)
     _update_gui_from_custom_settings(settings, gui)
@@ -32,8 +31,6 @@ def _update_gui_from_main_settings(settings, gui):
         input_dir = f"./{Path(input_dir).relative_to(Path.cwd())}"
     gui.input_dir.setText(input_dir)
 
-    gui.station.setText(main.get("station"))
-    gui.station_name.setText(Path(main.get("station")).stem.capitalize())
     gui.output_dir.setText(main.get("output_dir"))
 
 
@@ -102,26 +99,11 @@ def _update_gui_from_flag_settings(settings, gui):
     aer_snow_scavenge = aer.get("snow_scavenge")
     gui.aer_snow_scavenge.setChecked(aer_snow_scavenge)
 
-    # flag_model_type affects flag_station_model, flag_trajectory_model, and time_zone
-    flag_station_model = flag.get("flag_model_type", 1) == 1
-    gui.flag_station_model.setChecked(flag_station_model)
-    gui.flag_trajectory_model.setChecked(not flag_station_model)
-    gui.group_trajectory_model.setEnabled(not flag_station_model)
-    gui.time_zone.setEnabled(flag_station_model)
-
     flag_vapor = flag.get("flag_vapor", 0) != 0
     gui.flag_vapor.setChecked(flag_vapor)
 
     flag_debug = flag.get("flag_debug", 0) != 0
     gui.flag_debug.setChecked(flag_debug)
-
-
-def _update_gui_from_grid_settings(settings, gui):
-    grid = settings.get("nml_grid", dict())
-
-    gui.masl.setValue(float(grid.get("masl", 1800.0)))
-    gui.lat_deg.setValue(float(grid.get("lat_deg", 61.85)))
-    gui.lon_deg.setValue(float(grid.get("lon_deg", 24.28)))
 
 
 def _update_gui_from_time_settings(settings, gui):
@@ -145,30 +127,26 @@ def _update_gui_from_time_settings(settings, gui):
         abs(gui.start_date.dateTime().daysTo(gui.end_date.dateTime()))
     )
 
-    if gui.flag_trajectory_model.isChecked():
-        fullDays = gui.trajectory_duration.value()
+    fullDays = gui.trajectory_duration.value()
 
-        if fullDays < 0:
-            # Negative duration: start_date = floor(end_date - full_days)
-            gui.start_date.setEnabled(False)
-            gui.end_date.setEnabled(True)
-
-            gui.start_date.setDate(gui.end_date.date().addDays(fullDays))
-            gui.start_date.setTime(QtCore.QTime(0, 0))
-        else:
-            # Positive duration: end_date = ceil(start_date + full_days)
-            gui.start_date.setEnabled(True)
-            gui.end_date.setEnabled(False)
-
-            gui.end_date.setDate(
-                gui.start_date.date().addDays(
-                    fullDays + (gui.start_date.time() > QtCore.QTime(0, 0))
-                )
-            )
-            gui.end_date.setTime(QtCore.QTime(0, 0))
-    else:
-        gui.start_date.setEnabled(True)
+    if fullDays < 0:
+        # Negative duration: start_date = floor(end_date - full_days)
+        gui.start_date.setEnabled(False)
         gui.end_date.setEnabled(True)
+
+        gui.start_date.setDate(gui.end_date.date().addDays(fullDays))
+        gui.start_date.setTime(QtCore.QTime(0, 0))
+    else:
+        # Positive duration: end_date = ceil(start_date + full_days)
+        gui.start_date.setEnabled(True)
+        gui.end_date.setEnabled(False)
+
+        gui.end_date.setDate(
+            gui.start_date.date().addDays(
+                fullDays + (gui.start_date.time() > QtCore.QTime(0, 0))
+            )
+        )
+        gui.end_date.setTime(QtCore.QTime(0, 0))
 
     aero_start_date = QtCore.QDateTime.fromString(
         ",".join(f"{s:02}" for s in time.get("aero_start_date", [2000, 1, 1, 0, 0, 0])),
@@ -201,17 +179,6 @@ def _update_gui_from_time_settings(settings, gui):
     gui.dt_depo.setValue(float(time.get("dt_depo", 60)))
     gui.dt_aero.setValue(float(time.get("dt_aero", 60)))
     gui.dt_uhma.setValue(float(time.get("dt_uhma", 10)))
-
-    # In trajectory mode all times are in UTC+0
-    time_zone = float(time.get("time_zone", 2.0))
-    if gui.flag_trajectory_model.isChecked():
-        time_zone = 0.0
-    gui.time_zone.setValue(time_zone)
-
-    if gui.time_zone.value() >= 0.0:
-        gui.time_zone.setPrefix("UTC+")
-    else:
-        gui.time_zone.setPrefix("UTC")
 
 
 def _update_gui_from_output_settings(settings, gui):
