@@ -36,11 +36,13 @@ def init_run_gui(gui):
 
         terminal.process = QtCore.QProcess(terminal)
         terminal.process.start(
-            "urxvt",
+            "xterm",
             [
-                "-embed",
+                "-into",
                 str(int(terminal.winId())),
-                "+sb",
+                "-sb",
+                "-geometry",
+                "640x480",
                 "-hold",
                 "-e",
                 os.environ.get("SHELL", "sh"),

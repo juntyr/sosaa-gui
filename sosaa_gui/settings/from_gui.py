@@ -113,22 +113,30 @@ def _update_output_settings_from_gui(settings, gui):
             "NML_OUTPUT": {
                 "output_list_spc": ", ".join(
                     s.strip()
-                    for s in gui.output_list_spc.toPlainText().replace("\n", ",").split(",")
+                    for s in gui.output_list_spc.toPlainText()
+                    .replace("\n", ",")
+                    .split(",")
                     if len(s.strip()) > 0
                 ),
                 "output_list_emi": ", ".join(
                     s.strip()
-                    for s in gui.output_list_emi.toPlainText().replace("\n", ",").split(",")
+                    for s in gui.output_list_emi.toPlainText()
+                    .replace("\n", ",")
+                    .split(",")
                     if len(s.strip()) > 0
                 ),
                 "output_list_Vd": ", ".join(
                     s.strip()
-                    for s in gui.output_list_Vd.toPlainText().replace("\n", ",").split(",")
+                    for s in gui.output_list_Vd.toPlainText()
+                    .replace("\n", ",")
+                    .split(",")
                     if len(s.strip()) > 0
                 ),
                 "output_list_vap": ", ".join(
                     s.strip()
-                    for s in gui.output_list_vap.toPlainText().replace("\n", ",").split(",")
+                    for s in gui.output_list_vap.toPlainText()
+                    .replace("\n", ",")
+                    .split(",")
                     if len(s.strip()) > 0
                 ),
                 "!description": gui.description.toPlainText(),
