@@ -16,6 +16,8 @@ def update_gui_from_settings(settings, gui, raw):
 def _update_gui_from_main_settings(settings, gui):
     main = settings.get("nml_main", dict())
 
+    gui.compile_exe.setText(main.get("!sosaa_exe"))
+
     # Pretty-print the main dir if relative to the working dir
     main_dir = main.get("work_dir")
     if main_dir.startswith(str(Path.cwd())):

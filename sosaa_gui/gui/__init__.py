@@ -11,6 +11,7 @@ from .output import init_gui_output
 from .scenario import init_scenario_gui
 from .compile import init_compile_gui
 from .help import init_gui_help
+from .run import init_run_gui
 
 
 class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
@@ -36,3 +37,4 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         init_modules_gui(self)
         init_scenario_gui(self)
         init_compile_gui(self)
+        init_run_gui(self)

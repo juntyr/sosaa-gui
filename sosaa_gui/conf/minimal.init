@@ -13,6 +13,7 @@
   CODE_DIR               = 'src',       ! part of work dir, relative path
   CASE_DIR               = 'cases',     ! part of work dir, relative path
   !CASENAME_DIR          = 'sample_aerosol', ! part of case dir, relative path
+  !SOSAA_EXE             = 'SOSAA.exe', ! part of case name dir, relative path
   CHEM_DIR               = 'chemistry/sample_aerosol', ! part of work dir,
                                                        !  relative path
   INPUT_DIR              = './input',   ! input root, absolute path

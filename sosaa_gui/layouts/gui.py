@@ -1357,121 +1357,52 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.compile_tab, "")
         self.tab_9 = QtWidgets.QWidget()
         self.tab_9.setObjectName("tab_9")
-        self.gridLayout_43 = QtWidgets.QGridLayout(self.tab_9)
-        self.gridLayout_43.setObjectName("gridLayout_43")
-        self.frame_5 = QtWidgets.QFrame(self.tab_9)
-        self.frame_5.setMinimumSize(QtCore.QSize(0, 60))
-        self.frame_5.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_5.setObjectName("frame_5")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.frame_5)
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.frameStart = QtWidgets.QFrame(self.frame_5)
-        self.frameStart.setMinimumSize(QtCore.QSize(150, 60))
-        self.frameStart.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.frameStart.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frameStart.setObjectName("frameStart")
-        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.frameStart)
-        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
-        self.startButton = QtWidgets.QToolButton(self.frameStart)
-        self.startButton.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed
-        )
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.startButton.sizePolicy().hasHeightForWidth())
-        self.startButton.setSizePolicy(sizePolicy)
-        self.startButton.setObjectName("startButton")
-        self.horizontalLayout_12.addWidget(self.startButton)
-        self.horizontalLayout_3.addWidget(self.frameStart)
-        self.flag_debug = QtWidgets.QCheckBox(self.frame_5)
+        self.horizontalLayout_95 = QtWidgets.QVBoxLayout(self.tab_9)
+        self.horizontalLayout_95.setObjectName("horizontalLayout_95")
+        self.groupBox_31 = QtWidgets.QGroupBox(self.tab_9)
+        self.groupBox_31.setObjectName("groupBox_31")
+        self.verticalLayout_123 = QtWidgets.QVBoxLayout(self.groupBox_31)
+        self.verticalLayout_123.setObjectName("verticalLayout_123")
+        self.gridLayout_142 = QtWidgets.QGridLayout()
+        self.gridLayout_142.setObjectName("gridLayout_142")
+        self.flag_debug = QtWidgets.QCheckBox(self.groupBox_31)
         self.flag_debug.setObjectName("flag_debug")
-        self.horizontalLayout_3.addWidget(self.flag_debug)
-        self.frameStop = QtWidgets.QFrame(self.frame_5)
-        self.frameStop.setEnabled(True)
-        self.frameStop.setMinimumSize(QtCore.QSize(150, 60))
-        self.frameStop.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.frameStop.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frameStop.setObjectName("frameStop")
-        self.horizontalLayout_13 = QtWidgets.QHBoxLayout(self.frameStop)
-        self.horizontalLayout_13.setObjectName("horizontalLayout_13")
+        self.gridLayout_142.addWidget(self.flag_debug, 0, 0, 1, 1)
+        self.verticalLayout_123.addLayout(self.gridLayout_142)
+        self.horizontalLayout_95.addWidget(self.groupBox_31)
+        self.horizontalLayout_41 = QtWidgets.QGridLayout()
+        self.horizontalLayout_41.setObjectName("horizontalLayout_41")
+        self.model_stop = QtWidgets.QPushButton(self.tab_9)
+        self.model_stop.setObjectName("model_stop")
+        self.horizontalLayout_41.addWidget(self.model_stop, 0, 1, 1, 1)
+        self.model_start = QtWidgets.QPushButton(self.tab_9)
+        self.model_start.setObjectName("model_start")
+        self.horizontalLayout_41.addWidget(self.model_start, 0, 0, 1, 1)
+        self.horizontalLayout_95.addLayout(self.horizontalLayout_41)
+        self.gridLayout1 = QtWidgets.QGridLayout()
+        self.gridLayout1.setObjectName("gridLayout1")
         spacerItem15 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding
         )
-        self.horizontalLayout_13.addItem(spacerItem15)
-        self.stopButton = QtWidgets.QToolButton(self.frameStop)
-        self.stopButton.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed
-        )
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.stopButton.sizePolicy().hasHeightForWidth())
-        self.stopButton.setSizePolicy(sizePolicy)
-        self.stopButton.setObjectName("stopButton")
-        self.horizontalLayout_13.addWidget(self.stopButton)
+        self.gridLayout1.addItem(spacerItem15, 2, 1, 1, 1)
+        self.terminal_run = QtWidgets.QWidget(self.tab_9)
+        self.terminal_run.setMinimumSize(QtCore.QSize(640, 480))
+        self.terminal_run.setMaximumSize(QtCore.QSize(640, 480))
+        self.terminal_run.setObjectName("terminal_run")
+        self.gridLayout1.addWidget(self.terminal_run, 1, 1, 1, 1)
         spacerItem16 = QtWidgets.QSpacerItem(
             40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
         )
-        self.horizontalLayout_13.addItem(spacerItem16)
-        self.softStopButton = QtWidgets.QToolButton(self.frameStop)
-        self.softStopButton.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed
-        )
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(
-            self.softStopButton.sizePolicy().hasHeightForWidth()
-        )
-        self.softStopButton.setSizePolicy(sizePolicy)
-        self.softStopButton.setObjectName("softStopButton")
-        self.horizontalLayout_13.addWidget(self.softStopButton)
-        self.horizontalLayout_3.addWidget(self.frameStop)
-        self.frame_37 = QtWidgets.QFrame(self.frame_5)
-        self.frame_37.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.frame_37.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.frame_37.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_37.setObjectName("frame_37")
-        self.horizontalLayout_31 = QtWidgets.QHBoxLayout(self.frame_37)
-        self.horizontalLayout_31.setProperty("margin", 0)
-        self.horizontalLayout_31.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_31.setSpacing(3)
-        self.horizontalLayout_31.setObjectName("horizontalLayout_31")
+        self.gridLayout1.addItem(spacerItem16, 1, 0, 1, 1)
         spacerItem17 = QtWidgets.QSpacerItem(
             40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
         )
-        self.horizontalLayout_31.addItem(spacerItem17)
-        self.pauseScroll = QtWidgets.QToolButton(self.frame_37)
-        self.pauseScroll.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Fixed
+        self.gridLayout1.addItem(spacerItem17, 1, 2, 1, 1)
+        spacerItem18 = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding
         )
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pauseScroll.sizePolicy().hasHeightForWidth())
-        self.pauseScroll.setSizePolicy(sizePolicy)
-        self.pauseScroll.setMinimumSize(QtCore.QSize(0, 25))
-        self.pauseScroll.setCheckable(False)
-        self.pauseScroll.setObjectName("pauseScroll")
-        self.horizontalLayout_31.addWidget(self.pauseScroll)
-        self.horizontalLayout_3.addWidget(self.frame_37)
-        self.gridLayout_43.addWidget(self.frame_5, 1, 0, 1, 2)
-        self.MonitorWindow = QtWidgets.QPlainTextEdit(self.tab_9)
-        font = QtGui.QFont()
-        font.setFamily("Courier")
-        font.setStyleStrategy(QtGui.QFont.PreferDefault)
-        self.MonitorWindow.setFont(font)
-        self.MonitorWindow.setAcceptDrops(False)
-        self.MonitorWindow.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.MonitorWindow.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-        self.MonitorWindow.setUndoRedoEnabled(False)
-        self.MonitorWindow.setReadOnly(True)
-        self.MonitorWindow.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
-        self.MonitorWindow.setBackgroundVisible(False)
-        self.MonitorWindow.setObjectName("MonitorWindow")
-        self.gridLayout_43.addWidget(self.MonitorWindow, 0, 0, 1, 1)
+        self.gridLayout1.addItem(spacerItem18, 0, 1, 1, 1)
+        self.horizontalLayout_95.addLayout(self.gridLayout1)
         self.tabWidget.addTab(self.tab_9, "")
         self.gridLayout_8.addWidget(self.tabWidget, 2, 0, 1, 2)
         self.line_3 = QtWidgets.QFrame(self.centralwidget)
@@ -1544,10 +1475,10 @@ class Ui_MainWindow(object):
         self.saveButton.setAutoRaise(False)
         self.saveButton.setObjectName("saveButton")
         self.gridLayout_19.addWidget(self.saveButton, 1, 2, 1, 1)
-        spacerItem18 = QtWidgets.QSpacerItem(
+        spacerItem19 = QtWidgets.QSpacerItem(
             40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
         )
-        self.gridLayout_19.addItem(spacerItem18, 1, 7, 1, 1)
+        self.gridLayout_19.addItem(spacerItem19, 1, 7, 1, 1)
         self.saveCurrentButton = QtWidgets.QToolButton(self.frame_6)
         self.saveCurrentButton.setMinimumSize(QtCore.QSize(67, 28))
         self.saveCurrentButton.setMaximumSize(QtCore.QSize(67, 28))
@@ -1777,7 +1708,6 @@ class Ui_MainWindow(object):
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionFileHelp)
         self.menuTools.addSeparator()
-        self.menuTools.addAction(self.actionStopCurrentRunClean)
         self.menuTools.addAction(self.actionOpen_output_directory)
         self.menuHelp.addSeparator()
         self.menuHelp.addAction(self.actionAbout_SOSAA)
@@ -1804,10 +1734,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.description, self.flag_gasdrydep)
-        MainWindow.setTabOrder(self.flag_gasdrydep, self.MonitorWindow)
-        MainWindow.setTabOrder(self.MonitorWindow, self.startButton)
-        MainWindow.setTabOrder(self.startButton, self.softStopButton)
-        MainWindow.setTabOrder(self.softStopButton, self.customKey_1)
+        MainWindow.setTabOrder(self.flag_gasdrydep, self.customKey_1)
         MainWindow.setTabOrder(self.customKey_1, self.customVal_1)
         MainWindow.setTabOrder(self.customVal_1, self.customKey_2)
         MainWindow.setTabOrder(self.customKey_2, self.customVal_2)
@@ -2047,43 +1974,10 @@ class Ui_MainWindow(object):
             self.tabWidget.indexOf(self.compile_tab),
             _translate("MainWindow", "Compile SOSAA"),
         )
-        self.startButton.setToolTip(
-            _translate(
-                "MainWindow",
-                "<html><head/><body><p>Running SOSAA from within the GUI is not yet supported.</p></body></html>",
-            )
-        )
-        self.startButton.setText(
-            _translate("MainWindow", "Run model with current settings")
-        )
-        self.flag_debug.setText(_translate("MainWindow", "Debug output"))
-        self.stopButton.setToolTip(
-            _translate(
-                "MainWindow",
-                "<html><head/><body><p>Running SOSAA from within the GUI is not yet supported.</p></body></html>",
-            )
-        )
-        self.stopButton.setText(_translate("MainWindow", "Force Stop"))
-        self.softStopButton.setToolTip(
-            _translate(
-                "MainWindow",
-                "<html><head/><body><p>Running SOSAA from within the GUI is not yet supported.</p></body></html>",
-            )
-        )
-        self.softStopButton.setText(_translate("MainWindow", "Soft Stop"))
-        self.pauseScroll.setToolTip(
-            _translate(
-                "MainWindow",
-                "<html><head/><body><p>Running SOSAA from within the GUI is not yet supported.</p></body></html>",
-            )
-        )
-        self.pauseScroll.setText(_translate("MainWindow", "Focus to end ^"))
-        self.MonitorWindow.setToolTip(
-            _translate(
-                "MainWindow",
-                "<html><head/><body><p>Running SOSAA from within the GUI is not yet supported.</p></body></html>",
-            )
-        )
+        self.groupBox_31.setTitle(_translate("MainWindow", "Runtime Options"))
+        self.flag_debug.setText(_translate("MainWindow", "Enable Debug output"))
+        self.model_stop.setText(_translate("MainWindow", "Force Stop SOSAA"))
+        self.model_start.setText(_translate("MainWindow", "Run SOSAA"))
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.tab_9), _translate("MainWindow", "Run SOSAA")
         )

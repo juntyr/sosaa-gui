@@ -22,6 +22,7 @@ def load_settings(gui, path):
         content = file.read()
 
     # Hack to read in commented-out variables
+    content = re.sub("!SOSAA_EXE", "SOSAA_EXE", content, count=1, flags=re.IGNORECASE)
     content = re.sub(
         "!CHEMALL_DIR", "CHEMALL_DIR", content, count=1, flags=re.IGNORECASE
     )
@@ -43,10 +44,12 @@ def load_settings(gui, path):
     _settings.end_comma = True
     _settings.uppercase = True
 
-    # Hack to ensure that chemall_dir, chemname_dir, and casename_dir
-    #  are all found under their commented-out named
+    # Hack to ensure that sosaa_exe, chemall_dir, chemname_dir, and
+    #  casename_dir are all found under their commented-out named
     main = globals()["_settings"].get("nml_main")
     if main is not None:
+        if main.get("sosaa_exe") is not None:
+            main["!sosaa_exe"] = main.pop("sosaa_exe")
         if main.get("chemall_dir") is not None:
             main["!chemall_dir"] = main.pop("chemall_dir")
         if main.get("chemname_dir") is not None:
