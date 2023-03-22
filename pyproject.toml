@@ -12,9 +12,9 @@ maintainers = [
     { name = "Multi-Scale Modelling group", email = "sosaa@helsinki.fi" }
 ]
 dependencies = [
-    "darkdetect == 0.7.1",
-    "f90nml == 1.4.3",
-    "PyQt5 == 5.15.7"
+    "darkdetect >= 0.7.1",
+    "f90nml >= 1.4.3",
+    "PyQt5 >= 5.15.7"
 ]
 
 [project.scripts]
