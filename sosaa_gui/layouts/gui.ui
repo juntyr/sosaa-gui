@@ -503,9 +503,15 @@
                <layout class="QGridLayout" name="gridLayout_4">
                 <item row="0" column="0">
                  <widget class="QLabel" name="label_28">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="minimumSize">
                    <size>
-                    <width>83</width>
+                    <width>85</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -546,7 +552,7 @@
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>24</width>
+                    <width>21</width>
                     <height>20</height>
                    </size>
                   </property>
@@ -558,9 +564,15 @@
                <layout class="QGridLayout" name="gridLayout_4">
                 <item row="0" column="0">
                  <widget class="QLabel" name="label_28">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="minimumSize">
                    <size>
-                    <width>83</width>
+                    <width>85</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -601,7 +613,7 @@
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>24</width>
+                    <width>21</width>
                     <height>20</height>
                    </size>
                   </property>
@@ -619,6 +631,12 @@
                   <layout class="QGridLayout" name="gridLayout_5">
                    <item row="0" column="0">
                     <widget class="QLabel" name="label_code_dir">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="minimumSize">
                       <size>
                        <width>71</width>
@@ -662,7 +680,7 @@
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
-                       <width>12</width>
+                       <width>7</width>
                        <height>20</height>
                       </size>
                      </property>
@@ -674,6 +692,12 @@
                   <layout class="QGridLayout" name="gridLayout_5">
                    <item row="0" column="0">
                     <widget class="QLabel" name="label_chem_dir">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="minimumSize">
                       <size>
                        <width>71</width>
@@ -717,7 +741,7 @@
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
-                       <width>12</width>
+                       <width>7</width>
                        <height>20</height>
                       </size>
                      </property>
@@ -730,6 +754,53 @@
                    <property name="title">
                     <string/>
                    </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_8">
+                    <item>
+                     <layout class="QGridLayout" name="gridLayout_5">
+                      <item row="0" column="2">
+                       <widget class="QToolButton" name="browse_chemname">
+                        <property name="font">
+                         <font>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>...</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="1">
+                       <widget class="QLineEdit" name="chemname_dir">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>18</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="label_chemname_dir">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>57</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Name</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
                   </widget>
                  </item>
                  <item>
@@ -746,6 +817,12 @@
                    </item>
                    <item row="0" column="0">
                     <widget class="QLabel" name="label_27">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="minimumSize">
                       <size>
                        <width>71</width>
@@ -779,7 +856,7 @@
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
-                       <width>12</width>
+                       <width>7</width>
                        <height>20</height>
                       </size>
                      </property>
@@ -792,6 +869,53 @@
                    <property name="title">
                     <string/>
                    </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_8">
+                    <item>
+                     <layout class="QGridLayout" name="gridLayout_5">
+                      <item row="0" column="2">
+                       <widget class="QToolButton" name="browse_casename">
+                        <property name="font">
+                         <font>
+                          <bold>false</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>...</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="1">
+                       <widget class="QLineEdit" name="casename_dir">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>18</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="label_casename_dir">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>57</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>Name</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
                   </widget>
                  </item>
                 </layout>
@@ -829,9 +953,15 @@
                 </item>
                 <item row="0" column="0">
                  <widget class="QLabel" name="label">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="minimumSize">
                    <size>
-                    <width>83</width>
+                    <width>85</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -850,7 +980,7 @@
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>24</width>
+                    <width>21</width>
                     <height>20</height>
                    </size>
                   </property>
