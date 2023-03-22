@@ -21,8 +21,19 @@ def load_settings(gui, path):
     with open(path, "r") as file:
         content = file.read()
 
-    # Hack to read in the commented-out description
-    content = content.replace("!DESCRIPTION", "DESCRIPTION", 1)
+    # Hack to read in commented-out variables
+    content = re.sub(
+        "!CHEMALL_DIR", "CHEMALL_DIR", content, count=1, flags=re.IGNORECASE
+    )
+    content = re.sub(
+        "!CHEMNAME_DIR", "CHEMNAME_DIR", content, count=1, flags=re.IGNORECASE
+    )
+    content = re.sub(
+        "!CASENAME_DIR", "CASENAME_DIR", content, count=1, flags=re.IGNORECASE
+    )
+    content = re.sub(
+        "!DESCRIPTION", "DESCRIPTION", content, count=1, flags=re.IGNORECASE
+    )
 
     # Hack to ensure that _settings is not mistaken as a local variable
     globals()["_settings"] = f90nml.reads(content)
@@ -31,6 +42,17 @@ def load_settings(gui, path):
     _settings.indent = "  "
     _settings.end_comma = True
     _settings.uppercase = True
+
+    # Hack to ensure that chemall_dir, chemname_dir, and casename_dir
+    #  are all found under their commented-out named
+    main = globals()["_settings"].get("nml_main")
+    if main is not None:
+        if main.get("chemall_dir") is not None:
+            main["!chemall_dir"] = main.pop("chemall_dir")
+        if main.get("chemname_dir") is not None:
+            main["!chemname_dir"] = main.pop("chemname_dir")
+        if main.get("casename_dir") is not None:
+            main["!casename_dir"] = main.pop("casename_dir")
 
     # Hack to ensure that the description is found as !description
     output = globals()["_settings"].get("nml_output")

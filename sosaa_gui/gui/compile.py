@@ -41,10 +41,10 @@ def init_compile_gui(gui):
                         "make",
                         f"SOSAA_ROOT={Path(gui.main_dir.text()).resolve()}",
                         f"CODE_DIR={Path(gui.main_dir.text()).resolve() / gui.code_dir.text()}",
-                        # f"CHEMALL_DIR={???}",
+                        f"CHEMALL_DIR={Path(gui.main_dir.text()).resolve() / gui.chem_dir.text()}",
                         f"CASE_DIR={Path(gui.main_dir.text()).resolve() / gui.case_dir.text()}",
-                        # f"CHEM={???}",
-                        # f"CASE={???}",
+                        f"CHEM={gui.chemname_dir.text()}",
+                        f"CASE={gui.casename_dir.text()}",
                     ]
                     + (
                         [f"ALT_NAME={gui.compile_exe.text()}"]

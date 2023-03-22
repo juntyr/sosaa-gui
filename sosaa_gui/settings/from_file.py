@@ -16,15 +16,27 @@ def update_gui_from_settings(settings, gui, raw):
 def _update_gui_from_main_settings(settings, gui):
     main = settings.get("nml_main", dict())
 
-    main_dir = main.get("work_dir")
     # Pretty-print the main dir if relative to the working dir
+    main_dir = main.get("work_dir")
     if main_dir.startswith(str(Path.cwd())):
         main_dir = f"./{Path(main_dir).relative_to(Path.cwd())}"
     gui.main_dir.setText(main_dir)
 
     gui.code_dir.setText(main.get("code_dir"))
-    gui.chem_dir.setText(main.get("chem_dir"))
     gui.case_dir.setText(main.get("case_dir"))
+    gui.casename_dir.setText(main.get("!casename_dir"))
+
+    # Split the chem_dir into the outer dir and the chemistry name
+    chem_dir = main.get("chem_dir")
+    chemall_dir = main.get("!chemall_dir")
+    chemname_dir = main.get("!chemname_dir")
+
+    if chemall_dir is None or chemname_dir is None:
+        chemall_dir = str(Path(chem_dir).parent)
+        chemname_dir = Path(chem_dir).name
+
+    gui.chem_dir.setText(chemall_dir)
+    gui.chemname_dir.setText(chemname_dir)
 
     # Pretty-print the input dir if relative to the working dir
     input_dir = main.get("input_dir")
@@ -37,6 +49,7 @@ def _update_gui_from_main_settings(settings, gui):
     if output_dir.startswith(str(Path.cwd())):
         output_dir = f"./{Path(output_dir).relative_to(Path.cwd())}"
     gui.output_dir.setText(output_dir)
+    gui.currentOutputPath.setText(output_dir)
 
 
 def _update_gui_from_flag_settings(settings, gui):

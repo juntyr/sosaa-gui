@@ -16,7 +16,10 @@ def _update_main_settings_from_gui(settings, gui):
                 "work_dir": str(Path(gui.main_dir.text()).resolve()),
                 "code_dir": str(Path(gui.code_dir.text())),
                 "case_dir": str(Path(gui.case_dir.text())),
-                "chem_dir": str(Path(gui.chem_dir.text())),
+                "!casename_dir": str(Path(gui.casename_dir.text())),
+                "chem_dir": str(Path(gui.chem_dir.text()) / gui.chemname_dir.text()),
+                "!chemall_dir": str(Path(gui.chem_dir.text())),
+                "!chemname_dir": str(Path(gui.chemname_dir.text())),
                 "input_dir": str(Path(gui.input_dir.text()).resolve()),
                 "output_dir": str(Path(gui.output_dir.text()).resolve()),
                 # Note: always enable trajectory mode
