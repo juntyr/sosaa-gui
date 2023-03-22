@@ -1,8 +1,14 @@
 from PyQt5 import QtCore
 
 
+from ..settings import is_loading
+
+
 def init_scenario_gui(gui):
     def changeTrajectoryDuration():
+        if is_loading():
+            return
+
         lastFullDays = gui.trajectory_duration.lastValue
         fullDays = gui.trajectory_duration.value()
 
@@ -56,6 +62,9 @@ def init_scenario_gui(gui):
     gui.trajectory_duration.lastValue = gui.trajectory_duration.value()
 
     def changeAerosolStartOffset():
+        if is_loading():
+            return
+
         gui.aero_start_date.setText(
             gui.start_date.dateTime()
             .addSecs(gui.aero_start_offset.value() * 60 * 60)
@@ -65,6 +74,9 @@ def init_scenario_gui(gui):
     gui.aero_start_offset.valueChanged.connect(changeAerosolStartOffset)
 
     def changeStartDate():
+        if is_loading():
+            return
+
         fullDays = gui.trajectory_duration.value()
 
         if fullDays >= 0:
@@ -85,6 +97,9 @@ def init_scenario_gui(gui):
     gui.start_date.dateTimeChanged.connect(changeStartDate)
 
     def changeEndDate():
+        if is_loading():
+            return
+
         fullDays = gui.trajectory_duration.value()
 
         if fullDays < 0:

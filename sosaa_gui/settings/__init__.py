@@ -15,7 +15,13 @@ default_settings_path = resource_path("conf/defaults.init")
 minimal_settings_path = resource_path("conf/minimal.init")
 
 
+def is_loading():
+    return globals().get("_is_loading", False)
+
+
 def load_settings(gui, path):
+    globals()["_is_loading"] = True
+
     print(f"Loading INITFILE from {path} ...", flush=True)
 
     with open(path, "r") as file:
@@ -67,6 +73,8 @@ def load_settings(gui, path):
     raw = "\n".join(m.group(1) for m in _raw_setting_pattern.finditer(content))
 
     update_gui_from_settings(_settings, gui, raw)
+
+    globals()["_is_loading"] = False
 
 
 def print_settings(gui):

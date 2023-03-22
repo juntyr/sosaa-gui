@@ -162,6 +162,7 @@ def _update_gui_from_time_settings(settings, gui):
     gui.trajectory_duration.setValue(
         abs(gui.start_date.dateTime().daysTo(gui.end_date.dateTime()))
     )
+    gui.trajectory_duration.lastValue = gui.trajectory_duration.value()
 
     fullDays = gui.trajectory_duration.value()
 
