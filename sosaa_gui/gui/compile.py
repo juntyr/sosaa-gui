@@ -3,6 +3,8 @@ from pathlib import Path
 
 from PyQt5 import QtCore, QtWidgets
 
+from .terminal import generateTerminalCommand
+
 
 def init_compile_gui(gui):
     gui.compile_start.setEnabled(True)
@@ -21,46 +23,44 @@ def init_compile_gui(gui):
         if getattr(terminal, "process", None) is not None:
             return
 
-        terminal.process = QtCore.QProcess(terminal)
-        terminal.process.start(
-            "xterm",
-            [
-                "-into",
-                str(int(terminal.winId())),
-                "-sb",
-                "-geometry",
-                "640x480",
-                "-hold",
-                "-e",
-                os.environ.get("SHELL", "sh"),
-                "-x",
-                "-c",
-                " ".join(
-                    [
-                        "cd",
-                        str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
-                        "&&",
-                        "make",
-                        f"SOSAA_ROOT={Path(gui.main_dir.text()).resolve()}",
-                        f"CODE_DIR={Path(gui.main_dir.text()).resolve() / gui.code_dir.text()}",
-                        f"CHEMALL_DIR={Path(gui.main_dir.text()).resolve() / gui.chem_dir.text()}",
-                        f"CASE_DIR={Path(gui.main_dir.text()).resolve() / gui.case_dir.text()}",
-                        f"CHEM={gui.chemname_dir.text()}",
-                        f"CASE={gui.casename_dir.text()}",
-                    ]
-                    + (
-                        [f"ALT_NAME={gui.compile_exe.text()}"]
-                        if len(gui.compile_exe.text()) > 0
-                        else []
-                    )
-                    + (
-                        [f"INIT_FILE={Path(gui.currentInitFile.text()).resolve()}"]
-                        if len(gui.currentInitFile.text()) > 0
-                        else []
-                    )
-                ),
-            ],
+        command = generateTerminalCommand(
+            " ".join(
+                [
+                    "cd",
+                    str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
+                    "&&",
+                    "make",
+                    f"SOSAA_ROOT={Path(gui.main_dir.text()).resolve()}",
+                    f"CODE_DIR={Path(gui.main_dir.text()).resolve() / gui.code_dir.text()}",
+                    f"CHEMALL_DIR={Path(gui.main_dir.text()).resolve() / gui.chem_dir.text()}",
+                    f"CASE_DIR={Path(gui.main_dir.text()).resolve() / gui.case_dir.text()}",
+                    f"CHEM={gui.chemname_dir.text()}",
+                    f"CASE={gui.casename_dir.text()}",
+                ]
+                + (
+                    [f"ALT_NAME={gui.compile_exe.text()}"]
+                    if len(gui.compile_exe.text()) > 0
+                    else []
+                )
+                + (
+                    [f"INIT_FILE={Path(gui.currentInitFile.text()).resolve()}"]
+                    if len(gui.currentInitFile.text()) > 0
+                    else []
+                )
+            ),
+            int(terminal.winId()),
         )
+
+        if command is None:
+            gui.compile_start.setEnabled(True)
+            gui.compile_clean.setEnabled(True)
+            gui.compile_cleanchem.setEnabled(True)
+            gui.compile_stop.setEnabled(False)
+
+            return
+
+        terminal.process = QtCore.QProcess(terminal)
+        terminal.process.start(*command)
 
     gui.compile_start.clicked.connect(startCompilation)
 
@@ -91,31 +91,29 @@ def init_compile_gui(gui):
         if getattr(terminal, "process", None) is not None:
             return
 
-        terminal.process = QtCore.QProcess(terminal)
-        terminal.process.start(
-            "xterm",
-            [
-                "-into",
-                str(int(terminal.winId())),
-                "-sb",
-                "-geometry",
-                "640x480",
-                "-hold",
-                "-e",
-                os.environ.get("SHELL", "sh"),
-                "-x",
-                "-c",
-                " ".join(
-                    [
-                        "cd",
-                        str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
-                        "&&",
-                        "make",
-                        "clean",
-                    ]
-                ),
-            ],
+        command = generateTerminalCommand(
+            " ".join(
+                [
+                    "cd",
+                    str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
+                    "&&",
+                    "make",
+                    "clean",
+                ]
+            ),
+            int(terminal.winId()),
         )
+
+        if command is None:
+            gui.compile_start.setEnabled(True)
+            gui.compile_clean.setEnabled(True)
+            gui.compile_cleanchem.setEnabled(True)
+            gui.compile_stop.setEnabled(False)
+
+            return
+
+        terminal.process = QtCore.QProcess(terminal)
+        terminal.process.start(*command)
 
     gui.compile_clean.clicked.connect(cleanSosaa)
 
@@ -130,31 +128,29 @@ def init_compile_gui(gui):
         if getattr(terminal, "process", None) is not None:
             return
 
-        terminal.process = QtCore.QProcess(terminal)
-        terminal.process.start(
-            "xterm",
-            [
-                "-into",
-                str(int(terminal.winId())),
-                "-sb",
-                "-geometry",
-                "640x480",
-                "-hold",
-                "-e",
-                os.environ.get("SHELL", "sh"),
-                "-x",
-                "-c",
-                " ".join(
-                    [
-                        "cd",
-                        str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
-                        "&&",
-                        "make",
-                        "cleanchem",
-                    ]
-                ),
-            ],
+        command = generateTerminalCommand(
+            " ".join(
+                [
+                    "cd",
+                    str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
+                    "&&",
+                    "make",
+                    "cleanchem",
+                ]
+            ),
+            int(terminal.winId()),
         )
+
+        if command is None:
+            gui.compile_start.setEnabled(True)
+            gui.compile_clean.setEnabled(True)
+            gui.compile_cleanchem.setEnabled(True)
+            gui.compile_stop.setEnabled(False)
+
+            return
+
+        terminal.process = QtCore.QProcess(terminal)
+        terminal.process.start(*command)
 
     gui.compile_cleanchem.clicked.connect(cleanChemistry)
 

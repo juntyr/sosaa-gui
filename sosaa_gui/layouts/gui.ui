@@ -2097,7 +2097,7 @@
           <item row="0" column="1">
            <widget class="QPushButton" name="compile_stop">
             <property name="text">
-             <string>Stop Compilation</string>
+             <string>Kill the Terminal</string>
             </property>
            </widget>
           </item>
@@ -2228,7 +2228,7 @@
           <item row="0" column="1">
            <widget class="QPushButton" name="model_stop">
             <property name="text">
-             <string>Force Stop SOSAA</string>
+             <string>Kill the Terminal</string>
             </property>
            </widget>
           </item>

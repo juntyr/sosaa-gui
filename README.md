@@ -27,3 +27,5 @@ If you experience problems with the UI scaling, try launching the GUI as follows
 ```bash
 QT_SCREEN_SCALE_FACTORS="1.17;1.17" sosaa-gui
 ```
+
+Note that you will need `xterm`, `uxterm`, `rxvt`, or `urxvt` installed on your system and in your path if you want to compile or run SOSAA *from within* the SOSAA GUI.

@@ -1964,7 +1964,7 @@ class Ui_MainWindow(object):
         )
         self.groupBox_3.setTitle(_translate("MainWindow", "Compilation Options"))
         self.label_141.setText(_translate("MainWindow", "Executable name"))
-        self.compile_stop.setText(_translate("MainWindow", "Stop Compilation"))
+        self.compile_stop.setText(_translate("MainWindow", "Kill the Terminal"))
         self.compile_start.setText(_translate("MainWindow", "Run Compilation"))
         self.compile_clean.setText(_translate("MainWindow", "Clean SOSAA Artefacts"))
         self.compile_cleanchem.setText(
@@ -1976,7 +1976,7 @@ class Ui_MainWindow(object):
         )
         self.groupBox_31.setTitle(_translate("MainWindow", "Runtime Options"))
         self.flag_debug.setText(_translate("MainWindow", "Enable Debug output"))
-        self.model_stop.setText(_translate("MainWindow", "Force Stop SOSAA"))
+        self.model_stop.setText(_translate("MainWindow", "Kill the Terminal"))
         self.model_start.setText(_translate("MainWindow", "Run SOSAA"))
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.tab_9), _translate("MainWindow", "Run SOSAA")
