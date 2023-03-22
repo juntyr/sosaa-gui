@@ -80,7 +80,10 @@ def _saveSettings(gui, path=None):
     if path is None:
         path = browsePath(title="Save INITFILE", save=True)
 
-    if path is None or str(path) == minimal_settings_path:
+    if path is None:
+        return
+
+    if str(path) == minimal_settings_path:
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Critical)
         msg.setText("Invalid INITFILE path")

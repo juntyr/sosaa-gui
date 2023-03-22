@@ -91,7 +91,7 @@
 /
 
 &NML_OUTPUT
-  output_list_spc        = '',          ! list of species that will be output
+  output_list_spc        = 'OH, SO2',   ! list of species that will be output
   output_list_emi        = '',          ! list of species whose emission rates
                                         !  will be output
   output_list_Vd         = '',          ! list of species whose dry deposition
