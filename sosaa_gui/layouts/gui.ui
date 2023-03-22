@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1067</width>
-    <height>1062</height>
+    <width>1007</width>
+    <height>1037</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2453,13 +2453,6 @@
       </widget>
      </widget>
     </item>
-    <item row="8" column="0">
-     <widget class="Line" name="line_7">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="0">
      <widget class="Line" name="line_3">
       <property name="orientation">
@@ -2660,6 +2653,13 @@
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
      </widget>
     </item>
     <item row="7" column="0" colspan="2">
@@ -2876,13 +2876,6 @@
       </layout>
      </widget>
     </item>
-    <item row="6" column="0">
-     <widget class="Line" name="line_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -2893,7 +2886,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1067</width>
+     <width>1007</width>
      <height>25</height>
     </rect>
    </property>
@@ -2964,7 +2957,6 @@
    <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSave_2">
    <property name="text">
     <string>Save As</string>
