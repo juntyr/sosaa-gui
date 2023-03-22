@@ -19,13 +19,25 @@ def _update_gui_from_main_settings(settings, gui):
     gui.compile_exe.setText(main.get("!sosaa_exe"))
 
     # Pretty-print the main dir if relative to the working dir
-    main_dir = main.get("work_dir")
+    main_dir = str(Path(main.get("work_dir")).resolve())
     if main_dir.startswith(str(Path.cwd())):
         main_dir = f"./{Path(main_dir).relative_to(Path.cwd())}"
     gui.main_dir.setText(main_dir)
 
-    gui.code_dir.setText(main.get("code_dir"))
-    gui.case_dir.setText(main.get("case_dir"))
+    main_dir = Path(main.get("work_dir")).resolve()
+
+    # Pretty-print the code dir if relative to the main dir
+    code_dir = main.get("code_dir")
+    if code_dir.startswith(str(main_dir)):
+        code_dir = f"{Path(code_dir).relative_to(main_dir)}"
+    gui.code_dir.setText(code_dir)
+
+    # Pretty-print the case dir if relative to the main dir
+    case_dir = main.get("case_dir")
+    if case_dir.startswith(str(main_dir)):
+        case_dir = f"{Path(case_dir).relative_to(main_dir)}"
+    gui.case_dir.setText(case_dir)
+
     gui.casename_dir.setText(main.get("!casename_dir"))
 
     # Split the chem_dir into the outer dir and the chemistry name
@@ -37,17 +49,21 @@ def _update_gui_from_main_settings(settings, gui):
         chemall_dir = str(Path(chem_dir).parent)
         chemname_dir = Path(chem_dir).name
 
+    # Pretty-print the chem dir if relative to the main dir
+    if chemall_dir.startswith(str(main_dir)):
+        chemall_dir = f"{Path(chemall_dir).relative_to(main_dir)}"
+
     gui.chem_dir.setText(chemall_dir)
     gui.chemname_dir.setText(chemname_dir)
 
     # Pretty-print the input dir if relative to the working dir
-    input_dir = main.get("input_dir")
+    input_dir = str(Path(main.get("input_dir")).resolve())
     if input_dir.startswith(str(Path.cwd())):
         input_dir = f"./{Path(input_dir).relative_to(Path.cwd())}"
     gui.input_dir.setText(input_dir)
 
     # Pretty-print the output dir if relative to the working dir
-    output_dir = main.get("output_dir")
+    output_dir = str(Path(main.get("output_dir")).resolve())
     if output_dir.startswith(str(Path.cwd())):
         output_dir = f"./{Path(output_dir).relative_to(Path.cwd())}"
     gui.output_dir.setText(output_dir)
