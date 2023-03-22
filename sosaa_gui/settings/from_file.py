@@ -10,7 +10,7 @@ def update_gui_from_settings(settings, gui, raw):
     _update_gui_from_time_settings(settings, gui)
     _update_gui_from_output_settings(settings, gui)
     _update_gui_from_custom_settings(settings, gui)
-    _update_gui_from_raw_settings(settings, gui, raw)
+    _update_gui_from_raw_settings(gui, raw)
 
 
 def _update_gui_from_main_settings(settings, gui):
@@ -272,5 +272,5 @@ def _update_gui_from_custom_settings(settings, gui):
             getattr(gui, f"customVal_{i}").setText("")
 
 
-def _update_gui_from_raw_settings(settings, gui, raw):
+def _update_gui_from_raw_settings(gui, raw):
     gui.rawEdit.document().setPlainText(raw)

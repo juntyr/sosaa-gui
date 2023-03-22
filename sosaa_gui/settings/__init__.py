@@ -37,7 +37,7 @@ def load_settings(gui, path):
     )
 
     # Hack to ensure that _settings is not mistaken as a local variable
-    globals()["_settings"] = f90nml.reads(content)
+    globals()["_settings"] = f90nml.reads(_raw_setting_pattern.sub("", content))
 
     # Configure the f90 namelist pretty-printing options
     _settings.indent = "  "
