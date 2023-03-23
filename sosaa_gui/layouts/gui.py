@@ -1983,7 +1983,7 @@ class Ui_MainWindow(object):
         self.groupBox_31.setTitle(_translate("MainWindow", "MPI Launch options"))
         self.label_2.setText(_translate("MainWindow", "Number of Processes"))
         self.label_4.setText(_translate("MainWindow", "mpirun command"))
-        self.mpi_cmd.setText(_translate("MainWindow", "mpirun --oversubscribe"))
+        self.mpi_cmd.setText(_translate("MainWindow", "orterun --oversubscribe"))
         self.groupBox_32.setTitle(_translate("MainWindow", "Runtime Options"))
         self.flag_debug.setText(_translate("MainWindow", "Enable Debug output"))
         self.model_stop.setText(_translate("MainWindow", "Kill the Terminal"))

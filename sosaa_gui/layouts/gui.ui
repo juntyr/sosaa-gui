@@ -2628,7 +2628,7 @@
              <item row="0" column="1">
               <widget class="QLineEdit" name="mpi_cmd">
                <property name="text">
-                <string>mpirun --oversubscribe</string>
+                <string>orterun --oversubscribe</string>
                </property>
               </widget>
              </item>

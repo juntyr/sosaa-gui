@@ -101,6 +101,6 @@
 &NML_GUI
   MAIN_CASENAME_DIR          = 'sample_aerosol', ! part of case dir, relative path
   SOSAA_EXE                  = 'SOSAA.exe', ! part of case name dir, relative path
-  MPI_CMD                    = 'mpirun --oversubscribe', ! MPI launch command
+  MPI_CMD                    = 'orterun --oversubscribe', ! MPI launch command
   MPI_NPROC                  = 4,
 /
