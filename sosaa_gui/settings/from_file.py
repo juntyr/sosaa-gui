@@ -20,35 +20,39 @@ def _update_gui_from_main_settings(settings, gui):
     guis = settings.get("nml_gui", dict())
 
     # Pretty-print the main dir if relative to the working dir
-    main_dir = str(Path(main.get("work_dir")).resolve())
+    main_dir = str(Path(main.get("work_dir", "./sosaa")).resolve())
     if main_dir.startswith(str(Path.cwd())):
         main_dir = f"./{Path(main_dir).relative_to(Path.cwd())}"
     gui.main_dir.setText(main_dir)
 
-    main_dir = Path(main.get("work_dir")).resolve()
+    main_dir = Path(main.get("work_dir", "./sosaa")).resolve()
 
     # Pretty-print the code dir if relative to the main dir
-    code_dir = main.get("code_dir")
+    code_dir = main.get("code_dir", "src")
     if code_dir.startswith(str(main_dir)):
         code_dir = f"{Path(code_dir).relative_to(main_dir)}"
     gui.code_dir.setText(code_dir)
 
     # Pretty-print the case dir if relative to the main dir
-    case_dir = main.get("case_dir")
+    case_dir = main.get("case_dir", "cases")
     if case_dir.startswith(str(main_dir)):
         case_dir = f"{Path(case_dir).relative_to(main_dir)}"
     gui.case_dir.setText(case_dir)
 
-    gui.casename_dir.setText(guis.get("main_casename_dir"))
+    gui.casename_dir.setText(guis.get("main_casename_dir", "sample_aerosol"))
 
     # Split the chem_dir into the outer dir and the chemistry name
-    chem_dir = main.get("chem_dir")
-    chemall_dir = guis.get("main_chemall_dir")
-    chemname_dir = guis.get("main_chemname_dir")
+    chem_dir = main.get("chem_dir", None)
+    chemall_dir = guis.get("main_chemall_dir", None)
+    chemname_dir = guis.get("main_chemname_dir", None)
 
     if chemall_dir is None or chemname_dir is None:
-        chemall_dir = str(Path(chem_dir).parent)
-        chemname_dir = Path(chem_dir).name
+        if chem_dir is not None:
+            chemall_dir = str(Path(chem_dir).parent)
+            chemname_dir = Path(chem_dir).name
+        else:
+            chemall_dir = "chemistry"
+            chemname_dir = "sample_aerosol"
 
     # Pretty-print the chem dir if relative to the main dir
     if chemall_dir.startswith(str(main_dir)):
@@ -58,13 +62,13 @@ def _update_gui_from_main_settings(settings, gui):
     gui.chemname_dir.setText(chemname_dir)
 
     # Pretty-print the input dir if relative to the working dir
-    input_dir = str(Path(main.get("input_dir")).resolve())
+    input_dir = str(Path(main.get("input_dir", "")).resolve())
     if input_dir.startswith(str(Path.cwd())):
         input_dir = f"./{Path(input_dir).relative_to(Path.cwd())}"
     gui.input_dir.setText(input_dir)
 
     # Pretty-print the output dir if relative to the working dir
-    output_dir = str(Path(main.get("output_dir")).resolve())
+    output_dir = str(Path(main.get("output_dir", "")).resolve())
     if output_dir.startswith(str(Path.cwd())):
         output_dir = f"./{Path(output_dir).relative_to(Path.cwd())}"
     gui.output_dir.setText(output_dir)
@@ -127,13 +131,13 @@ def _update_gui_from_flag_settings(settings, gui):
     aer_coagulation = aer.get("coagulation", True)
     gui.aer_coagulation.setChecked(aer_coagulation)
 
-    aer_dry_deposition = aer.get("dry_deposition")
+    aer_dry_deposition = aer.get("dry_deposition", False)
     gui.aer_dry_deposition.setChecked(aer_dry_deposition)
 
     # Note: Aerosol wet deposition is not yet implemented
     gui.aer_wet_deposition.setChecked(False)
 
-    aer_snow_scavenge = aer.get("snow_scavenge")
+    aer_snow_scavenge = aer.get("snow_scavenge", False)
     gui.aer_snow_scavenge.setChecked(aer_snow_scavenge)
 
     flag_vapor = flag.get("flag_vapor", 0) != 0
@@ -258,14 +262,14 @@ def _update_gui_from_output_settings(settings, gui):
 def _update_gui_from_compile_settings(settings, gui):
     guis = settings.get("nml_gui", dict())
 
-    gui.compile_exe.setText(guis.get("sosaa_exe"))
+    gui.compile_exe.setText(guis.get("sosaa_exe", "SOSAA.exe"))
 
 
 def _update_gui_from_run_settings(settings, gui):
     guis = settings.get("nml_gui", dict())
 
-    gui.mpi_cmd.setText(guis.get("mpi_cmd"))
-    gui.mpi_nproc.setValue(guis.get("mpi_nproc"))
+    gui.mpi_cmd.setText(guis.get("mpi_cmd", "mpirun --oversubscribe"))
+    gui.mpi_nproc.setValue(guis.get("mpi_nproc", 4))
 
 
 def _update_gui_from_custom_settings(settings, gui):

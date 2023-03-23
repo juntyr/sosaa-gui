@@ -184,8 +184,8 @@ def _update_run_settings_from_gui(settings, gui):
     settings.patch(
         {
             "NML_GUI": {
-                "mpi_cmd": gui.mpi_cmd.getText(),
-                "mpi_nproc": gui.mpi_nproc.getValue(),
+                "mpi_cmd": gui.mpi_cmd.text(),
+                "mpi_nproc": gui.mpi_nproc.value(),
             }
         }
     )
