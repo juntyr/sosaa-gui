@@ -10,13 +10,14 @@ def update_gui_from_settings(settings, gui, raw):
     _update_gui_from_time_settings(settings, gui)
     _update_gui_from_output_settings(settings, gui)
     _update_gui_from_custom_settings(settings, gui)
+    _update_gui_from_compile_settings(settings, gui)
+    _update_gui_from_run_settings(settings, gui)
     _update_gui_from_raw_settings(gui, raw)
 
 
 def _update_gui_from_main_settings(settings, gui):
     main = settings.get("nml_main", dict())
-
-    gui.compile_exe.setText(main.get("!sosaa_exe"))
+    guis = settings.get("nml_gui", dict())
 
     # Pretty-print the main dir if relative to the working dir
     main_dir = str(Path(main.get("work_dir")).resolve())
@@ -38,12 +39,12 @@ def _update_gui_from_main_settings(settings, gui):
         case_dir = f"{Path(case_dir).relative_to(main_dir)}"
     gui.case_dir.setText(case_dir)
 
-    gui.casename_dir.setText(main.get("!casename_dir"))
+    gui.casename_dir.setText(guis.get("main_casename_dir"))
 
     # Split the chem_dir into the outer dir and the chemistry name
     chem_dir = main.get("chem_dir")
-    chemall_dir = main.get("!chemall_dir")
-    chemname_dir = main.get("!chemname_dir")
+    chemall_dir = guis.get("main_chemall_dir")
+    chemname_dir = guis.get("main_chemname_dir")
 
     if chemall_dir is None or chemname_dir is None:
         chemall_dir = str(Path(chem_dir).parent)
@@ -220,6 +221,7 @@ def _update_gui_from_time_settings(settings, gui):
 
 def _update_gui_from_output_settings(settings, gui):
     output = settings.get("nml_output", dict())
+    guis = settings.get("nml_gui", dict())
 
     gui.output_list_spc.setPlainText(
         ", ".join(
@@ -250,8 +252,20 @@ def _update_gui_from_output_settings(settings, gui):
         )
     )
 
-    # Note: The description is currently commented out
-    gui.description.setPlainText(output.get("!description", ""))
+    gui.description.setPlainText(guis.get("scenario_description", ""))
+
+
+def _update_gui_from_compile_settings(settings, gui):
+    guis = settings.get("nml_gui", dict())
+
+    gui.compile_exe.setText(guis.get("sosaa_exe"))
+
+
+def _update_gui_from_run_settings(settings, gui):
+    guis = settings.get("nml_gui", dict())
+
+    gui.mpi_cmd.setText(guis.get("mpi_cmd"))
+    gui.mpi_nproc.setValue(guis.get("mpi_nproc"))
 
 
 def _update_gui_from_custom_settings(settings, gui):

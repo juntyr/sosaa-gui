@@ -6,6 +6,8 @@ def update_settings_from_gui(settings, gui):
     _update_flag_settings_from_gui(settings, gui)
     _update_time_settings_from_gui(settings, gui)
     _update_output_settings_from_gui(settings, gui)
+    _update_compile_settings_from_gui(settings, gui)
+    _update_run_settings_from_gui(settings, gui)
     _update_custom_settings_from_gui(settings, gui)
 
 
@@ -20,21 +22,27 @@ def _update_main_settings_from_gui(settings, gui):
                 "case_dir": str(
                     Path(gui.main_dir.text()).resolve() / gui.case_dir.text()
                 ),
-                "!casename_dir": str(Path(gui.casename_dir.text())),
-                "!sosaa_exe": str(Path(gui.compile_exe.text())),
                 "chem_dir": str(
                     Path(gui.main_dir.text()).resolve()
                     / gui.chem_dir.text()
                     / gui.chemname_dir.text()
                 ),
-                "!chemall_dir": str(
-                    Path(gui.main_dir.text()).resolve() / gui.chem_dir.text()
-                ),
-                "!chemname_dir": str(Path(gui.chemname_dir.text())),
                 "input_dir": str(Path(gui.input_dir.text()).resolve()),
                 "output_dir": str(Path(gui.output_dir.text()).resolve()),
                 # Note: always enable trajectory mode
                 "station": "traj",
+            }
+        }
+    )
+
+    settings.patch(
+        {
+            "NML_GUI": {
+                "main_casename_dir": str(Path(gui.casename_dir.text())),
+                "main_chemall_dir": str(
+                    Path(gui.main_dir.text()).resolve() / gui.chem_dir.text()
+                ),
+                "main_chemname_dir": str(Path(gui.chemname_dir.text())),
             }
         }
     )
@@ -149,7 +157,35 @@ def _update_output_settings_from_gui(settings, gui):
                     .split(",")
                     if len(s.strip()) > 0
                 ),
-                "!description": gui.description.toPlainText(),
+            }
+        }
+    )
+
+    settings.patch(
+        {
+            "NML_GUI": {
+                "scenario_description": gui.description.toPlainText(),
+            }
+        }
+    )
+
+
+def _update_compile_settings_from_gui(settings, gui):
+    settings.patch(
+        {
+            "NML_GUI": {
+                "sosaa_exe": str(Path(gui.compile_exe.text())),
+            }
+        }
+    )
+
+
+def _update_run_settings_from_gui(settings, gui):
+    settings.patch(
+        {
+            "NML_GUI": {
+                "mpi_cmd": gui.mpi_cmd.getText(),
+                "mpi_nproc": gui.mpi_nproc.getValue(),
             }
         }
     )
