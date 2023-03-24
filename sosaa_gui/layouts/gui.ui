@@ -2749,7 +2749,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_6">
+      <widget class="QWidget" name="initfile_tab">
        <attribute name="title">
         <string>INITFILE</string>
        </attribute>

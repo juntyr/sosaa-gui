@@ -1,5 +1,8 @@
 import re
+import sys
 import time
+
+from io import StringIO
 
 import f90nml
 
@@ -40,65 +43,64 @@ def load_settings(gui, path):
 
     update_gui_from_settings(_settings, gui, raw)
 
+    display_settings(gui)
+
     globals()["_is_loading"] = False
 
 
+def display_settings(gui):
+    config = StringIO()
+
+    _write_settings_to_file(gui, config, update_version=False)
+
+    gui.currentInitFileContent.document().setPlainText(config.getvalue())
+
+
 def print_settings(gui):
-    update_settings_from_gui(_settings, gui)
-
     print("\n" * 10, flush=True)
-    print(f"! {'='*76} !", flush=True)
-    print(
-        f"! {f'SOSAA INITFILE {_version_major}.{_version_minor}'.center(76)} !",
-        flush=True,
-    )
-    print(
-        f"! {('Created at: ' + time.strftime('%B %d %Y, %H:%M:%S', time.localtime())).center(76)} !",
-        flush=True,
-    )
-    print(f"! {'='*76} !", flush=True)
 
-    # Hack to ensure that _version_minor is not mistaken as a local variable
-    globals()["_version_minor"] += 1
+    _write_settings_to_file(gui, sys.stdout, update_version=True)
+    sys.stdout.flush()
 
-    print(flush=True)
-    print(_settings, flush=True)
-
-    print(flush=True)
-    print(_raw_settings_header, flush=True)
-    print(gui.rawEdit.toPlainText(), flush=True)
-    print(_raw_settings_footer, flush=True)
+    display_settings(gui)
 
 
 def save_settings(gui, path):
     print(f"Saving INITFILE to {path} ...", flush=True)
 
+    with open(path, "w") as file:
+        _write_settings_to_file(gui, file, update_version=True)
+
+    display_settings(gui)
+
+
+def _write_settings_to_file(gui, file, update_version=True):
     update_settings_from_gui(_settings, gui)
 
-    with open(path, "w") as file:
-        file.write(f"! {'='*76} !\n")
-        file.write(
-            f"! {f'SOSAA INITFILE {_version_major}.{_version_minor}'.center(76)} !\n"
-        )
-        file.write(
-            f"! {('Created at: ' + time.strftime('%B %d %Y, %H:%M:%S', time.localtime())).center(76)} !\n"
-        )
-        file.write(f"! {'='*76} !\n")
+    file.write(f"! {'='*76} !\n")
+    file.write(
+        f"! {f'SOSAA INITFILE {_version_major}.{_version_minor}'.center(76)} !\n"
+    )
+    file.write(
+        f"! {('Created at: ' + time.strftime('%B %d %Y, %H:%M:%S', time.localtime())).center(76)} !\n"
+    )
+    file.write(f"! {'='*76} !\n")
 
+    if update_version:
         # Hack to ensure that _version_minor is not mistaken as a local variable
         globals()["_version_minor"] += 1
 
-        file.write("\n")
-        file.write(str(_settings))
-        file.write("\n")
+    file.write("\n")
+    file.write(str(_settings))
+    file.write("\n")
 
-        file.write("\n")
-        file.write(_raw_settings_header)
-        file.write("\n")
-        file.write(gui.rawEdit.toPlainText())
-        file.write("\n")
-        file.write(_raw_settings_footer)
-        file.write("\n")
+    file.write("\n")
+    file.write(_raw_settings_header)
+    file.write("\n")
+    file.write(gui.rawEdit.toPlainText())
+    file.write("\n")
+    file.write(_raw_settings_footer)
+    file.write("\n")
 
 
 # Create the module-local settings global and its pretty-printing options

@@ -3,6 +3,7 @@ from pathlib import Path
 from PyQt5 import QtWidgets
 
 from ..settings import (
+    display_settings,
     print_settings,
     load_settings,
     save_settings,
@@ -53,6 +54,9 @@ def init_gui_loadsave(gui):
     type(gui).dragEnterEvent = _dragInitFileEnter
     type(gui).dropEvent = _dropInitFile
     gui.setAcceptDrops(True)
+
+    # Set up INITFILE update on switch to its tab
+    gui.tabWidget.currentChanged.connect(lambda i: _tab_switched(gui, i))
 
 
 def _loadSettings(gui):
@@ -147,3 +151,11 @@ def _dropInitFile(gui, e):
     path = Path(e.mimeData().text().replace("file://", "").strip()).resolve()
 
     _loadSettingsWithPath(gui, path)
+
+
+def _tab_switched(gui, _i):
+    # Fake-access the i variable
+    _i = _i
+
+    if gui.tabWidget.currentWidget() == gui.initfile_tab:
+        display_settings(gui)

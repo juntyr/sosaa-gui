@@ -158,3 +158,11 @@ def _refresh_font(gui, font):
     gui.menuStyle.setFont(font)
     gui.menuFont.setFont(font)
     gui.menuHelp.setFont(font)
+
+    monospace = QtGui.QFont()
+    monospace.fromString(font.toString())
+    monospace.setFamily("Courier New")
+    monospace.setStyleHint(QtGui.QFont.StyleHint.Monospace)
+
+    gui.rawEdit.setFont(monospace)
+    gui.currentInitFileContent.setFont(monospace)
