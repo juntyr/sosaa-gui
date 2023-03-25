@@ -11,6 +11,28 @@ def init_compile_gui(gui):
     gui.compile_cleanchem.setEnabled(True)
     gui.compile_stop.setEnabled(False)
 
+    def generateMakeVariables():
+        return (
+            [
+                f"SOSAA_ROOT={Path(gui.main_dir.text()).resolve()}",
+                f"CODE_DIR={Path(gui.main_dir.text()).resolve() / gui.code_dir.text()}",
+                f"CHEMALL_DIR={Path(gui.main_dir.text()).resolve() / gui.chem_dir.text()}",
+                f"CASE_DIR={Path(gui.main_dir.text()).resolve() / gui.case_dir.text()}",
+                f"CHEM={gui.chemname_dir.text()}",
+                f"CASE={gui.casename_dir.text()}",
+            ]
+            + (
+                [f"ALT_NAME={gui.sosaa_exe.text()}"]
+                if len(gui.sosaa_exe.text()) > 0
+                else []
+            )
+            + (
+                [f"INIT_FILE={Path(gui.currentInitFile.text()).resolve()}"]
+                if len(gui.currentInitFile.text()) > 0
+                else []
+            )
+        )
+
     def startCompilation():
         terminal = gui.terminal_compile
 
@@ -29,23 +51,9 @@ def init_compile_gui(gui):
                     str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
                     "&&",
                     "make",
-                    f"SOSAA_ROOT={Path(gui.main_dir.text()).resolve()}",
-                    f"CODE_DIR={Path(gui.main_dir.text()).resolve() / gui.code_dir.text()}",
-                    f"CHEMALL_DIR={Path(gui.main_dir.text()).resolve() / gui.chem_dir.text()}",
-                    f"CASE_DIR={Path(gui.main_dir.text()).resolve() / gui.case_dir.text()}",
-                    f"CHEM={gui.chemname_dir.text()}",
-                    f"CASE={gui.casename_dir.text()}",
+                    "sosaa.exe",
                 ]
-                + (
-                    [f"ALT_NAME={gui.sosaa_exe.text()}"]
-                    if len(gui.sosaa_exe.text()) > 0
-                    else []
-                )
-                + (
-                    [f"INIT_FILE={Path(gui.currentInitFile.text()).resolve()}"]
-                    if len(gui.currentInitFile.text()) > 0
-                    else []
-                )
+                + generateMakeVariables()
             ),
             int(terminal.winId()),
         )
@@ -99,6 +107,7 @@ def init_compile_gui(gui):
                     "make",
                     "clean",
                 ]
+                + generateMakeVariables()
             ),
             int(terminal.winId()),
         )
@@ -136,6 +145,7 @@ def init_compile_gui(gui):
                     "make",
                     "cleanchem",
                 ]
+                + generateMakeVariables()
             ),
             int(terminal.winId()),
         )
