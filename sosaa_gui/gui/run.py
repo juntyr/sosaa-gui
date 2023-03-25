@@ -28,10 +28,8 @@ def init_run_gui(gui):
                         / gui.casename_dir.text()
                     ),
                     "&&",
-                    gui.mpi_cmd.text(),
-                    "-n",
-                    str(gui.mpi_nproc.value()),
-                    f"./{gui.compile_exe.text()}",
+                    gui.launch_cmd.text(),
+                    f"./{gui.sosaa_exe.text()}",
                     str(Path(gui.currentInitFile.text()).resolve()),
                 ]
             ),

@@ -37,8 +37,8 @@ def init_compile_gui(gui):
                     f"CASE={gui.casename_dir.text()}",
                 ]
                 + (
-                    [f"ALT_NAME={gui.compile_exe.text()}"]
-                    if len(gui.compile_exe.text()) > 0
+                    [f"ALT_NAME={gui.sosaa_exe.text()}"]
+                    if len(gui.sosaa_exe.text()) > 0
                     else []
                 )
                 + (
@@ -154,9 +154,8 @@ def init_compile_gui(gui):
     gui.compile_cleanchem.clicked.connect(cleanChemistry)
 
     def recompile():
-        gui.tabWidget.setCurrentWidget(
-            gui.tabWidget.findChild(QtWidgets.QWidget, "compile_tab")
-        )
+        gui.tabWidget.setCurrentWidget(gui.sosaa_tab)
+        gui.sossa_subtab.setCurrentWidget(gui.compile_tab)
 
         startCompilation()
 

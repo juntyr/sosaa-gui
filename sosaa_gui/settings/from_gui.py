@@ -174,7 +174,7 @@ def _update_compile_settings_from_gui(settings, gui):
     settings.patch(
         {
             "NML_GUI": {
-                "sosaa_exe": str(Path(gui.compile_exe.text())),
+                "sosaa_exe": str(Path(gui.sosaa_exe.text())),
             }
         }
     )
@@ -184,8 +184,7 @@ def _update_run_settings_from_gui(settings, gui):
     settings.patch(
         {
             "NML_GUI": {
-                "mpi_cmd": gui.mpi_cmd.text(),
-                "mpi_nproc": gui.mpi_nproc.value(),
+                "launch_cmd": gui.launch_cmd.text(),
             }
         }
     )

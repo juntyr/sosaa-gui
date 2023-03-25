@@ -262,14 +262,13 @@ def _update_gui_from_output_settings(settings, gui):
 def _update_gui_from_compile_settings(settings, gui):
     guis = settings.get("nml_gui", dict())
 
-    gui.compile_exe.setText(guis.get("sosaa_exe", "SOSAA.exe"))
+    gui.sosaa_exe.setText(guis.get("sosaa_exe", "SOSAA.exe"))
 
 
 def _update_gui_from_run_settings(settings, gui):
     guis = settings.get("nml_gui", dict())
 
-    gui.mpi_cmd.setText(guis.get("mpi_cmd", "mpirun --oversubscribe"))
-    gui.mpi_nproc.setValue(guis.get("mpi_nproc", 4))
+    gui.launch_cmd.setText(guis.get("launch_cmd", "orterun --oversubscribe -n 4"))
 
 
 def _update_gui_from_custom_settings(settings, gui):
