@@ -1633,39 +1633,10 @@ class Ui_MainWindow(object):
         self.actionCreate_output_directories.setObjectName(
             "actionCreate_output_directories"
         )
-        self.cmJet = QtWidgets.QAction(MainWindow)
-        self.cmJet.setCheckable(True)
-        self.cmJet.setEnabled(True)
-        self.cmJet.setObjectName("cmJet")
-        self.Y_axis_in_nm = QtWidgets.QAction(MainWindow)
-        self.Y_axis_in_nm.setCheckable(True)
-        self.Y_axis_in_nm.setChecked(True)
-        self.Y_axis_in_nm.setObjectName("Y_axis_in_nm")
-        self.X_axis_in_time = QtWidgets.QAction(MainWindow)
-        self.X_axis_in_time.setCheckable(True)
-        self.X_axis_in_time.setChecked(True)
-        self.X_axis_in_time.setObjectName("X_axis_in_time")
-        self.actionAssume_lognormal_input = QtWidgets.QAction(MainWindow)
-        self.actionAssume_lognormal_input.setCheckable(True)
-        self.actionAssume_lognormal_input.setObjectName("actionAssume_lognormal_input")
-        self.actionPrint_input_headers = QtWidgets.QAction(MainWindow)
-        self.actionPrint_input_headers.setObjectName("actionPrint_input_headers")
         self.actionLoad_minimal_settings = QtWidgets.QAction(MainWindow)
         self.actionLoad_minimal_settings.setObjectName("actionLoad_minimal_settings")
-        self.actionExport_current_case = QtWidgets.QAction(MainWindow)
-        self.actionExport_current_case.setObjectName("actionExport_current_case")
-        self.actionCreateNewChemistry = QtWidgets.QAction(MainWindow)
-        self.actionCreateNewChemistry.setObjectName("actionCreateNewChemistry")
-        self.actionVariations = QtWidgets.QAction(MainWindow)
-        self.actionVariations.setObjectName("actionVariations")
         self.actionAbout_SOSAA = QtWidgets.QAction(MainWindow)
         self.actionAbout_SOSAA.setObjectName("actionAbout_SOSAA")
-        self.actionSetDelay = QtWidgets.QAction(MainWindow)
-        self.actionSetDelay.setObjectName("actionSetDelay")
-        self.actionCreate_Vapour_file = QtWidgets.QAction(MainWindow)
-        self.actionCreate_Vapour_file.setObjectName("actionCreate_Vapour_file")
-        self.actionRecompile_model = QtWidgets.QAction(MainWindow)
-        self.actionRecompile_model.setObjectName("actionRecompile_model")
         self.actionSOSAA_webpage = QtWidgets.QAction(MainWindow)
         self.actionSOSAA_webpage.setObjectName("actionSOSAA_webpage")
         self.actionOnline_manual = QtWidgets.QAction(MainWindow)
@@ -1678,22 +1649,6 @@ class Ui_MainWindow(object):
         self.actionSave_as_defaults.setObjectName("actionSave_as_defaults")
         self.actionOpen_output_directory = QtWidgets.QAction(MainWindow)
         self.actionOpen_output_directory.setObjectName("actionOpen_output_directory")
-        self.actionStopCurrentRunClean = QtWidgets.QAction(MainWindow)
-        self.actionStopCurrentRunClean.setEnabled(False)
-        self.actionStopCurrentRunClean.setObjectName("actionStopCurrentRunClean")
-        self.actionPrint_Custom_commands_cheat_sheet = QtWidgets.QAction(MainWindow)
-        self.actionPrint_Custom_commands_cheat_sheet.setEnabled(False)
-        self.actionPrint_Custom_commands_cheat_sheet.setObjectName(
-            "actionPrint_Custom_commands_cheat_sheet"
-        )
-        self.actionPlt_changes_from_current_dir = QtWidgets.QAction(MainWindow)
-        self.actionPlt_changes_from_current_dir.setObjectName(
-            "actionPlt_changes_from_current_dir"
-        )
-        self.actionShow_variable_attributes = QtWidgets.QAction(MainWindow)
-        self.actionShow_variable_attributes.setObjectName(
-            "actionShow_variable_attributes"
-        )
         self.actionSet_Global_Font = QtWidgets.QAction(MainWindow)
         self.actionSet_Global_Font.setObjectName("actionSet_Global_Font")
         self.actionReset_Fonts = QtWidgets.QAction(MainWindow)
@@ -1711,6 +1666,8 @@ class Ui_MainWindow(object):
         self.actionSystem.setObjectName("actionSystem")
         self.actionReset_Style = QtWidgets.QAction(MainWindow)
         self.actionReset_Style.setObjectName("actionReset_Style")
+        self.actionRecompile_model = QtWidgets.QAction(MainWindow)
+        self.actionRecompile_model.setObjectName("actionRecompile_model")
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave_to_current)
         self.menuFile.addAction(self.actionSave_2)
@@ -1726,6 +1683,7 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionFileHelp)
         self.menuTools.addSeparator()
         self.menuTools.addAction(self.actionOpen_output_directory)
+        self.menuTools.addAction(self.actionRecompile_model)
         self.menuHelp.addSeparator()
         self.menuHelp.addAction(self.actionAbout_SOSAA)
         self.menuHelp.addAction(self.actionSOSAA_webpage)
@@ -2035,46 +1993,11 @@ class Ui_MainWindow(object):
         self.actionCreate_output_directories.setShortcut(
             _translate("MainWindow", "Ctrl+D")
         )
-        self.cmJet.setText(_translate("MainWindow", "'Jet' colors"))
-        self.Y_axis_in_nm.setText(
-            _translate("MainWindow", "y-axis in nm (instead of bin #)")
-        )
-        self.X_axis_in_time.setText(
-            _translate("MainWindow", "x-axis in time (instead of index #)")
-        )
-        self.actionAssume_lognormal_input.setText(
-            _translate("MainWindow", "Assume lognormal input")
-        )
-        self.actionPrint_input_headers.setText(
-            _translate("MainWindow", "Print input headers with column numbers")
-        )
         self.actionLoad_minimal_settings.setText(
             _translate("MainWindow", "Load minimal settings")
         )
-        self.actionExport_current_case.setText(
-            _translate("MainWindow", "Export current case")
-        )
-        self.actionCreateNewChemistry.setText(
-            _translate("MainWindow", "Create Chemistry scheme")
-        )
-        self.actionCreateNewChemistry.setShortcut(
-            _translate("MainWindow", "Ctrl+Shift+C")
-        )
-        self.actionVariations.setText(_translate("MainWindow", "Variations"))
-        self.actionVariations.setShortcut(_translate("MainWindow", "Ctrl+Shift+A"))
         self.actionAbout_SOSAA.setText(_translate("MainWindow", "About SOSAA"))
-        self.actionSetDelay.setText(_translate("MainWindow", "Set delay for main loop"))
-        self.actionSetDelay.setShortcut(_translate("MainWindow", "Ctrl+Shift+D"))
-        self.actionCreate_Vapour_file.setText(
-            _translate("MainWindow", "Create Vapour and elemental composition file")
-        )
-        self.actionCreate_Vapour_file.setShortcut(
-            _translate("MainWindow", "Ctrl+Shift+V")
-        )
-        self.actionRecompile_model.setText(_translate("MainWindow", "Recompile model"))
-        self.actionRecompile_model.setShortcut(_translate("MainWindow", "Ctrl+Shift+R"))
         self.actionSOSAA_webpage.setText(_translate("MainWindow", "SOSAA webpage"))
-        self.actionSOSAA_webpage.setShortcut(_translate("MainWindow", "Ctrl+Shift+W"))
         self.actionOnline_manual.setText(_translate("MainWindow", "Online manual"))
         self.actionFileHelp.setText(_translate("MainWindow", "Help"))
         self.actionSave_as_defaults.setText(
@@ -2083,18 +2006,6 @@ class Ui_MainWindow(object):
         self.actionOpen_output_directory.setText(
             _translate("MainWindow", "Open output dir with file browser")
         )
-        self.actionStopCurrentRunClean.setText(
-            _translate("MainWindow", "Stop current run and save output")
-        )
-        self.actionPrint_Custom_commands_cheat_sheet.setText(
-            _translate("MainWindow", "Print Custom commands cheat sheet")
-        )
-        self.actionPlt_changes_from_current_dir.setText(
-            _translate("MainWindow", "plt changes from current dir")
-        )
-        self.actionShow_variable_attributes.setText(
-            _translate("MainWindow", "Show variable attributes")
-        )
         self.actionSet_Global_Font.setText(_translate("MainWindow", "Set Global Font"))
         self.actionReset_Fonts.setText(_translate("MainWindow", "Reset Fonts"))
         self.actionLight.setText(_translate("MainWindow", "Light"))
@@ -2102,6 +2013,10 @@ class Ui_MainWindow(object):
         self.actionChange_Colour.setText(_translate("MainWindow", "Change Colour"))
         self.actionSystem.setText(_translate("MainWindow", "System"))
         self.actionReset_Style.setText(_translate("MainWindow", "Reset Style"))
+        self.actionRecompile_model.setText(
+            _translate("MainWindow", "Recompile the SOSAA model")
+        )
+        self.actionRecompile_model.setShortcut(_translate("MainWindow", "Ctrl+Shift+R"))
 
 
 if __name__ == "__main__":

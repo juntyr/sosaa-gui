@@ -165,7 +165,7 @@ def init_compile_gui(gui):
 
     def recompile():
         gui.tabWidget.setCurrentWidget(gui.sosaa_tab)
-        gui.sossa_subtab.setCurrentWidget(gui.compile_tab)
+        gui.sosaa_subtab.setCurrentWidget(gui.compile_tab)
 
         startCompilation()
 
