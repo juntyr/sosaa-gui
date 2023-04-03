@@ -1,7 +1,7 @@
 !==============================================================================!
-!
-! A template of the SOSAA initialisation namelist file
-!
+!                                                                              !
+!             A template of the SOSAA initialisation namelist file             !
+!                                                                              !
 !==============================================================================!
 
 ! Note: Options not configurable through the GUI have only their default value
@@ -11,7 +11,7 @@
   WORK_DIR               = './sosaa',   ! main root dir, absolute path,
                                         ! same as code dir
   CODE_DIR               = 'src',       ! part of work dir, relative path
-  CASE_DIR               = 'cases',     ! part of work dir, relative path
+  CASE_DIR               = 'casedir',   ! part of work dir, relative path
   CHEM_DIR               = 'chemistry/sample_aerosol', ! part of work dir,
                                                        !  relative path
   INPUT_DIR              = './input',   ! input root, absolute path
@@ -103,3 +103,36 @@
   SOSAA_EXE         = 'SOSAA.exe',      ! part of case name dir, relative path
   LAUNCH_CMD        = 'orterun --oversubscribe -n 4', ! SOSAA launch wrapper
 /
+
+! \/ ---------------------Raw input from the SOSAA GUI--------------------- \/ !
+
+
+!==============================================================================!
+!                                                                              !
+!             SOSAA batch setting overrides - Uncomment if desired             !
+!                                                                              !
+!==============================================================================!
+
+&NML_MAIN
+!  WORK_DIR   = '<application_path>/sosaa',
+!  CODE_DIR   = '<application_path>/sosaa/src',
+!  CASE_DIR   = '<application_path>/sosaa/casedir',
+!  CHEM_DIR   = '<application_path>/sosaa/chemistry/sample_aerosol',
+!  INPUT_DIR  = '<data>',
+!  OUTPUT_DIR = '<data_out_root>/<outputdir>/<timestamp>',
+/
+
+&NML_TIME
+!  start_date(0)      = <startyear>,
+!  start_date(1)      = <startmonth>,
+!  start_date(2)      = <startday>,
+!  aero_start_date(0) = <startyear>,
+!  aero_start_date(1) = <startmonth>,
+!  aero_start_date(2) = <startday>,
+!  end_date(0)        = <relyear>,
+!  end_date(1)        = <relmonth>,
+!  end_date(2)        = <relday>,
+!  end_date(3)        = <relhour>,
+/
+
+! /\ ---------------------Raw input from the SOSAA GUI--------------------- /\ !

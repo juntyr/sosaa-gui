@@ -170,3 +170,4 @@ def init_compile_gui(gui):
         startCompilation()
 
     gui.recompile.clicked.connect(recompile)
+    gui.actionRecompile_model.triggered.connect(recompile)

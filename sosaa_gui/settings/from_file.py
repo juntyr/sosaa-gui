@@ -34,7 +34,7 @@ def _update_gui_from_main_settings(settings, gui):
     gui.code_dir.setText(code_dir)
 
     # Pretty-print the case dir if relative to the main dir
-    case_dir = main.get("case_dir", "cases")
+    case_dir = main.get("case_dir", "casedir")
     if case_dir.startswith(str(main_dir)):
         case_dir = f"{Path(case_dir).relative_to(main_dir)}"
     gui.case_dir.setText(case_dir)
