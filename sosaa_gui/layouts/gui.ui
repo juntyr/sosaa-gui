@@ -2746,6 +2746,7 @@
     </property>
     <addaction name="separator"/>
     <addaction name="actionOpen_output_directory"/>
+    <addaction name="actionRecompile_model"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -2839,76 +2840,9 @@
     <string>Ctrl+D</string>
    </property>
   </action>
-  <action name="cmJet">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>'Jet' colors</string>
-   </property>
-  </action>
-  <action name="Y_axis_in_nm">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>y-axis in nm (instead of bin #)</string>
-   </property>
-  </action>
-  <action name="X_axis_in_time">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>x-axis in time (instead of index #)</string>
-   </property>
-  </action>
-  <action name="actionAssume_lognormal_input">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Assume lognormal input</string>
-   </property>
-  </action>
-  <action name="actionPrint_input_headers">
-   <property name="text">
-    <string>Print input headers with column numbers</string>
-   </property>
-  </action>
   <action name="actionLoad_minimal_settings">
    <property name="text">
     <string>Load minimal settings</string>
-   </property>
-  </action>
-  <action name="actionExport_current_case">
-   <property name="text">
-    <string>Export current case</string>
-   </property>
-  </action>
-  <action name="actionCreateNewChemistry">
-   <property name="text">
-    <string>Create Chemistry scheme</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+C</string>
-   </property>
-  </action>
-  <action name="actionVariations">
-   <property name="text">
-    <string>Variations</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+A</string>
    </property>
   </action>
   <action name="actionAbout_SOSAA">
@@ -2916,36 +2850,9 @@
     <string>About SOSAA</string>
    </property>
   </action>
-  <action name="actionSetDelay">
-   <property name="text">
-    <string>Set delay for main loop</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+D</string>
-   </property>
-  </action>
-  <action name="actionCreate_Vapour_file">
-   <property name="text">
-    <string>Create Vapour and elemental composition file</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+V</string>
-   </property>
-  </action>
-  <action name="actionRecompile_model">
-   <property name="text">
-    <string>Recompile model</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+R</string>
-   </property>
-  </action>
   <action name="actionSOSAA_webpage">
    <property name="text">
     <string>SOSAA webpage</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+W</string>
    </property>
   </action>
   <action name="actionOnline_manual">
@@ -2972,32 +2879,6 @@
   <action name="actionOpen_output_directory">
    <property name="text">
     <string>Open output dir with file browser</string>
-   </property>
-  </action>
-  <action name="actionStopCurrentRunClean">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Stop current run and save output</string>
-   </property>
-  </action>
-  <action name="actionPrint_Custom_commands_cheat_sheet">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Print Custom commands cheat sheet</string>
-   </property>
-  </action>
-  <action name="actionPlt_changes_from_current_dir">
-   <property name="text">
-    <string>plt changes from current dir</string>
-   </property>
-  </action>
-  <action name="actionShow_variable_attributes">
-   <property name="text">
-    <string>Show variable attributes</string>
    </property>
   </action>
   <action name="actionSet_Global_Font">
@@ -3042,6 +2923,14 @@
   <action name="actionReset_Style">
    <property name="text">
     <string>Reset Style</string>
+   </property>
+  </action>
+  <action name="actionRecompile_model">
+   <property name="text">
+    <string>Recompile the SOSAA model</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+R</string>
    </property>
   </action>
  </widget>
