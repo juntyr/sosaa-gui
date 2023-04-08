@@ -12,6 +12,7 @@ from .scenario import init_scenario_gui
 from .compile import init_compile_gui
 from .help import init_gui_help
 from .run import init_run_gui
+from .rsm import init_rsm_gui
 
 
 class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
@@ -38,3 +39,4 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         init_scenario_gui(self)
         init_compile_gui(self)
         init_run_gui(self)
+        init_rsm_gui(self)

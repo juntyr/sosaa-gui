@@ -166,3 +166,4 @@ def _refresh_font(gui, font):
 
     gui.rawEdit.setFont(monospace)
     gui.currentInitFileContent.setFont(monospace)
+    gui.rsm_perturbation.setFont(monospace)

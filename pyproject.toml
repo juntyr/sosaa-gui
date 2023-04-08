@@ -23,3 +23,8 @@ sosaa-gui = "sosaa_gui:run"
 [build-system]
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sosaa_gui*"]
+namespaces = true
