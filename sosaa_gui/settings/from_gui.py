@@ -9,6 +9,7 @@ def update_settings_from_gui(settings, gui):
     _update_compile_settings_from_gui(settings, gui)
     _update_run_settings_from_gui(settings, gui)
     _update_custom_settings_from_gui(settings, gui)
+    _update_rsm_settings_from_gui(settings, gui)
 
 
 def _update_main_settings_from_gui(settings, gui):
@@ -185,6 +186,23 @@ def _update_run_settings_from_gui(settings, gui):
         {
             "NML_GUI": {
                 "launch_cmd": gui.launch_cmd.text(),
+            }
+        }
+    )
+
+
+def _update_rsm_settings_from_gui(settings, gui):
+    settings.patch(
+        {
+            "NML_RSM": {
+                "rsm_path": str(Path(gui.rsm_path.text()).resolve()),
+                "train_seed": gui.rsm_train_seed.text(),
+                "forest_size": gui.rsm_forest.value(),
+                "train_samples": gui.rsm_train_samples.value(),
+                "rsm_output": str(Path(gui.rsm_output.text()).resolve()),
+                "predict_seed": gui.rsm_predict_seed.text(),
+                "predict_samples": gui.rsm_predict_samples.value(),
+                "predict_perturbation": gui.rsm_perturbation.toPlainText(),
             }
         }
     )

@@ -3078,7 +3078,6 @@ p, li { white-space: pre-wrap; }
            <attribute name="title">
             <string>RSM Predictions</string>
            </attribute>
-           <layout class="QVBoxLayout" name="horizontalLayout_9"/>
           </widget>
          </widget>
         </item>

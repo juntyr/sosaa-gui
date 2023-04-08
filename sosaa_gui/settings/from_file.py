@@ -12,6 +12,7 @@ def update_gui_from_settings(settings, gui, raw):
     _update_gui_from_custom_settings(settings, gui)
     _update_gui_from_compile_settings(settings, gui)
     _update_gui_from_run_settings(settings, gui)
+    _update_gui_from_rsm_settings(settings, gui)
     _update_gui_from_raw_settings(gui, raw)
 
 
@@ -269,6 +270,31 @@ def _update_gui_from_run_settings(settings, gui):
     guis = settings.get("nml_gui", dict())
 
     gui.launch_cmd.setText(guis.get("launch_cmd", "orterun --oversubscribe -n 4"))
+
+
+def _update_gui_from_rsm_settings(settings, gui):
+    rsm = settings.get("nml_rsm", dict())
+
+    # Pretty-print the rsm path if relative to the working dir
+    rsm_path = str(Path(rsm.get("rsm_path", "./sosaa-rsm.jl")).resolve())
+    if rsm_path.startswith(str(Path.cwd())):
+        rsm_path = f"./{Path(rsm_path).relative_to(Path.cwd())}"
+    gui.rsm_path.setText(rsm_path)
+
+    gui.rsm_train_seed.setText(rsm.get("train_seed", "my-train-seed"))
+    gui.rsm_forest.setValue(rsm.get("forest_size", 16))
+    gui.rsm_train_samples.setValue(rsm.get("train_samples", 1))
+
+    # Pretty-print the rsm output path if relative to the working dir
+    rsm_output = str(Path(rsm.get("rsm_output", "./rsm-output.nc")).resolve())
+    if rsm_output.startswith(str(Path.cwd())):
+        rsm_output = f"./{Path(rsm_output).relative_to(Path.cwd())}"
+    gui.rsm_output.setText(rsm_output)
+
+    gui.rsm_predict_seed.setText(rsm.get("predict_seed", "my-predict-seed"))
+    gui.rsm_predict_samples.setValue(rsm.get("predict_samples", 16))
+
+    gui.rsm_perturbation.setPlainText(rsm.get("predict_perturbation", "return inputs"))
 
 
 def _update_gui_from_custom_settings(settings, gui):

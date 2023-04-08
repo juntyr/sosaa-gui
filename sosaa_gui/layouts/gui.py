@@ -1800,8 +1800,6 @@ class Ui_MainWindow(object):
         self.sosaa_subtab1.addTab(self.run_tab1, "")
         self.rsm_prediction_tab = QtWidgets.QWidget()
         self.rsm_prediction_tab.setObjectName("rsm_prediction_tab")
-        self.horizontalLayout_910 = QtWidgets.QVBoxLayout(self.rsm_prediction_tab)
-        self.horizontalLayout_910.setObjectName("horizontalLayout_910")
         self.sosaa_subtab1.addTab(self.rsm_prediction_tab, "")
         self.horizontalLayout_97.addWidget(self.sosaa_subtab1)
         self.tabWidget.addTab(self.icarus_tab, "")
@@ -2221,6 +2219,9 @@ class Ui_MainWindow(object):
         self.browse_rsm_output.setText(_translate("MainWindow", "..."))
         self.label_62.setText(_translate("MainWindow", "Prediction Seed"))
         self.groupBox_19.setTitle(_translate("MainWindow", "Input Perturbations"))
+        self.rsm_perturbation.setPlaceholderText(
+            _translate("MainWindow", "return inputs")
+        )
         self.label_15.setText(
             _translate(
                 "MainWindow",
@@ -2228,7 +2229,7 @@ class Ui_MainWindow(object):
                 '<html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">\n'
                 "p, li { white-space: pre-wrap; }\n"
                 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-                '<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" color:#ff7b72;">def</span> <span style=" font-weight:700; color:#d2a8ff;">perturb_inputs</span>(inputs: pandas<span style=" color:#ff7b72;">.</span>DataFrame) <span style=" color:#ff7b72;">-&gt;</span> pandas<span style=" color:#ff7b72;">.</span>DataFrame:</p></body></html>',
+                '<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700; color:#87cefa;">def</span> <span style=" font-weight:700; color:#fa8072;">perturb_inputs</span><span style=" font-weight:700; color:#708090;">(</span>inputs: pandas<span style=" font-weight:700; color:#ff8c00;">.</span>DataFrame<span style=" font-weight:700; color:#708090;">)</span> <span style=" font-weight:700; color:#ff8c00;">-&gt;</span> pandas<span style=" font-weight:700; color:#ff8c00;">.</span>DataFrame:</p></body></html>',
             )
         )
         self.rsm_predict.setText(

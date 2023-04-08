@@ -165,6 +165,38 @@ def init_dirs_gui(gui):
 
     gui.browse_casename.clicked.connect(changeCaseNameDirectory)
 
+    def changeSosaaExeFile():
+        case_dir = (
+            Path(gui.main_dir.text()).resolve()
+            / gui.case_dir.text()
+            / gui.casename_dir.text()
+        )
+
+        path = browsePath(
+            title="Choose the SOSAA executable file", origin=str(case_dir)
+        )
+
+        if path is None:
+            return
+
+        if not str(path).startswith(str(case_dir)):
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Critical)
+            msg.setText("Invalid SOSAA executable file")
+            msg.setInformativeText(
+                "The SOSAA executable file must be inside the case name directory."
+            )
+            msg.setWindowTitle("Error selecting SOSAA executable")
+            msg.exec_()
+
+            return
+
+        path = path.relative_to(case_dir)
+
+        gui.sosaa_exe.setText(str(path))
+
+    gui.browse_exe.clicked.connect(changeSosaaExeFile)
+
     def changeOutputDirectory():
         path = browsePath(title="Choose the output directory", directory=True)
 

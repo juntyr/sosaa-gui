@@ -104,6 +104,17 @@
   LAUNCH_CMD        = 'orterun --oversubscribe -n 4', ! SOSAA launch wrapper
 /
 
+&NML_RSM
+  RSM_PATH = './sosaa-rsm.jl',      ! path to where the SOSAA RSM is saved
+  TRAIN_SEED = 'my-train-seed',     ! any string to seed the training RNG
+  FOREST_SIZE = 16,                 ! number of trees in the random forest
+  TRAIN_SAMPLES = 1,                ! number of bootstrap samples in training
+  RSM_OUTPUT = './rsm-output.nc',   ! path to where the prediction is saved
+  PREDICT_SEED = 'my-predict-seed', ! any string to seed the prediction RNG
+  PREDICT_SAMPLES = 16,             ! number of bootstrap samples in prediction
+  PREDICT_PERTURBATION = 'return inputs', ! Python code to perturb the inputs
+/
+
 ! \/ ---------------------Raw input from the SOSAA GUI--------------------- \/ !
 
 
