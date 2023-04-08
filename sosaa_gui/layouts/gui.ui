@@ -2397,7 +2397,11 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_17">
            <item row="0" column="0">
-            <widget class="QPlainTextEdit" name="rawEdit"/>
+            <widget class="QPlainTextEdit" name="rawEdit">
+             <property name="lineWrapMode">
+              <enum>QPlainTextEdit::NoWrap</enum>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -2438,6 +2442,9 @@
          <widget class="QPlainTextEdit" name="currentInitFileContent">
           <property name="undoRedoEnabled">
            <bool>false</bool>
+          </property>
+          <property name="lineWrapMode">
+           <enum>QPlainTextEdit::NoWrap</enum>
           </property>
           <property name="readOnly">
            <bool>true</bool>
@@ -3009,6 +3016,9 @@
                  <layout class="QGridLayout" name="gridLayout">
                   <item row="1" column="1">
                    <widget class="QPlainTextEdit" name="rsm_perturbation">
+                    <property name="lineWrapMode">
+                     <enum>QPlainTextEdit::NoWrap</enum>
+                    </property>
                     <property name="placeholderText">
                      <string>return inputs</string>
                     </property>
