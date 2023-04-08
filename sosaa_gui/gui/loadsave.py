@@ -13,6 +13,7 @@ from ..settings import (
 from ..version import sosaa_version_pretty
 from .browse import browsePath
 from .style import buttonStyle
+from .syntax import FortranNamelistHighlighter
 
 
 def init_gui_loadsave(gui):
@@ -55,8 +56,16 @@ def init_gui_loadsave(gui):
     type(gui).dropEvent = _dropInitFile
     gui.setAcceptDrops(True)
 
+    # Set up raw INITFILE syntax highlighting
+    gui.rawEditHighlight = FortranNamelistHighlighter(gui.rawEdit.document())
+
     # Set up INITFILE update on switch to its tab
     gui.tabWidget.currentChanged.connect(lambda i: _tab_switched(gui, i))
+
+    # Set up INITFILE syntax highlighting
+    gui.currentInitFileContentHighlight = FortranNamelistHighlighter(
+        gui.currentInitFileContent.document()
+    )
 
 
 def _loadSettings(gui):
