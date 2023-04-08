@@ -1463,6 +1463,7 @@ class Ui_MainWindow(object):
         self.gridLayout_17 = QtWidgets.QGridLayout(self.groupBox_7)
         self.gridLayout_17.setObjectName("gridLayout_17")
         self.rawEdit = QtWidgets.QPlainTextEdit(self.groupBox_7)
+        self.rawEdit.setLineWrapMode(QtWidgets.QPlainTextEdit.NoWrap)
         self.rawEdit.setObjectName("rawEdit")
         self.gridLayout_17.addWidget(self.rawEdit, 0, 0, 1, 1)
         self.horizontalLayout_18.addWidget(self.groupBox_7)
@@ -1486,6 +1487,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_181.addWidget(self.frame_301)
         self.currentInitFileContent = QtWidgets.QPlainTextEdit(self.initfile_tab)
         self.currentInitFileContent.setUndoRedoEnabled(False)
+        self.currentInitFileContent.setLineWrapMode(QtWidgets.QPlainTextEdit.NoWrap)
         self.currentInitFileContent.setReadOnly(True)
         self.currentInitFileContent.setObjectName("currentInitFileContent")
         self.horizontalLayout_181.addWidget(self.currentInitFileContent)
@@ -1772,6 +1774,7 @@ class Ui_MainWindow(object):
         self.gridLayout5 = QtWidgets.QGridLayout(self.groupBox_19)
         self.gridLayout5.setObjectName("gridLayout5")
         self.rsm_perturbation = QtWidgets.QPlainTextEdit(self.groupBox_19)
+        self.rsm_perturbation.setLineWrapMode(QtWidgets.QPlainTextEdit.NoWrap)
         self.rsm_perturbation.setObjectName("rsm_perturbation")
         self.gridLayout5.addWidget(self.rsm_perturbation, 1, 1, 1, 1)
         spacerItem14 = QtWidgets.QSpacerItem(
