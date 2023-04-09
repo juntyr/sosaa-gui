@@ -1603,13 +1603,13 @@ class Ui_MainWindow(object):
         self.icarus_tab.setObjectName("icarus_tab")
         self.horizontalLayout_97 = QtWidgets.QVBoxLayout(self.icarus_tab)
         self.horizontalLayout_97.setObjectName("horizontalLayout_97")
-        self.sosaa_subtab1 = QtWidgets.QTabWidget(self.icarus_tab)
-        self.sosaa_subtab1.setObjectName("sosaa_subtab1")
-        self.compile_tab1 = QtWidgets.QWidget()
-        self.compile_tab1.setObjectName("compile_tab1")
-        self.horizontalLayout_98 = QtWidgets.QVBoxLayout(self.compile_tab1)
+        self.rsm_subtab = QtWidgets.QTabWidget(self.icarus_tab)
+        self.rsm_subtab.setObjectName("rsm_subtab")
+        self.rsm_build_tab = QtWidgets.QWidget()
+        self.rsm_build_tab.setObjectName("rsm_build_tab")
+        self.horizontalLayout_98 = QtWidgets.QVBoxLayout(self.rsm_build_tab)
         self.horizontalLayout_98.setObjectName("horizontalLayout_98")
-        self.groupBox_17 = QtWidgets.QGroupBox(self.compile_tab1)
+        self.groupBox_17 = QtWidgets.QGroupBox(self.rsm_build_tab)
         self.groupBox_17.setObjectName("groupBox_17")
         self.gridLayout2 = QtWidgets.QGridLayout(self.groupBox_17)
         self.gridLayout2.setObjectName("gridLayout2")
@@ -1643,28 +1643,25 @@ class Ui_MainWindow(object):
         self.label_9.setObjectName("label_9")
         self.gridLayout2.addWidget(self.label_9, 3, 0, 1, 1)
         self.rsm_train_samples = QtWidgets.QSpinBox(self.groupBox_17)
-        self.rsm_train_samples.setMinimum(1)
+        self.rsm_train_samples.setMinimum(16)
         self.rsm_train_samples.setObjectName("rsm_train_samples")
         self.gridLayout2.addWidget(self.rsm_train_samples, 3, 2, 1, 2)
         self.horizontalLayout_98.addWidget(self.groupBox_17)
         self.horizontalLayout_42 = QtWidgets.QGridLayout()
         self.horizontalLayout_42.setObjectName("horizontalLayout_42")
-        self.rsm_build_progress_low = QtWidgets.QProgressBar(self.compile_tab1)
+        self.rsm_build_progress_low = QtWidgets.QProgressBar(self.rsm_build_tab)
         self.rsm_build_progress_low.setProperty("value", 0)
         self.rsm_build_progress_low.setObjectName("rsm_build_progress_low")
         self.horizontalLayout_42.addWidget(self.rsm_build_progress_low, 2, 0, 1, 1)
-        self.rsm_build_progress_high = QtWidgets.QProgressBar(self.compile_tab1)
+        self.rsm_build_progress_high = QtWidgets.QProgressBar(self.rsm_build_tab)
         self.rsm_build_progress_high.setProperty("value", 0)
         self.rsm_build_progress_high.setObjectName("rsm_build_progress_high")
         self.horizontalLayout_42.addWidget(self.rsm_build_progress_high, 1, 0, 1, 1)
-        self.rsm_build = QtWidgets.QPushButton(self.compile_tab1)
+        self.rsm_build = QtWidgets.QPushButton(self.rsm_build_tab)
         self.rsm_build.setObjectName("rsm_build")
         self.horizontalLayout_42.addWidget(self.rsm_build, 0, 0, 1, 1)
-        self.rsm_load = QtWidgets.QPushButton(self.compile_tab1)
-        self.rsm_load.setObjectName("rsm_load")
-        self.horizontalLayout_42.addWidget(self.rsm_load, 3, 0, 1, 1)
         self.horizontalLayout_98.addLayout(self.horizontalLayout_42)
-        self.groupBox_18 = QtWidgets.QGroupBox(self.compile_tab1)
+        self.groupBox_18 = QtWidgets.QGroupBox(self.rsm_build_tab)
         self.groupBox_18.setObjectName("groupBox_18")
         self.gridLayout3 = QtWidgets.QGridLayout(self.groupBox_18)
         self.gridLayout3.setObjectName("gridLayout3")
@@ -1716,30 +1713,30 @@ class Ui_MainWindow(object):
         )
         self.rsm_test_mae.setObjectName("rsm_test_mae")
         self.gridLayout3.addWidget(self.rsm_test_mae, 1, 4, 1, 1)
-        self.rsm_test_uq_rsmce = QtWidgets.QLabel(self.groupBox_18)
-        self.rsm_test_uq_rsmce.setText("")
-        self.rsm_test_uq_rsmce.setAlignment(
+        self.rsm_train_r2 = QtWidgets.QLabel(self.groupBox_18)
+        self.rsm_train_r2.setText("")
+        self.rsm_train_r2.setAlignment(
             QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter
         )
-        self.rsm_test_uq_rsmce.setObjectName("rsm_test_uq_rsmce")
-        self.gridLayout3.addWidget(self.rsm_test_uq_rsmce, 2, 1, 1, 1)
+        self.rsm_train_r2.setObjectName("rsm_train_r2")
+        self.gridLayout3.addWidget(self.rsm_train_r2, 2, 1, 1, 1)
         self.label_23 = QtWidgets.QLabel(self.groupBox_18)
         self.label_23.setObjectName("label_23")
         self.gridLayout3.addWidget(self.label_23, 2, 3, 1, 1)
-        self.rsm_test_conf = QtWidgets.QLabel(self.groupBox_18)
-        self.rsm_test_conf.setText("")
-        self.rsm_test_conf.setAlignment(
+        self.rsm_test_r2 = QtWidgets.QLabel(self.groupBox_18)
+        self.rsm_test_r2.setText("")
+        self.rsm_test_r2.setAlignment(
             QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter
         )
-        self.rsm_test_conf.setObjectName("rsm_test_conf")
-        self.gridLayout3.addWidget(self.rsm_test_conf, 2, 4, 1, 1)
+        self.rsm_test_r2.setObjectName("rsm_test_r2")
+        self.gridLayout3.addWidget(self.rsm_test_r2, 2, 4, 1, 1)
         self.horizontalLayout_98.addWidget(self.groupBox_18)
-        self.sosaa_subtab1.addTab(self.compile_tab1, "")
-        self.run_tab1 = QtWidgets.QWidget()
-        self.run_tab1.setObjectName("run_tab1")
-        self.horizontalLayout_99 = QtWidgets.QVBoxLayout(self.run_tab1)
+        self.rsm_subtab.addTab(self.rsm_build_tab, "")
+        self.rsm_predict_tab = QtWidgets.QWidget()
+        self.rsm_predict_tab.setObjectName("rsm_predict_tab")
+        self.horizontalLayout_99 = QtWidgets.QVBoxLayout(self.rsm_predict_tab)
         self.horizontalLayout_99.setObjectName("horizontalLayout_99")
-        self.groupBox_31 = QtWidgets.QGroupBox(self.run_tab1)
+        self.groupBox_31 = QtWidgets.QGroupBox(self.rsm_predict_tab)
         self.groupBox_31.setObjectName("groupBox_31")
         self.gridLayout4 = QtWidgets.QGridLayout(self.groupBox_31)
         self.gridLayout4.setObjectName("gridLayout4")
@@ -1788,23 +1785,23 @@ class Ui_MainWindow(object):
         self.horizontalLayout_99.addWidget(self.groupBox_31)
         self.horizontalLayout_43 = QtWidgets.QGridLayout()
         self.horizontalLayout_43.setObjectName("horizontalLayout_43")
-        self.rsm_predict_progress_high = QtWidgets.QProgressBar(self.run_tab1)
+        self.rsm_predict_progress_high = QtWidgets.QProgressBar(self.rsm_predict_tab)
         self.rsm_predict_progress_high.setProperty("value", 0)
         self.rsm_predict_progress_high.setObjectName("rsm_predict_progress_high")
         self.horizontalLayout_43.addWidget(self.rsm_predict_progress_high, 1, 0, 1, 1)
-        self.rsm_predict = QtWidgets.QPushButton(self.run_tab1)
+        self.rsm_predict = QtWidgets.QPushButton(self.rsm_predict_tab)
         self.rsm_predict.setObjectName("rsm_predict")
         self.horizontalLayout_43.addWidget(self.rsm_predict, 0, 0, 1, 1)
-        self.rsm_predict_progress_low = QtWidgets.QProgressBar(self.run_tab1)
+        self.rsm_predict_progress_low = QtWidgets.QProgressBar(self.rsm_predict_tab)
         self.rsm_predict_progress_low.setProperty("value", 0)
         self.rsm_predict_progress_low.setObjectName("rsm_predict_progress_low")
         self.horizontalLayout_43.addWidget(self.rsm_predict_progress_low, 2, 0, 1, 1)
         self.horizontalLayout_99.addLayout(self.horizontalLayout_43)
-        self.sosaa_subtab1.addTab(self.run_tab1, "")
+        self.rsm_subtab.addTab(self.rsm_predict_tab, "")
         self.rsm_prediction_tab = QtWidgets.QWidget()
         self.rsm_prediction_tab.setObjectName("rsm_prediction_tab")
-        self.sosaa_subtab1.addTab(self.rsm_prediction_tab, "")
-        self.horizontalLayout_97.addWidget(self.sosaa_subtab1)
+        self.rsm_subtab.addTab(self.rsm_prediction_tab, "")
+        self.horizontalLayout_97.addWidget(self.rsm_subtab)
         self.tabWidget.addTab(self.icarus_tab, "")
         self.gridLayout_8.addWidget(self.tabWidget, 2, 0, 1, 2)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -1914,7 +1911,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         self.sosaa_subtab.setCurrentIndex(0)
-        self.sosaa_subtab1.setCurrentIndex(0)
+        self.rsm_subtab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.description, self.flag_gasdrydep)
         MainWindow.setTabOrder(self.flag_gasdrydep, self.customKey_1)
@@ -2188,9 +2185,6 @@ class Ui_MainWindow(object):
         self.rsm_build.setText(
             _translate("MainWindow", "Construct the SOSAA RSM and Save to File")
         )
-        self.rsm_load.setText(
-            _translate("MainWindow", "Load the SOSAA RSM from a File")
-        )
         self.groupBox_18.setTitle(
             _translate("MainWindow", "SOSAA RSM Test Performance")
         )
@@ -2203,15 +2197,13 @@ class Ui_MainWindow(object):
         self.label_11.setText(
             _translate("MainWindow", "Test Set Mean Squared Prediction Error:")
         )
-        self.label_51.setText(
-            _translate("MainWindow", "Test Set Uncertainty Statistical Consistency:")
-        )
+        self.label_51.setText(_translate("MainWindow", "Training Set R2 Score:"))
         self.label_19.setText(
             _translate("MainWindow", "Test Set Mean Absolute Prediction Error:")
         )
-        self.label_23.setText(_translate("MainWindow", "Test Set Confidence Score:"))
-        self.sosaa_subtab1.setTabText(
-            self.sosaa_subtab1.indexOf(self.compile_tab1),
+        self.label_23.setText(_translate("MainWindow", "Test Set R2 Score:"))
+        self.rsm_subtab.setTabText(
+            self.rsm_subtab.indexOf(self.rsm_build_tab),
             _translate("MainWindow", "Configure and Construct"),
         )
         self.groupBox_31.setTitle(
@@ -2238,12 +2230,12 @@ class Ui_MainWindow(object):
         self.rsm_predict.setText(
             _translate("MainWindow", "Generate SOSAA RSM Predictions")
         )
-        self.sosaa_subtab1.setTabText(
-            self.sosaa_subtab1.indexOf(self.run_tab1),
+        self.rsm_subtab.setTabText(
+            self.rsm_subtab.indexOf(self.rsm_predict_tab),
             _translate("MainWindow", "Emulate SOSAA"),
         )
-        self.sosaa_subtab1.setTabText(
-            self.sosaa_subtab1.indexOf(self.rsm_prediction_tab),
+        self.rsm_subtab.setTabText(
+            self.rsm_subtab.indexOf(self.rsm_prediction_tab),
             _translate("MainWindow", "RSM Predictions"),
         )
         self.tabWidget.setTabText(

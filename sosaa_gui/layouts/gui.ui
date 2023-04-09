@@ -2715,11 +2715,11 @@
        </attribute>
        <layout class="QVBoxLayout" name="horizontalLayout_9">
         <item>
-         <widget class="QTabWidget" name="sosaa_subtab">
+         <widget class="QTabWidget" name="rsm_subtab">
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="QWidget" name="compile_tab">
+          <widget class="QWidget" name="rsm_build_tab">
            <attribute name="title">
             <string>Configure and Construct</string>
            </attribute>
@@ -2789,7 +2789,7 @@
                <item row="3" column="2" colspan="2">
                 <widget class="QSpinBox" name="rsm_train_samples">
                  <property name="minimum">
-                  <number>1</number>
+                  <number>16</number>
                  </property>
                 </widget>
                </item>
@@ -2816,13 +2816,6 @@
                <widget class="QPushButton" name="rsm_build">
                 <property name="text">
                  <string>Construct the SOSAA RSM and Save to File</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QPushButton" name="rsm_load">
-                <property name="text">
-                 <string>Load the SOSAA RSM from a File</string>
                 </property>
                </widget>
               </item>
@@ -2865,7 +2858,7 @@
                <item row="2" column="0">
                 <widget class="QLabel" name="label_5">
                  <property name="text">
-                  <string>Test Set Uncertainty Statistical Consistency:</string>
+                  <string>Training Set R2 Score:</string>
                  </property>
                 </widget>
                </item>
@@ -2917,7 +2910,7 @@
                 </widget>
                </item>
                <item row="2" column="1">
-                <widget class="QLabel" name="rsm_test_uq_rsmce">
+                <widget class="QLabel" name="rsm_train_r2">
                  <property name="text">
                   <string/>
                  </property>
@@ -2929,12 +2922,12 @@
                <item row="2" column="3">
                 <widget class="QLabel" name="label_23">
                  <property name="text">
-                  <string>Test Set Confidence Score:</string>
+                  <string>Test Set R2 Score:</string>
                  </property>
                 </widget>
                </item>
                <item row="2" column="4">
-                <widget class="QLabel" name="rsm_test_conf">
+                <widget class="QLabel" name="rsm_test_r2">
                  <property name="text">
                   <string/>
                  </property>
@@ -2948,7 +2941,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="run_tab">
+          <widget class="QWidget" name="rsm_predict_tab">
            <attribute name="title">
             <string>Emulate SOSAA</string>
            </attribute>

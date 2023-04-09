@@ -14,9 +14,20 @@ maintainers = [
 dependencies = [
     "darkdetect >= 0.7.1",
     "f90nml >= 1.4.3",
-    "matplotlib >= 3.6.0",
     "PyQt5 >= 5.15.7"
 ]
+
+[project.optional-dependencies]
+icarus = [
+    "matplotlib >= 3.5.2",
+    "joblib >= 1.2.0",
+    "netcdf4 >= 1.5.4",
+    "numpy >= 1.23.4",
+    "pandas >= 1.4.4",
+    "scipy >= 1.9.3",
+    "scikit-learn >= 1.1.2",
+]
+dev = ["black"]
 
 [project.scripts]
 sosaa-gui = "sosaa_gui:run"

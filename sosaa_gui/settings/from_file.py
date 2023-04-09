@@ -283,7 +283,7 @@ def _update_gui_from_rsm_settings(settings, gui):
 
     gui.rsm_train_seed.setText(rsm.get("train_seed", "my-train-seed"))
     gui.rsm_forest.setValue(rsm.get("forest_size", 16))
-    gui.rsm_train_samples.setValue(rsm.get("train_samples", 1))
+    gui.rsm_train_samples.setValue(rsm.get("train_samples", 16))
 
     # Pretty-print the rsm output path if relative to the working dir
     rsm_output = str(Path(rsm.get("rsm_output", "./rsm-output.nc")).resolve())
