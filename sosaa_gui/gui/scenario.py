@@ -56,8 +56,6 @@ def init_scenario_gui(gui):
             else:
                 gui.start_date.setDate(gui.end_date.date())
 
-            gui.end_date.setTime(QtCore.QTime(0, 0))
-
     gui.trajectory_duration.valueChanged.connect(changeTrajectoryDuration)
     gui.trajectory_duration.lastValue = gui.trajectory_duration.value()
 

@@ -80,7 +80,7 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
     ]
 
     # Python special functions
-    functions = ["super", "len"]
+    functions = ["super", "len", "print"]
 
     # Python operators
     operators = [

@@ -69,14 +69,14 @@
 
 &NML_TIME
   dt_obs                 = 1800.0d0,    ! time step of the input observations
-  start_date             = 2022,4,1,    ! start date of the simulation
+  start_date             = 2018,5,8,    ! start date of the simulation
                            00,00,00,    !  in the form of yyyy,mm,dd,HH,MM,SS
                                         ! in UTC for trajectory mode
-  aero_start_date        = 2022,4,1,    ! start date of the aerosol simulation
+  aero_start_date        = 2018,5,8,    ! start date of the aerosol simulation
                            00,00,00,    !  in the form of yyyy,mm,dd,HH,MM,SS
                                         ! in UTC for trajectory mode
-  end_date               = 2022,4,2,    ! end date of the simulation
-                           00,00,00,    !  in the form of yyyy,mm,dd,HH,MM,SS
+  end_date               = 2018,5,15,   ! end date of the simulation
+                           19,00,00,    !  in the form of yyyy,mm,dd,HH,MM,SS
                                         ! in UTC for trajectory mode
   dt_mete                = 10.0d0,      ! time step [s] for the meteorology
   dt_emis                = 60.0d0,      ! time step [s] for the emissions
@@ -108,10 +108,10 @@
   RSM_PATH = './sosaa-rsm.jl',      ! path to where the SOSAA RSM is saved
   TRAIN_SEED = 'my-train-seed',     ! any string to seed the training RNG
   FOREST_SIZE = 16,                 ! number of trees in the random forest
-  TRAIN_SAMPLES = 16,               ! number of bootstrap samples in training
-  RSM_OUTPUT = './rsm-output.nc',   ! path to where the prediction is saved
+  TRAIN_SAMPLES = 1,                ! number of bootstrap samples in training
+  RSM_OUTPUT = './rsm-output.jl',   ! path to where the prediction is saved
   PREDICT_SEED = 'my-predict-seed', ! any string to seed the prediction RNG
-  PREDICT_SAMPLES = 16,             ! number of bootstrap samples in prediction
+  PREDICT_SAMPLES = 1,              ! number of bootstrap samples in prediction
   PREDICT_PERTURBATION = 'return inputs', ! Python code to perturb the inputs
 /
 

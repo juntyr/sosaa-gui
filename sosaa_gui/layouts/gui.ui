@@ -2721,13 +2721,13 @@
           </property>
           <widget class="QWidget" name="rsm_build_tab">
            <attribute name="title">
-            <string>Configure and Construct</string>
+            <string>Configure and Train</string>
            </attribute>
            <layout class="QVBoxLayout" name="horizontalLayout_9">
             <item>
              <widget class="QGroupBox" name="groupBox_17">
               <property name="title">
-               <string>SOSAA RSM construction options</string>
+               <string>SOSAA RSM training options</string>
               </property>
               <layout class="QGridLayout" name="gridLayout">
                <item row="2" column="2" colspan="2">
@@ -2789,7 +2789,10 @@
                <item row="3" column="2" colspan="2">
                 <widget class="QSpinBox" name="rsm_train_samples">
                  <property name="minimum">
-                  <number>16</number>
+                  <number>1</number>
+                 </property>
+                 <property name="value">
+                  <number>1</number>
                  </property>
                 </widget>
                </item>
@@ -2799,14 +2802,14 @@
             <item>
              <layout class="QGridLayout" name="horizontalLayout_4">
               <item row="2" column="0">
-               <widget class="QProgressBar" name="rsm_build_progress_low">
+               <widget class="QProgressBar" name="rsm_build_progress_minor">
                 <property name="value">
                  <number>0</number>
                 </property>
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QProgressBar" name="rsm_build_progress_high">
+               <widget class="QProgressBar" name="rsm_build_progress_major">
                 <property name="value">
                  <number>0</number>
                 </property>
@@ -2815,7 +2818,14 @@
               <item row="0" column="0">
                <widget class="QPushButton" name="rsm_build">
                 <property name="text">
-                 <string>Construct the SOSAA RSM and Save to File</string>
+                 <string>Train the SOSAA RSM and Save to File</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QPushButton" name="rsm_load">
+                <property name="text">
+                 <string>Load the SOSAA RSM from a File</string>
                 </property>
                </widget>
               </item>
@@ -2848,7 +2858,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="2" rowspan="3">
+               <item row="0" column="2" rowspan="4">
                 <widget class="Line" name="line_4">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
@@ -2936,6 +2946,40 @@
                  </property>
                 </widget>
                </item>
+               <item row="3" column="3">
+                <widget class="QLabel" name="label_23">
+                 <property name="text">
+                  <string>Test Set Uncertainty Calibration Error:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="4">
+                <widget class="QLabel" name="rsm_test_rmsce">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_23">
+                 <property name="text">
+                  <string>Training Set Uncertainty Calibration Error:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="rsm_train_rmsce">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -2997,7 +3041,7 @@
                   <number>1</number>
                  </property>
                  <property name="value">
-                  <number>16</number>
+                  <number>1</number>
                  </property>
                 </widget>
                </item>
@@ -3053,7 +3097,7 @@ p, li { white-space: pre-wrap; }
             <item>
              <layout class="QGridLayout" name="horizontalLayout_4">
               <item row="1" column="0">
-               <widget class="QProgressBar" name="rsm_predict_progress_high">
+               <widget class="QProgressBar" name="rsm_predict_progress_major">
                 <property name="value">
                  <number>0</number>
                 </property>
@@ -3062,12 +3106,12 @@ p, li { white-space: pre-wrap; }
               <item row="0" column="0">
                <widget class="QPushButton" name="rsm_predict">
                 <property name="text">
-                 <string>Generate SOSAA RSM Predictions</string>
+                 <string>Generate SOSAA RSM Predictions and Save to File</string>
                 </property>
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QProgressBar" name="rsm_predict_progress_low">
+               <widget class="QProgressBar" name="rsm_predict_progress_minor">
                 <property name="value">
                  <number>0</number>
                 </property>

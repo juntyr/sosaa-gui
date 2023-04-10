@@ -153,13 +153,13 @@ def _update_gui_from_time_settings(settings, gui):
 
     gui.start_date.setDateTime(
         QtCore.QDateTime.fromString(
-            ",".join(f"{s:02}" for s in time.get("start_date", [2000, 1, 1, 0, 0, 0])),
+            ",".join(f"{s:02}" for s in time.get("start_date", [2023, 4, 1, 0, 0, 0])),
             "yyyy,MM,dd,HH,mm,ss",
         )
     )
     gui.end_date.setDateTime(
         QtCore.QDateTime.fromString(
-            ",".join(f"{s:02}" for s in time.get("end_date", [2000, 1, 1, 0, 0, 0])),
+            ",".join(f"{s:02}" for s in time.get("end_date", [2023, 4, 1, 0, 0, 0])),
             "yyyy,MM,dd,HH,mm,ss",
         )
     )
@@ -172,24 +172,15 @@ def _update_gui_from_time_settings(settings, gui):
 
     fullDays = gui.trajectory_duration.value()
 
-    if fullDays < 0:
-        # Negative duration: start_date = floor(end_date - full_days)
-        gui.start_date.setEnabled(False)
-        gui.end_date.setEnabled(True)
+    # Positive duration: end_date = ceil(start_date + full_days)
+    gui.start_date.setEnabled(True)
+    gui.end_date.setEnabled(False)
 
-        gui.start_date.setDate(gui.end_date.date().addDays(fullDays))
-        gui.start_date.setTime(QtCore.QTime(0, 0))
-    else:
-        # Positive duration: end_date = ceil(start_date + full_days)
-        gui.start_date.setEnabled(True)
-        gui.end_date.setEnabled(False)
-
-        gui.end_date.setDate(
-            gui.start_date.date().addDays(
-                fullDays + (gui.start_date.time() > QtCore.QTime(0, 0))
-            )
+    gui.end_date.setDate(
+        gui.start_date.date().addDays(
+            fullDays + (gui.start_date.time() > QtCore.QTime(0, 0))
         )
-        gui.end_date.setTime(QtCore.QTime(0, 0))
+    )
 
     aero_start_date = QtCore.QDateTime.fromString(
         ",".join(f"{s:02}" for s in time.get("aero_start_date", [2000, 1, 1, 0, 0, 0])),
@@ -283,16 +274,16 @@ def _update_gui_from_rsm_settings(settings, gui):
 
     gui.rsm_train_seed.setText(rsm.get("train_seed", "my-train-seed"))
     gui.rsm_forest.setValue(rsm.get("forest_size", 16))
-    gui.rsm_train_samples.setValue(rsm.get("train_samples", 16))
+    gui.rsm_train_samples.setValue(rsm.get("train_samples", 1))
 
     # Pretty-print the rsm output path if relative to the working dir
-    rsm_output = str(Path(rsm.get("rsm_output", "./rsm-output.nc")).resolve())
+    rsm_output = str(Path(rsm.get("rsm_output", "./rsm-output.jl")).resolve())
     if rsm_output.startswith(str(Path.cwd())):
         rsm_output = f"./{Path(rsm_output).relative_to(Path.cwd())}"
     gui.rsm_output.setText(rsm_output)
 
     gui.rsm_predict_seed.setText(rsm.get("predict_seed", "my-predict-seed"))
-    gui.rsm_predict_samples.setValue(rsm.get("predict_samples", 16))
+    gui.rsm_predict_samples.setValue(rsm.get("predict_samples", 1))
 
     gui.rsm_perturbation.setPlainText(rsm.get("predict_perturbation", "return inputs"))
 

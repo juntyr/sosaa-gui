@@ -10,25 +10,6 @@ from collections import namedtuple
 from pathlib import Path
 from typing import Callable
 
-import joblib
-
-import netCDF4
-from netCDF4 import Dataset
-
-import numpy as np
-
-import pandas as pd
-
-import scipy as sp
-
-import sklearn
-from sklearn.covariance import EmpiricalCovariance
-from sklearn.decomposition import PCA
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
-from sklearn.preprocessing import StandardScaler
-
 from PyQt5 import QtWidgets
 
 TrajectoryPaths = namedtuple(
@@ -84,9 +65,11 @@ TrainTestEvaluation = namedtuple(
         "train_mse",
         "train_mae",
         "train_r2",
+        "train_rmsce",
         "test_mse",
         "test_mae",
         "test_r2",
+        "test_rmsce",
     ],
 )
 
@@ -130,6 +113,9 @@ def get_sosaa_dataset_paths(
 
 
 def load_trajectory_dataset(paths: TrajectoryPaths) -> TrajectoryDatasets:
+    import netCDF4
+    from netCDF4 import Dataset
+
     outds = Dataset(paths.out, "r", format="NETCDF4")
     aerds = Dataset(paths.aer, "r", format="NETCDF4")
     antds = Dataset(paths.ant, "r", format="NETCDF4")
@@ -147,6 +133,9 @@ def load_trajectory_dataset(paths: TrajectoryPaths) -> TrajectoryDatasets:
 
 
 def get_ccn_concentration(ds: TrajectoryDatasets):
+    import numpy as np
+    import pandas as pd
+
     (ccn_bin_indices,) = np.nonzero(ds.out["dp_dry_fs"][:].data > 80e-9)
     ccn_concentration = np.sum(
         ds.out["nconc_par"][:].data[:, ccn_bin_indices, :], axis=1
@@ -174,6 +163,8 @@ def get_output_time(ds: TrajectoryDatasets):
 
 
 def interpolate_meteorology_values(ds: TrajectoryDatasets, key: str):
+    import scipy as sp
+
     out_t = get_output_time(ds)
     out_h = ds.out["lev"][:].data
 
@@ -195,6 +186,9 @@ def interpolate_meteorology_values(ds: TrajectoryDatasets, key: str):
 
 
 def interpolate_meteorology_time_values(ds: TrajectoryDatasets, key: str):
+    import numpy as np
+    import scipy as sp
+
     out_t = get_output_time(ds)
     out_h = ds.out["lev"][:].data
 
@@ -218,6 +212,9 @@ def interpolate_meteorology_time_values(ds: TrajectoryDatasets, key: str):
 
 
 def interpolate_biogenic_emissions(ds: TrajectoryDatasets, key: str):
+    import numpy as np
+    import scipy as sp
+
     out_t = get_output_time(ds)
     out_h = ds.out["lev"][:].data
 
@@ -258,6 +255,8 @@ def interpolate_biogenic_emissions(ds: TrajectoryDatasets, key: str):
 
 
 def interpolate_aerosol_emissions(ds: TrajectoryDatasets, key: str):
+    import scipy as sp
+
     out_t = get_output_time(ds)
     out_h = ds.out["lev"][:].data
 
@@ -279,6 +278,8 @@ def interpolate_aerosol_emissions(ds: TrajectoryDatasets, key: str):
 
 
 def interpolate_anthropogenic_emissions(ds: TrajectoryDatasets, key: str):
+    import scipy as sp
+
     out_t = get_output_time(ds)
     out_h = ds.out["lev"][:].data
 
@@ -300,6 +301,9 @@ def interpolate_anthropogenic_emissions(ds: TrajectoryDatasets, key: str):
 
 
 def get_meteorology_features(ds: TrajectoryDatasets):
+    import numpy as np
+    import pandas as pd
+
     return pd.DataFrame(
         {
             "time": np.repeat(get_output_time(ds), ds.out["lev"].shape[0]),
@@ -314,6 +318,9 @@ def get_meteorology_features(ds: TrajectoryDatasets):
 
 
 def get_bio_emissions_features(ds: TrajectoryDatasets):
+    import numpy as np
+    import pandas as pd
+
     return pd.DataFrame(
         {
             "time": np.repeat(get_output_time(ds), ds.out["lev"].shape[0]),
@@ -377,6 +384,9 @@ def get_bio_emissions_features(ds: TrajectoryDatasets):
 
 
 def get_aer_emissions_features(ds: TrajectoryDatasets):
+    import numpy as np
+    import pandas as pd
+
     return pd.DataFrame(
         {
             "time": np.repeat(get_output_time(ds), ds.out["lev"].shape[0]),
@@ -397,6 +407,9 @@ def get_aer_emissions_features(ds: TrajectoryDatasets):
 
 
 def get_ant_emissions_features(ds: TrajectoryDatasets):
+    import numpy as np
+    import pandas as pd
+
     return pd.DataFrame(
         {
             "time": np.repeat(get_output_time(ds), ds.out["lev"].shape[0]),
@@ -530,6 +543,8 @@ def generate_windowed_feature_names(columns):
 
 
 def time_level_window_mean(input, t_range, l_range, progress=None):
+    import numpy as np
+
     output = np.zeros(shape=input.shape)
 
     for t in range(input.shape[0]):
@@ -555,6 +570,8 @@ def time_level_window_mean(input, t_range, l_range, progress=None):
 
 
 def get_raw_features_for_dataset(ds: TrajectoryDatasets):
+    import pandas as pd
+
     bio_features = get_bio_emissions_features(ds)
     aer_features = get_aer_emissions_features(ds) * 1e21
     ant_features = get_ant_emissions_features(ds)
@@ -572,6 +589,10 @@ def get_raw_features_for_dataset(ds: TrajectoryDatasets):
 
 
 def get_features_from_raw_features(raw_features, progress=None):
+    import joblib
+    import numpy as np
+    import pandas as pd
+
     raw_features_np = df_to_numpy(raw_features)
 
     if progress is not None:
@@ -633,6 +654,9 @@ def get_features_from_raw_features(raw_features, progress=None):
 
 
 def get_labels_for_dataset(ds: TrajectoryDatasets):
+    import numpy as np
+    import pandas as pd
+
     ccn_concentration = get_ccn_concentration(ds)
 
     ccn_concentration_np = df_to_numpy(ccn_concentration)
@@ -704,6 +728,8 @@ clump -> 1 => highly correlated samples
 
 class Clump:
     def __init__(self, p=0.5, clump=0.0, rng=None):
+        import numpy as np
+
         a = 1 - (1 - p) * (1 - clump)
         b = (1 - a) * p / (1 - p)
 
@@ -720,10 +746,15 @@ class Clump:
         return self.i
 
     def steady(self, X):
+        import numpy as np
+
         return np.matmul(X, self.C)
 
 
 def train_test_split(X, Y, test_size=0.25, random_state=None, shuffle=True, clump=0.0):
+    import numpy as np
+    import pandas as pd
+
     assert len(X) == len(Y)
     assert type(X) == type(Y)
     assert test_size > 0.0
@@ -779,6 +810,11 @@ def load_and_cache_dataset(
     output_dir: Path,
     progress=None,
 ) -> MLDataset:
+    import numpy as np
+    import pandas as pd
+
+    from sklearn.preprocessing import StandardScaler
+
     if isinstance(dt, tuple) or isinstance(dt, list):
         dt = tuple(sorted(dt))
 
@@ -893,18 +929,21 @@ class IcarusRSM(abc.ABC):
     @abc.abstractmethod
     def fit(
         self,
-        X_train: np.ndarray,
-        Y_train: np.ndarray,
-        X_valid: np.ndarray,
-        Y_valid: np.ndarray,
-        rng: np.random.Generator,
+        X_train,  #: np.ndarray,
+        Y_train,  #: np.ndarray,
+        X_valid,  #: np.ndarray,
+        Y_valid,  #: np.ndarray,
+        rng,  #: np.random.Generator,
         **kwargs,
     ) -> IcarusRSM:
         return self
 
     @abc.abstractmethod
     def predict(
-        self, X_test: np.ndarray, rng: np.random.Generator, **kwargs
+        self,
+        X_test,  #: np.ndarray,
+        rng,  #: np.random.Generator,
+        **kwargs,
     ) -> IcarusPrediction:
         return None
 
@@ -912,14 +951,23 @@ class IcarusRSM(abc.ABC):
 class RandomForestSosaaRSM(IcarusRSM):
     def fit(
         self,
-        X_train: np.ndarray,
-        Y_train: np.ndarray,
-        X_valid: np.ndarray,
-        Y_valid: np.ndarray,
-        rng: np.random.Generator,
+        X_train,  #: np.ndarray,
+        Y_train,  #: np.ndarray,
+        X_valid,  #: np.ndarray,
+        Y_valid,  #: np.ndarray,
+        rng,  #: np.random.Generator,
         n_trees: int = 16,
         progress=None,
     ) -> RandomForestSosaaRSM:
+        import numpy as np
+
+        import sklearn
+        from sklearn.covariance import EmpiricalCovariance
+        from sklearn.decomposition import PCA
+        from sklearn.ensemble import RandomForestRegressor
+        from sklearn.linear_model import LogisticRegression
+        from sklearn.preprocessing import StandardScaler
+
         assert Y_train.shape[1:] == (1,)
 
         if progress is not None:
@@ -995,10 +1043,13 @@ class RandomForestSosaaRSM(IcarusRSM):
 
     def predict(
         self,
-        X_test: np.ndarray,
-        rng: np.random.Generator,
+        X_test,  #: np.ndarray,
+        rng,  #: np.random.Generator,
         progress=None,
     ) -> IcarusPrediction:
+        import joblib
+        import numpy as np
+
         # No extra randomness is needed during prediction
         rng = rng
 
@@ -1007,7 +1058,7 @@ class RandomForestSosaaRSM(IcarusRSM):
                 value=0,
                 min=0,
                 max=(1 + len(self.predictor.estimators_)),
-                format="Generating confidence scores",
+                format="Generating Confidence Scores",
             )
 
         confidence = self.ood_detector.predict_proba(
@@ -1019,7 +1070,7 @@ class RandomForestSosaaRSM(IcarusRSM):
         )[:, 1]
 
         if progress is not None:
-            progress.update_minor(format="Generating %v/%m ensemble predictions")
+            progress.update_minor(format="Generating %v/%m Ensemble Predictions")
 
         def tree_predict(tree, X_test, progress=None) -> np.ndarray:
             if progress is not None:
@@ -1045,7 +1096,12 @@ class RandomForestSosaaRSM(IcarusRSM):
             confidence=confidence,
         )
 
-    def _predict_truncated_pca(self, X: np.ndarray) -> np.ndarray:
+    def _predict_truncated_pca(
+        self,
+        X,  #: np.ndarray
+    ):  # -> np.ndarray:
+        import numpy as np
+
         if self.pca.mean_ is not None:
             X = X - self.pca.mean_
 
@@ -1064,13 +1120,16 @@ def train_and_cache_model(
     datasets: dict,
     models: dict,
     cls,
-    rng: np.random.RandomState,
+    rng,  #: np.random.RandomState,
     input_dir: Path,
     output_dir: Path,
     model_path: Path,
+    should_exist: bool,
     progress=None,
     **kwargs,
 ) -> IcarusRSM:
+    import joblib
+
     if isinstance(dt, tuple) or isinstance(dt, list):
         dt = tuple(sorted(dt))
 
@@ -1082,27 +1141,48 @@ def train_and_cache_model(
         return cached
 
     if Path(model_path).exists():
-        msg = QtWidgets.QMessageBox()
-        msg.setIcon(QtWidgets.QMessageBox.Question)
-        msg.setStandardButtons(
-            QtWidgets.QMessageBox.Open
-            | QtWidgets.QMessageBox.Reset
-            | QtWidgets.QMessageBox.Cancel
-        )
-        msg.setText(f"Do you want to load the existing RSM or overwrite it?")
-        msg.setInformativeText(f"The file {str(model_path)} already exists.")
-        msg.setWindowTitle("Existing SOSAA RSM")
-        button = msg.exec_()
+        if not should_exist:
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Question)
+            msg.setStandardButtons(
+                QtWidgets.QMessageBox.Open
+                | QtWidgets.QMessageBox.Reset
+                | QtWidgets.QMessageBox.Cancel
+            )
+            msg.setText(f"Do you want to load the existing RSM or overwrite it?")
+            msg.setInformativeText(f"The file {str(model_path)} already exists.")
+            msg.setWindowTitle("Existing SOSAA RSM")
+            button = msg.exec_()
 
-        if button == QtWidgets.QMessageBox.Cancel:
-            return None
+            if button == QtWidgets.QMessageBox.Cancel:
+                return None
 
-        if button == QtWidgets.QMessageBox.Open:
+            if button == QtWidgets.QMessageBox.Open:
+                model = joblib.load(model_path)
+
+                models[model_key] = model
+
+                return model
+        else:
             model = joblib.load(model_path)
 
             models[model_key] = model
 
             return model
+
+    if should_exist:
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Question)
+        msg.setStandardButtons(
+            QtWidgets.QMessageBox.Save | QtWidgets.QMessageBox.Cancel
+        )
+        msg.setText(f"Do you want to train a new SOSAA RSM?")
+        msg.setInformativeText(f"The file {str(model_path)} does not exist.")
+        msg.setWindowTitle("Missing SOSAA RSM")
+        button = msg.exec_()
+
+        if button == QtWidgets.QMessageBox.Cancel:
+            return None
 
     dataset = load_and_cache_dataset(
         dt, clump, datasets, input_dir, output_dir, progress=progress
@@ -1127,12 +1207,14 @@ def train_and_cache_model(
 
 def analyse_icarus_predictions(
     predictions: IcarusPrediction,
-    analysis: Callable[[np.ndarray, np.ndarray, np.random.Generator, dict], np.ndarray],
-    rng: np.random.Generator,
+    analysis,  #: Callable[[np.ndarray, np.ndarray, np.random.Generator, dict], np.ndarray],
+    rng,  #: np.random.Generator,
     n_uncertain_samples: int = 1,  # number of samples to draw from expand each prediction per run
     n_analysis_runs: int = 100,  # number of repeats of the analysis to gather uncertainty
     **kwargs,
 ):
+    import numpy as np
+
     progress = kwargs.get("progress", None)
 
     if progress is not None:
@@ -1144,7 +1226,7 @@ def analyse_icarus_predictions(
 
     results = []
 
-    for i in range(n_analysis_runs):
+    for _ in range(n_analysis_runs):
         confs = []
         preds = []
         for _ in range(n_uncertain_samples):
@@ -1178,13 +1260,54 @@ def analyse_icarus_predictions(
     )
 
 
+def calculate_calibration_error(
+    Y_true,  #: np.ndarray,
+    Y_pred,  #: np.ndarray,
+    Y_stdv,  #: np.ndarray,
+    Y_conf,  #: np.ndarray,
+    N: int = 1000,
+    progress=None,
+) -> IcarusPrediction:
+    import numpy as np
+    import scipy as sp
+
+    sce = 0.0
+
+    if progress is not None:
+        progress.update_minor(value=0, min=0, max=N, format="Checking Percentile %p")
+
+    for i in range(N + 1):
+        if progress is not None:
+            progress.update_minor()
+
+        p = i / N
+
+        Yp = Y_pred.flatten() + Y_stdv.flatten() * sp.stats.norm.ppf(p)
+        sce += (p - np.average(Y_true.flatten() < Yp, weights=Y_conf)) ** 2
+
+    rmsce = np.sqrt(sce / N)
+
+    return IcarusPrediction(
+        prediction=rmsce,
+        uncertainty=None,
+        confidence=np.mean(Y_conf),
+    )
+
+
 def analyse_train_test_perforance(
     model: IcarusRSM,
     dataset: MLDataset,
-    rng: np.random.Generator,
+    rng,  #: np.random.Generator,
+    n_samples: int,
+    progress=None,
     **kwargs,
 ) -> TrainTestEvaluation:
+    import numpy as np
+
     def mse_mae_analysis(Y_true, Y_pred, I_pred, rng, **kwargs):
+        import sklearn
+        from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
+
         Y_true = dataset.Y_scaler.inverse_transform(Y_true[I_pred])
         Y_pred = dataset.Y_scaler.inverse_transform(Y_pred)
 
@@ -1194,12 +1317,67 @@ def analyse_train_test_perforance(
 
         return np.array([mse, mae, r2])
 
-    progress = kwargs.get("progress", None)
+    train_predictions = []
+    for i in range(n_samples):
+        if progress is not None:
+            progress.update_major(
+                format=f"Predicting on the Training Dataset {i}/{n_samples}"
+            )
+
+        train_predictions.append(
+            model.predict(dataset.X_train, rng, progress=progress, **kwargs)
+        )
 
     if progress is not None:
-        progress.update_major(format="Predicting on the Training Dataset")
+        progress.update_major(
+            format=f"Combining the Predictions on the Training Dataset"
+        )
+        progress.update_minor(
+            value=0,
+            min=0,
+            max=len(dataset.X_train),
+            format="Training Prediction %v/%m",
+        )
 
-    train_predictions = model.predict(dataset.X_train, rng, **kwargs)
+    combined_train_predictions = IcarusPrediction(
+        prediction=[],
+        uncertainty=[],
+        confidence=[],
+    )
+
+    for i in range(len(dataset.X_train)):
+        predictions = np.array([p.prediction[i] for p in train_predictions])
+        uncertainties = np.array([p.uncertainty[i] for p in train_predictions])
+        confidences = np.array([p.confidence[i] for p in train_predictions])
+
+        def combine_predictions(Y_pred, I_pred, rng, **kwargs):
+            return np.mean(Y_pred)
+
+        cp = analyse_icarus_predictions(
+            IcarusPrediction(
+                prediction=predictions,
+                uncertainty=uncertainties,
+                confidence=confidences,
+            ),
+            combine_predictions,
+            rng,
+            n_uncertain_samples=1,
+            n_analysis_runs=10,
+            progress=None,
+        )
+
+        combined_train_predictions.prediction.append(cp.prediction)
+        combined_train_predictions.uncertainty.append(cp.uncertainty)
+        combined_train_predictions.confidence.append(cp.confidence)
+
+        if progress is not None:
+            progress.update_minor()
+
+    train_predictions = IcarusPrediction(
+        prediction=np.array(combined_train_predictions.prediction).reshape(-1, 1),
+        uncertainty=np.array(combined_train_predictions.uncertainty).reshape(-1, 1),
+        confidence=np.array(combined_train_predictions.confidence),
+    )
 
     if progress is not None:
         progress.update_major(format="Evaluating on the Training Dataset")
@@ -1214,9 +1392,76 @@ def analyse_train_test_perforance(
     )
 
     if progress is not None:
-        progress.update_major(format="Predicting on the Test Dataset")
+        progress.update_major(format="Calculating the Training Calibration Error")
 
-    test_predictions = model.predict(dataset.X_test, rng, **kwargs)
+    train_rmsce = calculate_calibration_error(
+        dataset.Y_scaler.inverse_transform(dataset.Y_train),
+        dataset.Y_scaler.inverse_transform(train_predictions.prediction),
+        train_predictions.uncertainty * dataset.Y_scaler.scale_,
+        train_predictions.confidence,
+        progress=progress,
+    )
+
+    test_predictions = []
+    for i in range(n_samples):
+        if progress is not None:
+            progress.update_major(
+                format=f"Predicting on the Test Dataset {i}/{n_samples}"
+            )
+
+        test_predictions.append(
+            model.predict(dataset.X_test, rng, progress=progress, **kwargs)
+        )
+
+    if progress is not None:
+        progress.update_major(format=f"Combining the Predictions on the Test Dataset")
+
+        progress.update_minor(
+            value=0,
+            min=0,
+            max=len(dataset.X_test),
+            format="Test Prediction %v/%m",
+        )
+
+    combined_test_predictions = IcarusPrediction(
+        prediction=[],
+        uncertainty=[],
+        confidence=[],
+    )
+
+    for i in range(len(dataset.X_test)):
+        predictions = np.array([p.prediction[i] for p in test_predictions])
+        uncertainties = np.array([p.uncertainty[i] for p in test_predictions])
+        confidences = np.array([p.confidence[i] for p in test_predictions])
+
+        def combine_predictions(Y_pred, I_pred, rng, **kwargs):
+            return np.mean(Y_pred)
+
+        cp = analyse_icarus_predictions(
+            IcarusPrediction(
+                prediction=predictions,
+                uncertainty=uncertainties,
+                confidence=confidences,
+            ),
+            combine_predictions,
+            rng,
+            n_uncertain_samples=1,
+            n_analysis_runs=10,
+            progress=None,
+        )
+
+        combined_test_predictions.prediction.append(cp.prediction)
+        combined_test_predictions.uncertainty.append(cp.uncertainty)
+        combined_test_predictions.confidence.append(cp.confidence)
+
+        if progress is not None:
+            progress.update_minor()
+
+    test_predictions = IcarusPrediction(
+        prediction=np.array(combined_test_predictions.prediction).reshape(-1, 1),
+        uncertainty=np.array(combined_test_predictions.uncertainty).reshape(-1, 1),
+        confidence=np.array(combined_test_predictions.confidence),
+    )
 
     if progress is not None:
         progress.update_major(format="Evaluating on the Test Dataset")
@@ -1227,6 +1472,17 @@ def analyse_train_test_perforance(
         rng,
         n_uncertain_samples=1,
         n_analysis_runs=10,
+        progress=progress,
+    )
+
+    if progress is not None:
+        progress.update_major(format="Calculating the Test Calibration Error")
+
+    test_rmsce = calculate_calibration_error(
+        dataset.Y_scaler.inverse_transform(dataset.Y_test),
+        dataset.Y_scaler.inverse_transform(test_predictions.prediction),
+        test_predictions.uncertainty * dataset.Y_scaler.scale_,
+        test_predictions.confidence,
         progress=progress,
     )
 
@@ -1246,6 +1502,7 @@ def analyse_train_test_perforance(
             uncertainty=train_eval.uncertainty[2],
             confidence=train_eval.confidence,
         ),
+        train_rmsce=train_rmsce,
         test_mse=IcarusPrediction(
             prediction=test_eval.prediction[0],
             uncertainty=test_eval.uncertainty[0],
@@ -1261,4 +1518,178 @@ def analyse_train_test_perforance(
             uncertainty=test_eval.uncertainty[2],
             confidence=test_eval.confidence,
         ),
+        test_rmsce=test_rmsce,
     )
+
+
+def generate_perturbed_predictions(
+    model: IcarusRSM,
+    dataset: MLDataset,
+    rng,  #: np.random.Generator,
+    n_samples: int,
+    prediction_path: Path,
+    perturbation,  #: Callable[[pd.DataFrame], pd.DataFrame],
+    progress=None,
+    **kwargs,
+):  # -> pd.DataFrame:
+    import joblib
+    import numpy as np
+    import pandas as pd
+
+    if prediction_path.exists():
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Question)
+        msg.setStandardButtons(
+            QtWidgets.QMessageBox.Open
+            | QtWidgets.QMessageBox.Reset
+            | QtWidgets.QMessageBox.Cancel
+        )
+        msg.setText(f"Do you want to load the existing RSM prediction or overwrite it?")
+        msg.setInformativeText(f"The file {str(prediction_path)} already exists.")
+        msg.setWindowTitle("Existing SOSAA RSM Prediction")
+        button = msg.exec_()
+
+        if button == QtWidgets.QMessageBox.Cancel:
+            return None
+
+        if button == QtWidgets.QMessageBox.Open:
+            # FIXME: support saving to NetCDF files instead
+            return joblib.load(prediction_path)
+
+    if progress is not None:
+        progress.update_major(
+            value=0,
+            min=0,
+            max=3 + n_samples,
+            format="Evaluating on the Test Dataset",
+        )
+
+    X_raw = perturbation(dataset.X_raw)
+
+    if progress is not None:
+        progress.update_major(format="Generating the Perturbed Dataset")
+
+    X_prtb = dataset.X_scaler.transform(
+        get_features_from_raw_features(X_raw, progress=progress)
+    )
+    Y_base = dataset.Y_raw
+
+    prtb_predictions = []
+    for i in range(n_samples):
+        if progress is not None:
+            progress.update_major(
+                format=f"Predicting on the Perturbed Dataset {i}/{n_samples}"
+            )
+
+        prtb_predictions.append(model.predict(X_prtb, rng, progress=progress, **kwargs))
+
+    if progress is not None:
+        progress.update_major(
+            format=f"Combining the Predictions on the Perturbed Dataset"
+        )
+
+        progress.update_minor(
+            value=0,
+            min=0,
+            max=len(X_prtb),
+            format="Perturbed Prediction %v/%m",
+        )
+
+    combined_prtb_predictions = IcarusPrediction(
+        prediction=[],
+        uncertainty=[],
+        confidence=[],
+    )
+
+    for i in range(len(X_prtb)):
+        predictions = np.array([p.prediction[i] for p in prtb_predictions])
+        uncertainties = np.array([p.uncertainty[i] for p in prtb_predictions])
+        confidences = np.array([p.confidence[i] for p in prtb_predictions])
+
+        def combine_predictions(Y_pred, I_pred, rng, **kwargs):
+            return np.mean(Y_pred)
+
+        cp = analyse_icarus_predictions(
+            IcarusPrediction(
+                prediction=predictions,
+                uncertainty=uncertainties,
+                confidence=confidences,
+            ),
+            combine_predictions,
+            rng,
+            n_uncertain_samples=1,
+            n_analysis_runs=10,
+            progress=None,
+        )
+
+        combined_prtb_predictions.prediction.append(cp.prediction)
+        combined_prtb_predictions.uncertainty.append(cp.uncertainty)
+        combined_prtb_predictions.confidence.append(cp.confidence)
+
+        if progress is not None:
+            progress.update_minor()
+
+    prtb_predictions = IcarusPrediction(
+        prediction=np.array(combined_prtb_predictions.prediction).reshape(-1, 1),
+        uncertainty=np.array(combined_prtb_predictions.uncertainty).reshape(-1, 1),
+        confidence=np.array(combined_prtb_predictions.confidence),
+    )
+
+    if progress is not None:
+        progress.update_major(format="Assembling the Perturbation Prediction")
+        progress.update_minor(value=0, format="")
+
+    Y_pred = np.concatenate(
+        [
+            Y_base.index.get_level_values(0)
+            .to_numpy()
+            .reshape(
+                (
+                    Y_base.index.levels[0].size,
+                    Y_base.index.levels[1].size,
+                    1,
+                )
+            ),
+            Y_base.index.get_level_values(1)
+            .to_numpy()
+            .reshape(
+                (
+                    Y_base.index.levels[0].size,
+                    Y_base.index.levels[1].size,
+                    1,
+                )
+            ),
+            df_to_numpy(Y_base).reshape(
+                (Y_base.index.levels[0].size, Y_base.index.levels[1].size, 1)
+            ),
+            dataset.Y_scaler.inverse_transform(prtb_predictions.prediction).reshape(
+                (Y_base.index.levels[0].size, Y_base.index.levels[1].size, 1)
+            ),
+            (prtb_predictions.uncertainty * dataset.Y_scaler.scale_).reshape(
+                (Y_base.index.levels[0].size, Y_base.index.levels[1].size, 1)
+            ),
+            prtb_predictions.confidence.reshape(
+                (Y_base.index.levels[0].size, Y_base.index.levels[1].size, 1)
+            ),
+        ],
+        axis=2,
+    )
+
+    df = pd.DataFrame(
+        Y_pred.reshape(
+            Y_pred.shape[0] * Y_pred.shape[1],
+            Y_pred.shape[2],
+        ),
+        columns=[
+            "time",
+            "level",
+            "log10_ccn_baseline",
+            "log10_ccn_perturbed_pred",
+            "log10_ccn_perturbed_stdv",
+            "log10_ccn_perturbed_conf",
+        ],
+    ).set_index(["time", "level"])
+
+    joblib.dump(df, prediction_path)
+
+    return df
