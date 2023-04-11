@@ -985,42 +985,8 @@ class RandomForestSosaaRSM(IcarusRSM):
             (self._predict_truncated_pca(X_train) - X_train)
         )
 
-        if progress is not None:
-            progress.update_minor(format="Generating FGSM OOD Inputs")
-
-        adv_grad = self.pca.components_[self.bn]
-
-        X_ood = rng.normal(loc=X_valid, scale=0.01) + np.sign(adv_grad) * np.abs(
-            rng.normal(loc=2.0, scale=0.5, size=(len(X_valid), 1))
-        ) * rng.choice([-1, 1])
-
-        if progress is not None:
-            progress.update_minor(format="Training the OOD Scorer")
-
-        M_id = self.cov.mahalanobis(self._predict_truncated_pca(X_valid) - X_valid)
-        M_ood = self.cov.mahalanobis(self._predict_truncated_pca(X_ood) - X_ood)
-
-        self.scaler = StandardScaler().fit(M_id.reshape(-1, 1))
-
-        self.ood_detector = LogisticRegression(
-            penalty="none",
-            class_weight="balanced",
-            random_state=rng,
-        ).fit(
-            np.concatenate(
-                [
-                    self.scaler.transform(M_id.reshape(-1, 1)),
-                    self.scaler.transform(M_ood.reshape(-1, 1)),
-                ],
-                axis=0,
-            ).reshape(-1, 1),
-            np.concatenate(
-                [
-                    np.ones(len(M_id)),
-                    np.zeros(len(M_ood)),
-                ],
-                axis=0,
-            ),
+        self.err_valid = np.sort(
+            self.cov.mahalanobis(self._predict_truncated_pca(X_valid) - X_valid)
         )
 
         if progress is not None:
@@ -1061,13 +1027,10 @@ class RandomForestSosaaRSM(IcarusRSM):
                 format="Generating Confidence Scores",
             )
 
-        confidence = self.ood_detector.predict_proba(
-            self.scaler.transform(
-                self.cov.mahalanobis(
-                    self._predict_truncated_pca(X_test) - X_test
-                ).reshape(-1, 1)
-            )
-        )[:, 1]
+        confidence = 1.0 - np.searchsorted(
+            self.err_valid,
+            self.cov.mahalanobis((self._predict_truncated_pca(X_test) - X_test)),
+        ) / len(self.err_valid)
 
         if progress is not None:
             progress.update_minor(format="Generating %v/%m Ensemble Predictions")
@@ -1351,7 +1314,7 @@ def analyse_train_test_perforance(
         confidences = np.array([p.confidence[i] for p in train_predictions])
 
         def combine_predictions(Y_pred, I_pred, rng, **kwargs):
-            return np.mean(Y_pred)
+            return np.mean(Y_pred) if len(Y_pred) > 0 else 0.0
 
         cp = analyse_icarus_predictions(
             IcarusPrediction(
@@ -1435,7 +1398,7 @@ def analyse_train_test_perforance(
         confidences = np.array([p.confidence[i] for p in test_predictions])
 
         def combine_predictions(Y_pred, I_pred, rng, **kwargs):
-            return np.mean(Y_pred)
+            return np.mean(Y_pred) if len(Y_pred) > 0 else 0.0
 
         cp = analyse_icarus_predictions(
             IcarusPrediction(
@@ -1564,7 +1527,7 @@ def generate_perturbed_predictions(
             format="Evaluating on the Test Dataset",
         )
 
-    X_raw = perturbation(dataset.X_raw)
+    X_raw = perturbation(dataset.X_raw.copy(deep=True))
 
     if progress is not None:
         progress.update_major(format="Generating the Perturbed Dataset")
@@ -1607,7 +1570,7 @@ def generate_perturbed_predictions(
         confidences = np.array([p.confidence[i] for p in prtb_predictions])
 
         def combine_predictions(Y_pred, I_pred, rng, **kwargs):
-            return np.mean(Y_pred)
+            return np.mean(Y_pred) if len(Y_pred) > 0 else 0.0
 
         cp = analyse_icarus_predictions(
             IcarusPrediction(

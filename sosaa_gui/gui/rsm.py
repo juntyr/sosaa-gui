@@ -467,22 +467,22 @@ def _plot_rsm_prediction(gui):
         + f"\nConfidence: {np.mean(log10_ccn_perturbed_conf):.02}"
     )
 
-    gui.rsm_plot_ax.set_xscale("log")
-    gui.rsm_plot_ax.set_yscale(
-        "symlog", linthresh=10 ** int(np.amin(log10_ccn_baseline))
-    )
-
     for _ in range(gui.rsm_train_samples.value()):
         log10_ccn_perturbed = np.random.normal(
             loc=log10_ccn_perturbed_pred,
             scale=log10_ccn_perturbed_stdv,
         )
 
+        I_conf = (
+            np.random.random(size=log10_ccn_perturbed_conf.shape)
+            <= log10_ccn_perturbed_conf
+        )
+
         gui.rsm_plot_ax.scatter(
-            np.power(10.0, log10_ccn_baseline),
-            np.power(10.0, log10_ccn_perturbed) - np.power(10.0, log10_ccn_baseline),
-            alpha=log10_ccn_perturbed_conf,
-            c=time,
+            np.power(10.0, log10_ccn_baseline[I_conf]),
+            np.power(10.0, log10_ccn_perturbed[I_conf])
+            - np.power(10.0, log10_ccn_baseline[I_conf]),
+            c=time[I_conf],
             cmap="viridis",
             s=5,
         )
