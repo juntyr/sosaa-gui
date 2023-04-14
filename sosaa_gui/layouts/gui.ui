@@ -2987,7 +2987,7 @@
           </widget>
           <widget class="QWidget" name="rsm_predict_tab">
            <attribute name="title">
-            <string>Emulate SOSAA</string>
+            <string>Generate Predictions</string>
            </attribute>
            <layout class="QVBoxLayout" name="horizontalLayout_9">
             <item>
@@ -3123,7 +3123,7 @@ p, li { white-space: pre-wrap; }
           </widget>
           <widget class="QWidget" name="rsm_prediction_tab">
            <attribute name="title">
-            <string>RSM Predictions</string>
+            <string>Visualise Results</string>
            </attribute>
           </widget>
          </widget>

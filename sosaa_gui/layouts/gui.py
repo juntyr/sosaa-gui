@@ -2265,11 +2265,11 @@ class Ui_MainWindow(object):
         )
         self.rsm_subtab.setTabText(
             self.rsm_subtab.indexOf(self.rsm_predict_tab),
-            _translate("MainWindow", "Emulate SOSAA"),
+            _translate("MainWindow", "Generate Predictions"),
         )
         self.rsm_subtab.setTabText(
             self.rsm_subtab.indexOf(self.rsm_prediction_tab),
-            _translate("MainWindow", "RSM Predictions"),
+            _translate("MainWindow", "Visualise Results"),
         )
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.icarus_tab),
