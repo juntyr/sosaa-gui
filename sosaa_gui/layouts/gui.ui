@@ -3125,6 +3125,25 @@ p, li { white-space: pre-wrap; }
            <attribute name="title">
             <string>Visualise Results</string>
            </attribute>
+           <layout class="QVBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QTabWidget" name="rsm_results_subtab">
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <widget class="QWidget" name="rsm_ccnplot_tab">
+               <attribute name="title">
+                <string>CCN Profile</string>
+               </attribute>
+              </widget>
+              <widget class="QWidget" name="rsm_diffplot_tab">
+               <attribute name="title">
+                <string>CCN Difference</string>
+               </attribute>
+              </widget>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>
