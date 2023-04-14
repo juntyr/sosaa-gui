@@ -1824,6 +1824,17 @@ class Ui_MainWindow(object):
         self.rsm_subtab.addTab(self.rsm_predict_tab, "")
         self.rsm_prediction_tab = QtWidgets.QWidget()
         self.rsm_prediction_tab.setObjectName("rsm_prediction_tab")
+        self.horizontalLayout_910 = QtWidgets.QVBoxLayout(self.rsm_prediction_tab)
+        self.horizontalLayout_910.setObjectName("horizontalLayout_910")
+        self.rsm_results_subtab = QtWidgets.QTabWidget(self.rsm_prediction_tab)
+        self.rsm_results_subtab.setObjectName("rsm_results_subtab")
+        self.rsm_ccnplot_tab = QtWidgets.QWidget()
+        self.rsm_ccnplot_tab.setObjectName("rsm_ccnplot_tab")
+        self.rsm_results_subtab.addTab(self.rsm_ccnplot_tab, "")
+        self.rsm_diffplot_tab = QtWidgets.QWidget()
+        self.rsm_diffplot_tab.setObjectName("rsm_diffplot_tab")
+        self.rsm_results_subtab.addTab(self.rsm_diffplot_tab, "")
+        self.horizontalLayout_910.addWidget(self.rsm_results_subtab)
         self.rsm_subtab.addTab(self.rsm_prediction_tab, "")
         self.horizontalLayout_97.addWidget(self.rsm_subtab)
         self.tabWidget.addTab(self.icarus_tab, "")
@@ -1936,6 +1947,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setCurrentIndex(0)
         self.sosaa_subtab.setCurrentIndex(0)
         self.rsm_subtab.setCurrentIndex(0)
+        self.rsm_results_subtab.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.description, self.flag_gasdrydep)
         MainWindow.setTabOrder(self.flag_gasdrydep, self.customKey_1)
@@ -2266,6 +2278,14 @@ class Ui_MainWindow(object):
         self.rsm_subtab.setTabText(
             self.rsm_subtab.indexOf(self.rsm_predict_tab),
             _translate("MainWindow", "Generate Predictions"),
+        )
+        self.rsm_results_subtab.setTabText(
+            self.rsm_results_subtab.indexOf(self.rsm_ccnplot_tab),
+            _translate("MainWindow", "CCN Profile"),
+        )
+        self.rsm_results_subtab.setTabText(
+            self.rsm_results_subtab.indexOf(self.rsm_diffplot_tab),
+            _translate("MainWindow", "CCN Difference"),
         )
         self.rsm_subtab.setTabText(
             self.rsm_subtab.indexOf(self.rsm_prediction_tab),

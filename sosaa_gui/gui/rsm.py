@@ -364,7 +364,7 @@ def _tab_switched(gui, _i):
 
 
 def _lazy_init_plot(gui):
-    if getattr(gui, "rsm_plot_canvas", None) is not None:
+    if getattr(gui, "rsm_ccnplot_canvas", None) is not None:
         return
 
     try:
@@ -390,51 +390,74 @@ def _lazy_init_plot(gui):
     mpl.use("Qt5Agg")
     plt.style.use("seaborn-v0_8")
 
-    gui.rsm_plot_fig, gui.rsm_plot_ax = plt.subplots(1, 1, figsize=(6, 4), dpi=100)
-    gui.rsm_plot_canvas = FigureCanvasQTAgg(gui.rsm_plot_fig)
+    gui.rsm_ccnplot_fig, gui.rsm_ccnplot_ax = plt.subplots(
+        1, 1, figsize=(6, 4), dpi=100
+    )
+    gui.rsm_ccnplot_canvas = FigureCanvasQTAgg(gui.rsm_ccnplot_fig)
 
-    gui.rsm_plot_cb = gui.rsm_plot_fig.colorbar(
+    gui.rsm_ccnplot_cb = gui.rsm_ccnplot_fig.colorbar(
+        mpl.cm.ScalarMappable(
+            norm=None,
+            cmap="rainbow",
+        ),
+        ax=gui.rsm_ccnplot_ax,
+        orientation="vertical",
+    )
+
+    gui.rsm_diffplot_fig, gui.rsm_diffplot_ax = plt.subplots(
+        1, 1, figsize=(6, 4), dpi=100
+    )
+    gui.rsm_diffplot_canvas = FigureCanvasQTAgg(gui.rsm_diffplot_fig)
+
+    gui.rsm_diffplot_cb = gui.rsm_diffplot_fig.colorbar(
         mpl.cm.ScalarMappable(
             norm=None,
             cmap="viridis",
         ),
-        ax=gui.rsm_plot_ax,
+        ax=gui.rsm_diffplot_ax,
         orientation="horizontal",
         extend="min",
     )
 
     NavigationToolbar.toolitems.pop(-3)
     NavigationToolbar.toolitems.pop(-3)
-    gui.rsm_toolbar = NavigationToolbar(gui.rsm_plot_canvas, gui)
 
-    predict_layout = QtWidgets.QVBoxLayout()
-    predict_layout.addWidget(gui.rsm_toolbar)
-    predict_layout.addWidget(gui.rsm_plot_canvas)
+    ccnplot_layout = QtWidgets.QVBoxLayout()
+    ccnplot_layout.addWidget(NavigationToolbar(gui.rsm_ccnplot_canvas, gui))
+    ccnplot_layout.addWidget(gui.rsm_ccnplot_canvas)
 
-    gui.rsm_prediction_tab.setLayout(predict_layout)
+    gui.rsm_ccnplot_tab.setLayout(ccnplot_layout)
+
+    diffplot_layout = QtWidgets.QVBoxLayout()
+    diffplot_layout.addWidget(NavigationToolbar(gui.rsm_diffplot_canvas, gui))
+    diffplot_layout.addWidget(gui.rsm_diffplot_canvas)
+
+    gui.rsm_diffplot_tab.setLayout(diffplot_layout)
 
 
 def _plot_rsm_prediction(gui):
     import matplotlib as mpl
     import numpy as np
 
-    gui.rsm_plot_ax.cla()
+    """ CCN Profile Plot """
 
-    gui.rsm_plot_ax.set_title("Change in Cloud-Condensation-Nuclei (CCN) Concentration")
+    gui.rsm_ccnplot_ax.cla()
 
-    gui.rsm_plot_ax.set_xlabel("Baseline CCN concentration [m$^{-3}$]")
-    gui.rsm_plot_ax.set_ylabel("Perturbed Change in CCN concentration [m$^{-3}$]")
+    gui.rsm_ccnplot_ax.set_title("Predicted CCN Concentration Profile")
+
+    gui.rsm_ccnplot_ax.set_xlabel("Trajectory Timeline")
+    gui.rsm_ccnplot_ax.set_ylabel("CCN concentration [m$^{-3}$]")
 
     if gui.rsm_prediction is None:
-        gui.rsm_plot_ax.set_xscale("linear")
-        gui.rsm_plot_ax.set_yscale("linear")
+        gui.rsm_ccnplot_ax.set_xscale("linear")
+        gui.rsm_ccnplot_ax.set_yscale("linear")
 
-        gui.rsm_plot_ax.set_xticks([])
-        gui.rsm_plot_ax.set_yticks([])
+        gui.rsm_ccnplot_ax.set_xticks([])
+        gui.rsm_ccnplot_ax.set_yticks([])
 
-        gui.rsm_plot_cb.ax.set_xticks([])
+        gui.rsm_ccnplot_cb.ax.set_yticks([])
 
-        gui.rsm_plot_ax.text(
+        gui.rsm_ccnplot_ax.text(
             0.5,
             0.5,
             "Missing SOSAA RSM Predictions",
@@ -442,74 +465,171 @@ def _plot_rsm_prediction(gui):
             size=20,
             ha="center",
             va="center",
-            transform=gui.rsm_plot_ax.transAxes,
+            transform=gui.rsm_ccnplot_ax.transAxes,
+        )
+    else:
+        level_mask = gui.rsm_prediction.index.get_level_values(1)
+        level_heights = gui.rsm_prediction.index.levels[1]
+
+        gui.rsm_diffplot_ax.set_title(
+            "Predicted CCN Concentration Profile"
+            + f"\nConfidence: {np.mean(gui.rsm_prediction['log10_ccn_perturbed_conf']):.02}"
         )
 
-        gui.rsm_plot_fig.tight_layout()
-        gui.rsm_plot_canvas.draw()
+        colours = mpl.cm.rainbow(np.linspace(0, 1, len(level_heights)))
 
-        return
+        for l, h in enumerate(level_heights):
+            gui.rsm_ccnplot_ax.fill_between(
+                gui.rsm_prediction[level_mask == h].index.get_level_values(0)
+                / (60 * 60),
+                np.power(
+                    10.0,
+                    gui.rsm_prediction[level_mask == h]["log10_ccn_perturbed_pred"]
+                    - gui.rsm_prediction[level_mask == h]["log10_ccn_perturbed_stdv"],
+                )
+                - 1,
+                np.power(
+                    10.0,
+                    gui.rsm_prediction[level_mask == h]["log10_ccn_perturbed_pred"]
+                    + gui.rsm_prediction[level_mask == h]["log10_ccn_perturbed_stdv"],
+                )
+                - 1,
+                color=colours[l],
+                alpha=0.35,
+            )
 
-    time = gui.rsm_prediction.index.get_level_values(0)
-    log10_ccn_baseline = gui.rsm_prediction["log10_ccn_baseline"].to_numpy().flatten()
-    log10_ccn_perturbed_pred = (
-        gui.rsm_prediction["log10_ccn_perturbed_pred"].to_numpy().flatten()
-    )
-    log10_ccn_perturbed_stdv = (
-        gui.rsm_prediction["log10_ccn_perturbed_stdv"].to_numpy().flatten()
-    )
-    log10_ccn_perturbed_conf = (
-        gui.rsm_prediction["log10_ccn_perturbed_conf"].to_numpy().flatten()
-    )
+        for l, h in enumerate(level_heights):
+            gui.rsm_ccnplot_ax.plot(
+                gui.rsm_prediction[level_mask == h].index.get_level_values(0)
+                / (60 * 60),
+                np.power(
+                    10.0,
+                    gui.rsm_prediction[level_mask == h]["log10_ccn_perturbed_pred"],
+                )
+                - 1,
+                color=colours[l],
+            )
 
-    gui.rsm_plot_ax.set_title(
+        gui.rsm_ccnplot_ax.set_yscale("log")
+
+        gui.rsm_ccnplot_ax.set_xticks(
+            [
+                h
+                for h in range(
+                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))), 0, 24
+                )
+            ]
+        )
+        gui.rsm_ccnplot_ax.set_xticklabels(
+            [
+                (gui.rsm_dt + datetime.timedelta(hours=h)).strftime("%d.%m")
+                for h in range(
+                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))), 0, 24
+                )
+            ]
+        )
+
+        gui.rsm_ccnplot_cb.ax.set_yticks(np.linspace(0, 1, len(level_heights)))
+        gui.rsm_ccnplot_cb.ax.set_yticklabels(
+            [f"{int(h)}m" if i % 5 == 0 else "" for i, h in enumerate(level_heights)]
+        )
+
+    gui.rsm_ccnplot_fig.tight_layout()
+    gui.rsm_ccnplot_canvas.draw()
+
+    """ CCN Difference Plot """
+
+    gui.rsm_diffplot_ax.cla()
+
+    gui.rsm_diffplot_ax.set_title(
         "Change in Cloud-Condensation-Nuclei (CCN) Concentration"
-        + f"\nConfidence: {np.mean(log10_ccn_perturbed_conf):.02}"
     )
 
-    for _ in range(gui.rsm_train_samples.value()):
-        log10_ccn_perturbed = np.random.normal(
-            loc=log10_ccn_perturbed_pred,
-            scale=log10_ccn_perturbed_stdv,
+    gui.rsm_diffplot_ax.set_xlabel("Baseline CCN concentration [m$^{-3}$]")
+    gui.rsm_diffplot_ax.set_ylabel("Perturbed Change in CCN concentration [m$^{-3}$]")
+
+    if gui.rsm_prediction is None:
+        gui.rsm_diffplot_ax.set_xscale("linear")
+        gui.rsm_diffplot_ax.set_yscale("linear")
+
+        gui.rsm_diffplot_ax.set_xticks([])
+        gui.rsm_diffplot_ax.set_yticks([])
+
+        gui.rsm_diffplot_cb.ax.set_xticks([])
+
+        gui.rsm_diffplot_ax.text(
+            0.5,
+            0.5,
+            "Missing SOSAA RSM Predictions",
+            color="red",
+            size=20,
+            ha="center",
+            va="center",
+            transform=gui.rsm_diffplot_ax.transAxes,
+        )
+    else:
+        time = gui.rsm_prediction.index.get_level_values(0)
+        log10_ccn_baseline = (
+            gui.rsm_prediction["log10_ccn_baseline"].to_numpy().flatten()
+        )
+        log10_ccn_perturbed_pred = (
+            gui.rsm_prediction["log10_ccn_perturbed_pred"].to_numpy().flatten()
+        )
+        log10_ccn_perturbed_stdv = (
+            gui.rsm_prediction["log10_ccn_perturbed_stdv"].to_numpy().flatten()
+        )
+        log10_ccn_perturbed_conf = (
+            gui.rsm_prediction["log10_ccn_perturbed_conf"].to_numpy().flatten()
         )
 
-        I_conf = (
-            np.random.random(size=log10_ccn_perturbed_conf.shape)
-            <= log10_ccn_perturbed_conf
+        gui.rsm_diffplot_ax.set_title(
+            "Change in Cloud-Condensation-Nuclei (CCN) Concentration"
+            + f"\nConfidence: {np.mean(log10_ccn_perturbed_conf):.02}"
         )
 
-        gui.rsm_plot_ax.scatter(
-            np.power(10.0, log10_ccn_baseline[I_conf]),
-            np.power(10.0, log10_ccn_perturbed[I_conf])
-            - np.power(10.0, log10_ccn_baseline[I_conf]),
-            c=time[I_conf],
-            cmap="viridis",
-            s=5,
+        for _ in range(gui.rsm_train_samples.value()):
+            log10_ccn_perturbed = np.random.normal(
+                loc=log10_ccn_perturbed_pred,
+                scale=log10_ccn_perturbed_stdv,
+            )
+
+            I_conf = (
+                np.random.random(size=log10_ccn_perturbed_conf.shape)
+                <= log10_ccn_perturbed_conf
+            )
+
+            gui.rsm_diffplot_ax.scatter(
+                np.power(10.0, log10_ccn_baseline[I_conf]),
+                np.power(10.0, log10_ccn_perturbed[I_conf])
+                - np.power(10.0, log10_ccn_baseline[I_conf]),
+                c=time[I_conf],
+                cmap="viridis",
+                s=5,
+            )
+
+        xlim = gui.rsm_diffplot_ax.get_xlim()
+        gui.rsm_diffplot_ax.plot(xlim, [0, 0], c="black", lw=1)
+        gui.rsm_diffplot_ax.set_xlim(xlim)
+
+        gui.rsm_diffplot_cb.ax.set_xticks(
+            [
+                (
+                    (h - int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))))
+                    / (-int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))))
+                )
+                for h in range(
+                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))), 0, 24
+                )
+            ]
+        )
+        gui.rsm_diffplot_cb.ax.set_xticklabels(
+            [
+                (gui.rsm_dt + datetime.timedelta(hours=h)).strftime("%d.%m")
+                for h in range(
+                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))), 0, 24
+                )
+            ]
         )
 
-    xlim = gui.rsm_plot_ax.get_xlim()
-    gui.rsm_plot_ax.plot(xlim, [0, 0], c="black", lw=1)
-    gui.rsm_plot_ax.set_xlim(xlim)
-
-    gui.rsm_plot_cb.ax.set_xticks(
-        [
-            (
-                (h - int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))))
-                / (-int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))))
-            )
-            for h in range(
-                int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))), 0, 24
-            )
-        ]
-    )
-    gui.rsm_plot_cb.ax.set_xticklabels(
-        [
-            (gui.rsm_dt + datetime.timedelta(hours=h)).strftime("%d.%m")
-            for h in range(
-                int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))), 0, 24
-            )
-        ]
-    )
-
-    gui.rsm_plot_fig.tight_layout()
-    gui.rsm_plot_canvas.draw()
+    gui.rsm_diffplot_fig.tight_layout()
+    gui.rsm_diffplot_canvas.draw()
