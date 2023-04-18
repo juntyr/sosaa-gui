@@ -21,6 +21,10 @@ Finally, you can launch the GUI using
 sosaa-gui
 ```
 
+## SOSAA Model Availability
+
+Unfortunately, the SOSAA model is not yet publicly available. However, access to the complete SOSAA source code is provided upon request -- please contact Michael Boy (michael.boy@helsinki.fi), Putian Zhou (putian.zhou@helsinki.fi), or Petri Clusius (petri.clusius@helsinki.fi) for more information.
+
 ## Usage Notes
 
 If you experience problems with the UI scaling, try launching the GUI as follows:
