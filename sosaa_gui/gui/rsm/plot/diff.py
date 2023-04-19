@@ -1,4 +1,7 @@
+import datetime
+
 from PyQt5 import QtWidgets
+
 
 def init_plot(gui):
     if getattr(gui, "rsm_diffplot_canvas", None) is not None:
@@ -32,6 +35,7 @@ def init_plot(gui):
     diffplot_layout.addWidget(gui.rsm_diffplot_canvas)
 
     gui.rsm_diffplot_tab.setLayout(diffplot_layout)
+
 
 def update_plot(gui):
     import matplotlib as mpl

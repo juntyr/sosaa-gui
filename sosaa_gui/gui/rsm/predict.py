@@ -2,6 +2,9 @@ from pathlib import Path
 
 from PyQt5 import QtWidgets
 
+from .plot import update_rsm_plots
+
+
 def predict_sosaa_rsm(gui):
     # Disable concurrent training or prediction
     gui.rsm_build.setEnabled(False)
@@ -49,7 +52,7 @@ def predict_sosaa_rsm(gui):
         gui.rsm_build.setEnabled(True)
         gui.rsm_load.setEnabled(True)
         gui.rsm_predict.setEnabled(True)
-    
+
     # Communicate prediction success
     gui.rsm_predict_progress.update_major(
         value=1,
@@ -59,15 +62,15 @@ def predict_sosaa_rsm(gui):
     gui.rsm_predict_progress.update_minor(
         value=1,
         max=1,
-        format=f"The SOSAA RSM predictions are stored at {str(prediction_path)}",
+        format=f"The SOSAA RSM predictions are stored at {gui.rsm_output.text()}",
     )
 
     # Update the result plots
     update_rsm_plots(gui)
 
+
 def _generate_rsm_prediction(gui):
     import numpy as np
-    import pandas as pd
 
     from ...sosaa_rsm import generate_perturbed_predictions
 
@@ -76,9 +79,7 @@ def _generate_rsm_prediction(gui):
     prediction_path = Path(gui.rsm_output.text()).resolve()
     perturbation = _generate_perturbation_function(gui)
 
-    predict_seed = np.random.SeedSequence(
-        list(gui.rsm_predict_seed.text().encode())
-    )
+    predict_seed = np.random.SeedSequence(list(gui.rsm_predict_seed.text().encode()))
     predict_rng = np.random.RandomState(np.random.PCG64(predict_seed))
 
     # Generate the RSM prediction
@@ -92,7 +93,10 @@ def _generate_rsm_prediction(gui):
         gui.rsm_predict_progress,
     )
 
+
 def _generate_perturbation_function(gui):
+    import pandas as pd
+
     perturbation_code = gui.rsm_perturbation.toPlainText()
 
     if len(perturbation_code) == 0:
@@ -119,5 +123,5 @@ def perturb_inputs(inputs: pandas.DataFrame) -> pandas.DataFrame:
         exec(perturbation_code, globals, locals)
 
         return locals["perturb_inputs"](inputs)
-    
+
     return perturb_inputs_wrapper

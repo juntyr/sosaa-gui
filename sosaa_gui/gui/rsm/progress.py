@@ -17,6 +17,7 @@ class RsmProgress:
         else:
             self.progress.setValue(self.progress.value() + 1)
 
+
 class RsmMajorMinorProgress:
     def __init__(self, major, minor):
         self.minor = RsmProgress(minor)

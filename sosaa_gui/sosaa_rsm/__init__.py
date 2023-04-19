@@ -1314,7 +1314,13 @@ def analyse_train_test_perforance(
         confidences = np.array([p.confidence[i] for p in train_predictions])
 
         def combine_predictions(Y_pred, I_pred, rng, **kwargs):
-            return np.mean(Y_pred) if len(Y_pred) > 0 else 0.0
+            return (
+                np.mean(Y_pred)
+                if len(Y_pred) > 0
+                else np.mean(
+                    train_predictions[rng.choice(len(train_predictions))].prediction[i]
+                )
+            )
 
         cp = analyse_icarus_predictions(
             IcarusPrediction(
@@ -1398,7 +1404,13 @@ def analyse_train_test_perforance(
         confidences = np.array([p.confidence[i] for p in test_predictions])
 
         def combine_predictions(Y_pred, I_pred, rng, **kwargs):
-            return np.mean(Y_pred) if len(Y_pred) > 0 else 0.0
+            return (
+                np.mean(Y_pred)
+                if len(Y_pred) > 0
+                else np.mean(
+                    test_predictions[rng.choice(len(test_predictions))].prediction[i]
+                )
+            )
 
         cp = analyse_icarus_predictions(
             IcarusPrediction(
@@ -1570,7 +1582,13 @@ def generate_perturbed_predictions(
         confidences = np.array([p.confidence[i] for p in prtb_predictions])
 
         def combine_predictions(Y_pred, I_pred, rng, **kwargs):
-            return np.mean(Y_pred) if len(Y_pred) > 0 else 0.0
+            return (
+                np.mean(Y_pred)
+                if len(Y_pred) > 0
+                else np.mean(
+                    prtb_predictions[rng.choice(len(prtb_predictions))].prediction[i]
+                )
+            )
 
         cp = analyse_icarus_predictions(
             IcarusPrediction(

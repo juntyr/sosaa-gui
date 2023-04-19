@@ -15,13 +15,15 @@ def init_rsm_gui(gui):
 
     # Initialise the progress bar for RSM training and prediction
     gui.rsm_build_progress = RsmMajorMinorProgress(
-        gui.rsm_build_progress_major, gui.rsm_predict_progress_major,
+        gui.rsm_build_progress_major,
+        gui.rsm_build_progress_minor,
     )
     gui.rsm_build_progress.update_major(value=0, format="No SOSAA RSM is loaded")
     gui.rsm_build_progress.update_minor(value=0, format="")
 
     gui.rsm_predict_progress = RsmMajorMinorProgress(
-        gui.rsm_build_progress_major, gui.rsm_predict_progress_minor,
+        gui.rsm_predict_progress_major,
+        gui.rsm_predict_progress_minor,
     )
     gui.rsm_predict_progress.update_major(value=0, format="")
     gui.rsm_predict_progress.update_minor(value=0, format="")

@@ -4,6 +4,7 @@ from pathlib import Path
 
 from PyQt5 import QtWidgets
 
+
 def build_sosaa_rsm(gui, rsm_should_exist: bool):
     # Disable concurrent training or prediction
     gui.rsm_build.setEnabled(False)
@@ -26,6 +27,8 @@ def build_sosaa_rsm(gui, rsm_should_exist: bool):
     gui.rsm_prediction = None
 
     try:
+        from ...sosaa_rsm import IcarusPrediction
+
         # Train or load the model and evaluate it the test data
         model_dataset_train_test_eval = _train_evaluate_sosaa_rsm(gui, rsm_should_exist)
 
@@ -40,7 +43,9 @@ def build_sosaa_rsm(gui, rsm_should_exist: bool):
         # Pretty-print an Icarus prediction
         def fip(p: IcarusPrediction):
             if p.uncertainty is not None:
-                return f"({p.prediction:.02} ± {p.uncertainty:.02}) | {p.confidence:.02}"
+                return (
+                    f"({p.prediction:.02} ± {p.uncertainty:.02}) | {p.confidence:.02}"
+                )
             else:
                 return f"{p.prediction:.02} | {p.confidence:.02}"
 
@@ -94,8 +99,9 @@ def build_sosaa_rsm(gui, rsm_should_exist: bool):
         ),
     )
     gui.rsm_build_progress.update_minor(
-        value=1, max=1, format=f"The SOSAA RSM is stored at {str(rsm_path)}"
+        value=1, max=1, format=f"The SOSAA RSM is stored at {gui.rsm_path.text()}"
     )
+
 
 def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
     import numpy as np
@@ -105,7 +111,6 @@ def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
         RandomForestSosaaRSM,
         analyse_train_test_perforance,
         load_and_cache_dataset,
-        IcarusPrediction,
     )
 
     # Configure the RSM
@@ -128,9 +133,7 @@ def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
     n_trees = gui.rsm_forest.value()
     n_samples = gui.rsm_train_samples.value()
 
-    train_seed = np.random.SeedSequence(
-        list(gui.rsm_train_seed.text().encode())
-    )
+    train_seed = np.random.SeedSequence(list(gui.rsm_train_seed.text().encode()))
     train_rng = np.random.RandomState(np.random.PCG64(train_seed))
 
     gui.rsm_build_progress.update_major(
@@ -182,4 +185,3 @@ def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
     )
 
     return (model, dataset, train_test_eval)
-    

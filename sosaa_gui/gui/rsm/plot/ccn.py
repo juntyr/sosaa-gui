@@ -1,4 +1,7 @@
+import datetime
+
 from PyQt5 import QtWidgets
+
 
 def init_plot(gui):
     if getattr(gui, "rsm_ccnplot_canvas", None) is not None:
@@ -67,7 +70,7 @@ def update_plot(gui):
         level_mask = gui.rsm_prediction.index.get_level_values(1)
         level_heights = gui.rsm_prediction.index.levels[1]
 
-        gui.rsm_diffplot_ax.set_title(
+        gui.rsm_ccnplot_ax.set_title(
             "Predicted CCN Concentration Profile"
             + f"\nConfidence: {np.mean(gui.rsm_prediction['log10_ccn_perturbed_conf']):.02}"
         )
