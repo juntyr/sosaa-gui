@@ -10,7 +10,6 @@ from sosaa_gui.gui import QtSosaaGui
 from sosaa_gui.qt import setup_qt_scaling, setup_qt_style
 from sosaa_gui.version import sosaa_version_pretty
 
-
 print(
     f"{sosaa_version_pretty} started at: {time.strftime('%B %d %Y, %H:%M:%S', time.localtime())}",
     flush=True,

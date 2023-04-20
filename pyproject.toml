@@ -29,7 +29,7 @@ icarus = [
     "scipy >= 1.9.3",
     "scikit-learn >= 1.1.2",
 ]
-dev = ["black", "build", "bumpver", "twine"]
+dev = ["black", "build", "bumpver", "isort", "twine"]
 
 [project.scripts]
 sosaa-gui = "sosaa_gui:run"

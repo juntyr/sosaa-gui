@@ -8,10 +8,9 @@ def init_plot(gui):
         return
 
     import matplotlib as mpl
-
     from matplotlib import pyplot as plt
+    from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
     from matplotlib.backends.backend_qt5agg import (
-        FigureCanvasQTAgg,
         NavigationToolbar2QT as NavigationToolbar,
     )
 

@@ -1,18 +1,18 @@
-from PyQt5 import QtWidgets, QtGui
+from PyQt5 import QtGui, QtWidgets
 
 from ..layouts import gui
 from ..resources import resource_path
 from ..version import sosaa_version_pretty
-from .style import init_gui_style
-from .loadsave import init_gui_loadsave
+from .compile import init_compile_gui
 from .dirs import init_dirs_gui
+from .help import init_gui_help
+from .loadsave import init_gui_loadsave
 from .modules import init_modules_gui
 from .output import init_gui_output
-from .scenario import init_scenario_gui
-from .compile import init_compile_gui
-from .help import init_gui_help
-from .run import init_run_gui
 from .rsm import init_rsm_gui
+from .run import init_run_gui
+from .scenario import init_scenario_gui
+from .style import init_gui_style
 
 
 class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):

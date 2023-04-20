@@ -1,18 +1,15 @@
 import re
 import sys
 import time
-
 from io import StringIO
 
 import f90nml
-
 from f90nml.namelist import Namelist
 
 from ..config import get_config, set_config
 from ..resources import resource_path
-from .from_gui import update_settings_from_gui
 from .from_file import update_gui_from_settings
-
+from .from_gui import update_settings_from_gui
 
 default_settings_path = resource_path("conf/defaults.init")
 minimal_settings_path = resource_path("conf/minimal.init")

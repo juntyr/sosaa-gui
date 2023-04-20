@@ -1,7 +1,9 @@
 from PyQt5 import QtWidgets
 
-from .ccn import init_plot as _init_ccn_plot, update_plot as _update_ccn_plot
-from .diff import init_plot as _init_diff_plot, update_plot as _update_diff_plot
+from .ccn import init_plot as _init_ccn_plot
+from .ccn import update_plot as _update_ccn_plot
+from .diff import init_plot as _init_diff_plot
+from .diff import update_plot as _update_diff_plot
 
 
 def update_rsm_plots(gui):
@@ -20,7 +22,6 @@ def _init_rsm_plots(gui):
 
     try:
         import matplotlib as mpl
-
         from matplotlib import pyplot as plt
         from matplotlib.backends.backend_qt5agg import (
             NavigationToolbar2QT as NavigationToolbar,

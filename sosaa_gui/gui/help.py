@@ -1,4 +1,4 @@
-from PyQt5 import QtGui, QtCore, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 from ..layouts import about
 from ..resources import resource_path

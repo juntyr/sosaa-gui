@@ -1,5 +1,4 @@
 import datetime
-
 from pathlib import Path
 
 from PyQt5 import QtWidgets
@@ -136,9 +135,9 @@ def _train_evaluate_sosaa_rsm_job(
     eval_rng,
 ):
     from ...sosaa_rsm import (
-        train_and_cache_model,
         analyse_train_test_perforance,
         load_and_cache_dataset,
+        train_and_cache_model,
     )
 
     gui.rsm_build_progress.update_major(

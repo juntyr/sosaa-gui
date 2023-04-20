@@ -3,12 +3,12 @@ from pathlib import Path
 from PyQt5 import QtWidgets
 
 from ..settings import (
-    display_settings,
-    print_settings,
-    load_settings,
-    save_settings,
     default_settings_path,
+    display_settings,
+    load_settings,
     minimal_settings_path,
+    print_settings,
+    save_settings,
 )
 from ..version import sosaa_version_pretty
 from .browse import browsePath

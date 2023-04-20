@@ -1,7 +1,6 @@
 from pathlib import Path
 
-from PyQt5 import QtCore
-from PyQt5 import QtWidgets
+from PyQt5 import QtCore, QtWidgets
 
 
 def update_gui_from_settings(settings, gui, raw):

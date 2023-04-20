@@ -1,6 +1,5 @@
 from PyQt5 import QtCore
 
-
 from ..settings import is_loading
 
 

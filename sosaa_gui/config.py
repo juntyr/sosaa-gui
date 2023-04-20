@@ -1,7 +1,7 @@
 import configparser
 import pathlib
 
-from .resources import resource_path, open_resource
+from .resources import open_resource, resource_path
 
 _CONFIG_PATH = "conf/config.ini"
 

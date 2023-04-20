@@ -1,11 +1,10 @@
 import darkdetect
-
-from PyQt5 import QtWidgets, QtGui
+from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtCore import QCoreApplication
 
-from ..config import get_config, set_config, remove_config
+from ..config import get_config, remove_config, set_config
 from ..resources import resource_path
-from ..style import hsl_to_hex, get_style_palette
+from ..style import get_style_palette, hsl_to_hex
 
 
 def init_gui_style(gui):

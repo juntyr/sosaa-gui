@@ -2,11 +2,10 @@ from __future__ import annotations
 
 import abc
 import datetime
-from functools import partial
 import hashlib
 import itertools
-
 from collections import namedtuple
+from functools import partial
 from pathlib import Path
 
 TrajectoryPaths = namedtuple(
@@ -808,7 +807,6 @@ def load_and_cache_dataset(
 ) -> MLDataset:
     import numpy as np
     import pandas as pd
-
     from sklearn.preprocessing import StandardScaler
 
     if isinstance(dt, tuple) or isinstance(dt, list):
@@ -956,7 +954,6 @@ class RandomForestSosaaRSM(IcarusRSM):
         progress=None,
     ) -> RandomForestSosaaRSM:
         import numpy as np
-
         from sklearn.covariance import EmpiricalCovariance
         from sklearn.decomposition import PCA
         from sklearn.ensemble import RandomForestRegressor
@@ -1227,7 +1224,7 @@ def analyse_train_test_perforance(
     import numpy as np
 
     def mse_mae_analysis(Y_true, Y_pred, I_pred, rng, **kwargs):
-        from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
+        from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
         Y_true = dataset.Y_scaler.inverse_transform(Y_true[I_pred])
         Y_pred = dataset.Y_scaler.inverse_transform(Y_pred)

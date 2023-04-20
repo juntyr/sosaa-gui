@@ -1,11 +1,11 @@
 from pathlib import Path
 
+from ..browse import browsePath
+from ..syntax import PythonHighlighter
 from .build import build_sosaa_rsm
 from .plot import update_rsm_plots
 from .predict import predict_sosaa_rsm
 from .progress import RsmMajorMinorProgress
-from ..browse import browsePath
-from ..syntax import PythonHighlighter
 
 
 def init_rsm_gui(gui):
