@@ -8,9 +8,6 @@ import itertools
 
 from collections import namedtuple
 from pathlib import Path
-from typing import Callable
-
-from PyQt5 import QtWidgets
 
 TrajectoryPaths = namedtuple(
     "TrajectoryPaths",
@@ -113,7 +110,6 @@ def get_sosaa_dataset_paths(
 
 
 def load_trajectory_dataset(paths: TrajectoryPaths) -> TrajectoryDatasets:
-    import netCDF4
     from netCDF4 import Dataset
 
     outds = Dataset(paths.out, "r", format="NETCDF4")
@@ -961,12 +957,12 @@ class RandomForestSosaaRSM(IcarusRSM):
     ) -> RandomForestSosaaRSM:
         import numpy as np
 
-        import sklearn
         from sklearn.covariance import EmpiricalCovariance
         from sklearn.decomposition import PCA
         from sklearn.ensemble import RandomForestRegressor
-        from sklearn.linear_model import LogisticRegression
-        from sklearn.preprocessing import StandardScaler
+
+        # Fake use Y_valid
+        Y_valid = Y_valid
 
         assert Y_train.shape[1:] == (1,)
 
@@ -1087,7 +1083,7 @@ def train_and_cache_model(
     input_dir: Path,
     output_dir: Path,
     model_path: Path,
-    should_exist: bool,
+    overwrite_model: bool,
     progress=None,
     **kwargs,
 ) -> IcarusRSM:
@@ -1103,49 +1099,12 @@ def train_and_cache_model(
     if cached is not None:
         return cached
 
-    if Path(model_path).exists():
-        if not should_exist:
-            msg = QtWidgets.QMessageBox()
-            msg.setIcon(QtWidgets.QMessageBox.Question)
-            msg.setStandardButtons(
-                QtWidgets.QMessageBox.Open
-                | QtWidgets.QMessageBox.Reset
-                | QtWidgets.QMessageBox.Cancel
-            )
-            msg.setText(f"Do you want to load the existing RSM or overwrite it?")
-            msg.setInformativeText(f"The file {str(model_path)} already exists.")
-            msg.setWindowTitle("Existing SOSAA RSM")
-            button = msg.exec_()
+    if Path(model_path).exists() and not overwrite_model:
+        model = joblib.load(model_path)
 
-            if button == QtWidgets.QMessageBox.Cancel:
-                return None
+        models[model_key] = model
 
-            if button == QtWidgets.QMessageBox.Open:
-                model = joblib.load(model_path)
-
-                models[model_key] = model
-
-                return model
-        else:
-            model = joblib.load(model_path)
-
-            models[model_key] = model
-
-            return model
-
-    if should_exist:
-        msg = QtWidgets.QMessageBox()
-        msg.setIcon(QtWidgets.QMessageBox.Question)
-        msg.setStandardButtons(
-            QtWidgets.QMessageBox.Save | QtWidgets.QMessageBox.Cancel
-        )
-        msg.setText(f"Do you want to train a new SOSAA RSM?")
-        msg.setInformativeText(f"The file {str(model_path)} does not exist.")
-        msg.setWindowTitle("Missing SOSAA RSM")
-        button = msg.exec_()
-
-        if button == QtWidgets.QMessageBox.Cancel:
-            return None
+        return model
 
     dataset = load_and_cache_dataset(
         dt, clump, datasets, input_dir, output_dir, progress=progress
@@ -1268,7 +1227,6 @@ def analyse_train_test_perforance(
     import numpy as np
 
     def mse_mae_analysis(Y_true, Y_pred, I_pred, rng, **kwargs):
-        import sklearn
         from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 
         Y_true = dataset.Y_scaler.inverse_transform(Y_true[I_pred])
@@ -1503,6 +1461,7 @@ def generate_perturbed_predictions(
     rng,  #: np.random.Generator,
     n_samples: int,
     prediction_path: Path,
+    overwrite_rsm_prediction: bool,
     perturbation,  #: Callable[[pd.DataFrame], pd.DataFrame],
     progress=None,
     **kwargs,
@@ -1511,25 +1470,9 @@ def generate_perturbed_predictions(
     import numpy as np
     import pandas as pd
 
-    if prediction_path.exists():
-        msg = QtWidgets.QMessageBox()
-        msg.setIcon(QtWidgets.QMessageBox.Question)
-        msg.setStandardButtons(
-            QtWidgets.QMessageBox.Open
-            | QtWidgets.QMessageBox.Reset
-            | QtWidgets.QMessageBox.Cancel
-        )
-        msg.setText(f"Do you want to load the existing RSM prediction or overwrite it?")
-        msg.setInformativeText(f"The file {str(prediction_path)} already exists.")
-        msg.setWindowTitle("Existing SOSAA RSM Prediction")
-        button = msg.exec_()
-
-        if button == QtWidgets.QMessageBox.Cancel:
-            return None
-
-        if button == QtWidgets.QMessageBox.Open:
-            # FIXME: support saving to NetCDF files instead
-            return joblib.load(prediction_path)
+    if prediction_path.exists() and not overwrite_rsm_prediction:
+        # FIXME: support saving to NetCDF files instead
+        return joblib.load(prediction_path)
 
     if progress is not None:
         progress.update_major(

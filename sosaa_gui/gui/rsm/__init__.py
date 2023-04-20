@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from .build import build_sosaa_rsm
-from .plot import init_rsm_plots, update_rsm_plots
+from .plot import update_rsm_plots
 from .predict import predict_sosaa_rsm
 from .progress import RsmMajorMinorProgress
 from ..browse import browsePath
@@ -12,6 +12,7 @@ def init_rsm_gui(gui):
     gui.rsm_dataset = None
     gui.rsm_model = None
     gui.rsm_prediction = None
+    gui.rsm_plots_dirty = True
 
     # Initialise the progress bar for RSM training and prediction
     gui.rsm_build_progress = RsmMajorMinorProgress(
@@ -29,12 +30,10 @@ def init_rsm_gui(gui):
     gui.rsm_predict_progress.update_minor(value=0, format="")
 
     # Connect the RSM training and evaluation buttons
-    # FIXME: move to a worker thread
     gui.rsm_build.clicked.connect(lambda: build_sosaa_rsm(gui, rsm_should_exist=False))
     gui.rsm_load.clicked.connect(lambda: build_sosaa_rsm(gui, rsm_should_exist=True))
 
     # Connect and disable the RSM prediction button
-    # FIXME: move to a worker thread
     gui.rsm_predict.clicked.connect(lambda: predict_sosaa_rsm(gui))
     gui.rsm_predict.setEnabled(False)
 
@@ -78,7 +77,4 @@ def _tab_switched(gui, _i):
     _i = _i
 
     if gui.rsm_subtab.currentWidget() == gui.rsm_prediction_tab:
-        init_rsm_plots(gui)
-
-        if gui.rsm_prediction is None:
-            update_rsm_plots(gui)
+        update_rsm_plots(gui)

@@ -4,6 +4,8 @@ from pathlib import Path
 
 from PyQt5 import QtWidgets
 
+from .worker import run_in_thread
+
 
 def build_sosaa_rsm(gui, rsm_should_exist: bool):
     # Disable concurrent training or prediction
@@ -26,17 +28,184 @@ def build_sosaa_rsm(gui, rsm_should_exist: bool):
     gui.rsm_model = None
     gui.rsm_prediction = None
 
+    # Build the RSM, evaluate it, and update the GUI
+    _train_evaluate_sosaa_rsm(gui, rsm_should_exist)
+
+
+def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
+    try:
+        import numpy as np
+
+        from ...sosaa_rsm import RandomForestSosaaRSM
+
+        # Configure the RSM
+        input_dir = Path(gui.input_dir.text()).resolve()
+        output_dir = Path(gui.output_dir.text()).resolve()
+        rsm_path = Path(gui.rsm_path.text()).resolve()
+        dt = gui.end_date.dateTime()
+        dt = datetime.datetime(
+            year=dt.date().year(),
+            month=dt.date().month(),
+            day=dt.date().day(),
+            hour=dt.time().hour(),
+            minute=dt.time().minute(),
+            second=dt.time().second(),
+        )
+        gui.rsm_dt = dt
+        clump = 0.75  # sensible default
+        n_trees = gui.rsm_forest.value()
+        n_samples = gui.rsm_train_samples.value()
+
+        train_seed = np.random.SeedSequence(list(gui.rsm_train_seed.text().encode()))
+        train_rng = np.random.RandomState(np.random.PCG64(train_seed))
+        eval_rng = np.random.RandomState(np.random.PCG64(train_seed))
+
+        overwrite_rsm = False
+
+        if rsm_path.exists():
+            if not rsm_should_exist:
+                msg = QtWidgets.QMessageBox()
+                msg.setIcon(QtWidgets.QMessageBox.Question)
+                msg.setStandardButtons(
+                    QtWidgets.QMessageBox.Open
+                    | QtWidgets.QMessageBox.Reset
+                    | QtWidgets.QMessageBox.Cancel
+                )
+                msg.setText(f"Do you want to load the existing RSM or overwrite it?")
+                msg.setInformativeText(f"The file {str(rsm_path)} already exists.")
+                msg.setWindowTitle("Existing SOSAA RSM")
+                button = msg.exec_()
+
+                if button == QtWidgets.QMessageBox.Cancel:
+                    return _on_build_finished(
+                        gui, rsm_should_exist, err=None, result=None
+                    )
+
+                overwrite_rsm = button != QtWidgets.QMessageBox.Open
+        elif rsm_should_exist:
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Question)
+            msg.setStandardButtons(
+                QtWidgets.QMessageBox.Save | QtWidgets.QMessageBox.Cancel
+            )
+            msg.setText(f"Do you want to train a new SOSAA RSM?")
+            msg.setInformativeText(f"The file {str(rsm_path)} does not exist.")
+            msg.setWindowTitle("Missing SOSAA RSM")
+            button = msg.exec_()
+
+            if button == QtWidgets.QMessageBox.Cancel:
+                return _on_build_finished(gui, rsm_should_exist, err=None, result=None)
+
+        # Build and evaluate the RSM in a worker thread
+        gui.rsm_build_thread = run_in_thread(
+            lambda: _train_evaluate_sosaa_rsm_job(
+                gui,
+                overwrite_rsm,
+                input_dir,
+                output_dir,
+                rsm_path,
+                dt,
+                clump,
+                RandomForestSosaaRSM,
+                n_trees,
+                n_samples,
+                train_rng,
+                eval_rng,
+            ),
+            lambda result: _on_build_finished(
+                gui, rsm_should_exist, err=None, result=result
+            ),
+            lambda err: _on_build_finished(gui, rsm_should_exist, err),
+        )
+    except Exception as err:
+        _on_build_finished(gui, rsm_should_exist, err)
+
+
+def _train_evaluate_sosaa_rsm_job(
+    gui,
+    overwrite_rsm,
+    input_dir,
+    output_dir,
+    rsm_path,
+    dt,
+    clump,
+    cls,
+    n_trees,
+    n_samples,
+    train_rng,
+    eval_rng,
+):
+    from ...sosaa_rsm import (
+        train_and_cache_model,
+        analyse_train_test_perforance,
+        load_and_cache_dataset,
+    )
+
+    gui.rsm_build_progress.update_major(
+        value=0, min=0, max=6 + 2 * n_samples, format="Training the SOSAA RSM"
+    )
+
+    # Datasets and models are not cached between runs
+    datasets = dict()
+    models = dict()
+
+    # Train the RSM model
+    model = train_and_cache_model(
+        dt,
+        clump,
+        datasets,
+        models,
+        cls,
+        train_rng,
+        input_dir,
+        output_dir,
+        rsm_path,
+        overwrite_rsm,
+        n_trees=n_trees,
+        progress=gui.rsm_build_progress,
+    )
+
+    # Early return if loading or training was cancelled
+    if model is None:
+        return
+
+    gui.rsm_build_progress.update_major(format="Loading the SOSAA Dataset")
+
+    # Load the dataset again
+    #  only needed if the model was loaded from disk
+    dataset = load_and_cache_dataset(
+        dt,
+        clump,
+        datasets,
+        input_dir,
+        output_dir,
+        progress=gui.rsm_build_progress,
+    )
+
+    # Evaluate the model's train/test performance
+    train_test_eval = analyse_train_test_perforance(
+        model,
+        dataset,
+        eval_rng,
+        n_samples,
+        progress=gui.rsm_build_progress,
+    )
+
+    return (model, dataset, train_test_eval)
+
+
+def _on_build_finished(gui, rsm_should_exist: bool, err, result=None):
     try:
         from ...sosaa_rsm import IcarusPrediction
 
-        # Train or load the model and evaluate it the test data
-        model_dataset_train_test_eval = _train_evaluate_sosaa_rsm(gui, rsm_should_exist)
+        if err is not None:
+            raise err
 
         # Early return if loading or training was cancelled
-        if model_dataset_train_test_eval is None:
+        if result is None:
             return
 
-        model, dataset, train_test_eval = model_dataset_train_test_eval
+        model, dataset, train_test_eval = result
         gui.rsm_dataset = dataset
         gui.rsm_model = model
 
@@ -81,6 +250,8 @@ def build_sosaa_rsm(gui, rsm_should_exist: bool):
 
         return
     finally:
+        gui.rsm_plots_dirty = True
+
         # Reset the RSM GUI to allow training a new RSM
         gui.rsm_build_progress.update_major(value=0, format="No SOSAA RSM is loaded")
         gui.rsm_build_progress.update_minor(value=0, format="")
@@ -101,87 +272,3 @@ def build_sosaa_rsm(gui, rsm_should_exist: bool):
     gui.rsm_build_progress.update_minor(
         value=1, max=1, format=f"The SOSAA RSM is stored at {gui.rsm_path.text()}"
     )
-
-
-def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
-    import numpy as np
-
-    from ...sosaa_rsm import (
-        train_and_cache_model,
-        RandomForestSosaaRSM,
-        analyse_train_test_perforance,
-        load_and_cache_dataset,
-    )
-
-    # Configure the RSM
-    input_dir = Path(gui.input_dir.text()).resolve()
-    output_dir = Path(gui.output_dir.text()).resolve()
-    rsm_path = Path(gui.rsm_path.text()).resolve()
-    dt = gui.end_date.dateTime()
-    dt = datetime.datetime(
-        year=dt.date().year(),
-        month=dt.date().month(),
-        day=dt.date().day(),
-        hour=dt.time().hour(),
-        minute=dt.time().minute(),
-        second=dt.time().second(),
-    )
-    gui.rsm_dt = dt
-    clump = 0.75  # sensible default
-    datasets = dict()  # no caching
-    models = dict()  # no caching
-    n_trees = gui.rsm_forest.value()
-    n_samples = gui.rsm_train_samples.value()
-
-    train_seed = np.random.SeedSequence(list(gui.rsm_train_seed.text().encode()))
-    train_rng = np.random.RandomState(np.random.PCG64(train_seed))
-
-    gui.rsm_build_progress.update_major(
-        value=0, min=0, max=6 + 2 * n_samples, format="Training the SOSAA RSM"
-    )
-
-    # Train the RSM model
-    model = train_and_cache_model(
-        dt,
-        clump,
-        datasets,
-        models,
-        RandomForestSosaaRSM,
-        train_rng,
-        input_dir,
-        output_dir,
-        rsm_path,
-        rsm_should_exist,
-        n_trees=n_trees,
-        progress=gui.rsm_build_progress,
-    )
-
-    # Early return if loading or training was cancelled
-    if model is None:
-        return
-
-    gui.rsm_build_progress.update_major(format="Loading the SOSAA Dataset")
-
-    # Load the dataset again
-    #  only needed if the model was loaded from disk
-    dataset = load_and_cache_dataset(
-        dt,
-        clump,
-        datasets,
-        input_dir,
-        output_dir,
-        progress=gui.rsm_build_progress,
-    )
-
-    eval_rng = np.random.RandomState(np.random.PCG64(train_seed))
-
-    # Evaluate the model's train/test performance
-    train_test_eval = analyse_train_test_perforance(
-        model,
-        dataset,
-        eval_rng,
-        n_samples,
-        progress=gui.rsm_build_progress,
-    )
-
-    return (model, dataset, train_test_eval)

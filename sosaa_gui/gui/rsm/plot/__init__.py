@@ -4,7 +4,17 @@ from .ccn import init_plot as _init_ccn_plot, update_plot as _update_ccn_plot
 from .diff import init_plot as _init_diff_plot, update_plot as _update_diff_plot
 
 
-def init_rsm_plots(gui):
+def update_rsm_plots(gui):
+    if gui.rsm_plots_dirty:
+        _init_rsm_plots(gui)
+
+        _update_ccn_plot(gui)
+        _update_diff_plot(gui)
+
+    gui.rsm_plots_dirty = False
+
+
+def _init_rsm_plots(gui):
     if getattr(gui, "rsm_plot_init", False):
         return
 
@@ -37,10 +47,3 @@ def init_rsm_plots(gui):
     _init_diff_plot(gui)
 
     gui.rsm_plot_init = True
-
-
-def update_rsm_plots(gui):
-    init_rsm_plots(gui)
-
-    _update_ccn_plot(gui)
-    _update_diff_plot(gui)
