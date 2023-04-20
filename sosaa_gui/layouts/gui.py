@@ -1790,11 +1790,11 @@ class Ui_MainWindow(object):
         self.sosaa_subtab.addTab(self.run_tab, "")
         self.horizontalLayout_94.addWidget(self.sosaa_subtab)
         self.tabWidget.addTab(self.sosaa_tab, "")
-        self.icarus_tab = QtWidgets.QWidget()
-        self.icarus_tab.setObjectName("icarus_tab")
-        self.horizontalLayout_97 = QtWidgets.QVBoxLayout(self.icarus_tab)
+        self.rsm_tab = QtWidgets.QWidget()
+        self.rsm_tab.setObjectName("rsm_tab")
+        self.horizontalLayout_97 = QtWidgets.QVBoxLayout(self.rsm_tab)
         self.horizontalLayout_97.setObjectName("horizontalLayout_97")
-        self.rsm_subtab = QtWidgets.QTabWidget(self.icarus_tab)
+        self.rsm_subtab = QtWidgets.QTabWidget(self.rsm_tab)
         self.rsm_subtab.setObjectName("rsm_subtab")
         self.rsm_build_tab = QtWidgets.QWidget()
         self.rsm_build_tab.setObjectName("rsm_build_tab")
@@ -2017,9 +2017,9 @@ class Ui_MainWindow(object):
             20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum
         )
         self.gridLayout5.addItem(spacerItem14, 1, 0, 1, 1)
-        self.label_15 = QtWidgets.QLabel(self.groupBox_19)
-        self.label_15.setObjectName("label_15")
-        self.gridLayout5.addWidget(self.label_15, 0, 0, 1, 2)
+        self.rsm_perturbation_header = QtWidgets.QLabel(self.groupBox_19)
+        self.rsm_perturbation_header.setObjectName("rsm_perturbation_header")
+        self.gridLayout5.addWidget(self.rsm_perturbation_header, 0, 0, 1, 2)
         self.gridLayout4.addWidget(self.groupBox_19, 3, 0, 1, 3)
         self.horizontalLayout_99.addWidget(self.groupBox_31)
         self.horizontalLayout_43 = QtWidgets.QGridLayout()
@@ -2066,7 +2066,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_910.addWidget(self.rsm_results_subtab)
         self.rsm_subtab.addTab(self.rsm_prediction_tab, "")
         self.horizontalLayout_97.addWidget(self.rsm_subtab)
-        self.tabWidget.addTab(self.icarus_tab, "")
+        self.tabWidget.addTab(self.rsm_tab, "")
         self.gridLayout_8.addWidget(self.tabWidget, 2, 0, 1, 2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -2576,33 +2576,6 @@ class Ui_MainWindow(object):
         self.rsm_perturbation.setPlaceholderText(
             _translate("MainWindow", "return inputs")
         )
-        self.label_15.setText(
-            _translate(
-                "MainWindow",
-                (
-                    '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"'
-                    ' "http://www.w3.org/TR/REC-html40/strict.dtd">\n<html><head><meta'
-                    ' name="qrichtext" content="1" /><meta charset="utf-8"'
-                    ' /><style type="text/css">\np, li { white-space:'
-                    ' pre-wrap; }\n</style></head><body style="'
-                    " font-family:'Segoe UI'; font-size:9pt;"
-                    ' font-weight:400; font-style:normal;">\n<p style="'
-                    " margin-top:0px; margin-bottom:0px; margin-left:0px;"
-                    " margin-right:0px; -qt-block-indent:0;"
-                    ' text-indent:0px;"><span style=" font-weight:700;'
-                    ' color:#87cefa;">def</span> <span style="'
-                    " font-weight:700;"
-                    ' color:#fa8072;">perturb_inputs</span><span style="'
-                    ' font-weight:700; color:#708090;">(</span>inputs:'
-                    ' pandas<span style=" font-weight:700;'
-                    ' color:#ff8c00;">.</span>DataFrame<span style="'
-                    ' font-weight:700; color:#708090;">)</span> <span style="'
-                    ' font-weight:700; color:#ff8c00;">-&gt;</span>'
-                    ' pandas<span style=" font-weight:700;'
-                    ' color:#ff8c00;">.</span>DataFrame:</p></body></html>'
-                ),
-            )
-        )
         self.rsm_predict.setText(
             _translate(
                 "MainWindow", "Generate SOSAA RSM Predictions and Save to File"
@@ -2625,7 +2598,7 @@ class Ui_MainWindow(object):
             _translate("MainWindow", "Visualise Results"),
         )
         self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.icarus_tab),
+            self.tabWidget.indexOf(self.rsm_tab),
             _translate("MainWindow", "SOSAA RSM"),
         )
         self.menuFile.setTitle(_translate("MainWindow", "File"))

@@ -57,14 +57,17 @@ def init_gui_loadsave(gui):
     gui.setAcceptDrops(True)
 
     # Set up raw INITFILE syntax highlighting
-    gui.rawEditHighlight = FortranNamelistHighlighter(gui.rawEdit.document())
+    gui.rawEditHighlight = FortranNamelistHighlighter(
+        gui, gui.rawEdit.document()
+    )
 
     # Set up INITFILE update on switch to its tab
     gui.tabWidget.currentChanged.connect(lambda i: _tab_switched(gui, i))
 
     # Set up INITFILE syntax highlighting
     gui.currentInitFileContentHighlight = FortranNamelistHighlighter(
-        gui.currentInitFileContent.document()
+        gui,
+        gui.currentInitFileContent.document(),
     )
 
 

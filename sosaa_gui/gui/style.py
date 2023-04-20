@@ -1,15 +1,14 @@
 import darkdetect
-from PyQt5 import QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QCoreApplication
 
 from ..config import get_config, remove_config, set_config
 from ..resources import resource_path
 from ..style import get_style_palette, hsl_to_hex
+from .syntax import STYLES
 
 
 def init_gui_style(gui):
-    _refresh_style(gui)
-
     # Style can be EITHER system, dark, or light
     gui.themeGroup = QtWidgets.QActionGroup(gui)
     gui.themeGroup.addAction(gui.actionSystem)
@@ -144,6 +143,43 @@ def _refresh_style(gui):
     gui.loadButton.setStyleSheet(buttonStyle("icons/load.png"))
     gui.saveDefaults.setStyleSheet(buttonStyle("icons/pack.png"))
     gui.recompile.setStyleSheet(buttonStyle("icons/recompile.png"))
+
+    gui.rsm_perturbation_header.setText(
+        QtCore.QCoreApplication.translate(
+            "MainWindow",
+            (
+                '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"'
+                ' "http://www.w3.org/TR/REC-html40/strict.dtd">\n'
+                '<html><head><meta name="qrichtext" content="1" /><meta'
+                ' charset="utf-8" /><style type="text/css">\n'
+                "p, li { white-space: pre-wrap; }\n"
+                "</style></head><body style=\" font-family:'Segoe UI';"
+                ' font-size:9pt; font-weight:400; font-style:normal;">\n'
+                '<p style=" margin-top:0px; margin-bottom:0px;'
+                " margin-left:0px; margin-right:0px; -qt-block-indent:0;"
+                ' text-indent:0px;"><span style=" font-weight:700;'
+                f' color:\'{STYLES["keyword"][2+gui.dark]}\';">def</span>'
+                ' <span style=" font-weight:700;'
+                f' color:\'{STYLES["defclass"][2+gui.dark]}\';">'
+                'perturb_inputs</span><span style=" font-weight:700;'
+                f' color:\'{STYLES["brace"][2+gui.dark]}\';">(</span>inputs:'
+                ' pandas<span style=" font-weight:700;'
+                f' color:\'{STYLES["operator"][2+gui.dark]}\';">.</span>'
+                'DataFrame<span style=" font-weight:700;'
+                f' color:\'{STYLES["brace"][2+gui.dark]}\';">)</span> <span'
+                ' style=" font-weight:700;'
+                f' color:\'{STYLES["operator"][2+gui.dark]}\';">-&gt;</span>'
+                ' pandas<span style=" font-weight:700;'
+                f' color:\'{STYLES["operator"][2+gui.dark]}\';">.</span>'
+                "DataFrame:</p></body></html>"
+            ),
+        )
+    )
+
+    if getattr(gui, "rawEditHighlight", None) is not None:
+        gui.rawEditHighlight.rehighlight()
+        gui.currentInitFileContentHighlight.rehighlight()
+        gui.rsm_perturbation_highlight.rehighlight()
 
 
 def buttonStyle(icon):

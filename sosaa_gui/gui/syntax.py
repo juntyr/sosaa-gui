@@ -7,35 +7,43 @@ Released under the BSD 3-Clause "New" or "Revised" License
 from PyQt5 import QtCore, QtGui
 
 
-def format(color, style=""):
-    """Return a QTextCharFormat with the given attributes."""
-    _color = QtGui.QColor()
-    _color.setNamedColor(color)
+def _format(lightcolor, darkcolor, style=""):
+    def _format_single(color, style):
+        """Return a QTextCharFormat with the given attributes."""
+        _color = QtGui.QColor()
+        _color.setNamedColor(color)
 
-    _format = QtGui.QTextCharFormat()
-    _format.setForeground(_color)
-    if "bold" in style:
-        _format.setFontWeight(QtGui.QFont.Bold)
-    if "italic" in style:
-        _format.setFontItalic(True)
-    if "underline" in style:
-        _format.setFontUnderline(True)
+        _format = QtGui.QTextCharFormat()
+        _format.setForeground(_color)
+        if "bold" in style:
+            _format.setFontWeight(QtGui.QFont.Bold)
+        if "italic" in style:
+            _format.setFontItalic(True)
+        if "underline" in style:
+            _format.setFontUnderline(True)
 
-    return _format
+        return _format
+
+    return (
+        _format_single(lightcolor, style),
+        _format_single(darkcolor, style),
+        lightcolor,
+        darkcolor,
+    )
 
 
 # Syntax styles that can be shared by all languages
 STYLES = {
-    "keyword": format("lightskyblue", "bold"),
-    "operator": format("darkorange", "bold"),
-    "brace": format("slategray", "bold"),
-    "defclass": format("salmon", "bold"),
-    "string": format("mediumseagreen"),
-    "string2": format("peru", "italic"),
-    "comment": format("peru", "italic"),
-    "self": format("steelblue", "underline"),
-    "numbers": format("deepskyblue", "bold"),
-    "function": format("steelblue"),
+    "keyword": _format("dodgerblue", "lightskyblue", "bold"),
+    "operator": _format("orangered", "darkorange", "bold"),
+    "brace": _format("slategray", "slategray", "bold"),
+    "defclass": _format("indianred", "salmon", "bold"),
+    "string": _format("green", "lawngreen"),
+    "string2": _format("sienna", "sandybrown", "italic"),
+    "comment": _format("sienna", "sandybrown", "italic"),
+    "self": _format("mediumblue", "aqua", "underline"),
+    "numbers": _format("royalblue", "deepskyblue", "bold"),
+    "function": _format("mediumblue", "aqua"),
 }
 
 
@@ -127,8 +135,10 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
         r"\]",
     ]
 
-    def __init__(self, parent: QtGui.QTextDocument) -> None:
+    def __init__(self, gui, parent: QtGui.QTextDocument) -> None:
         super().__init__(parent)
+
+        self.gui = gui
 
         # Multi-line strings (expression, flag, style)
         self.tri_single = (QtCore.QRegExp("'''"), 1, STYLES["string2"])
@@ -218,7 +228,7 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
                 # We actually want the index of the nth match
                 index = expression.pos(nth)
                 length = len(expression.cap(nth))
-                self.setFormat(index, length, format)
+                self.setFormat(index, length, format[self.gui.dark])
                 index = expression.indexIn(text, index + length)
 
         self.setCurrentBlockState(0)
@@ -261,7 +271,7 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
                 self.setCurrentBlockState(in_state)
                 length = len(text) - start + add
             # Apply formatting
-            self.setFormat(start, length, style)
+            self.setFormat(start, length, style[self.gui.dark])
             # Look for the next match
             start = delimiter.indexIn(text, start + length)
 
@@ -297,8 +307,10 @@ class FortranNamelistHighlighter(QtGui.QSyntaxHighlighter):
         r"\]",
     ]
 
-    def __init__(self, parent: QtGui.QTextDocument) -> None:
+    def __init__(self, gui, parent: QtGui.QTextDocument) -> None:
         super().__init__(parent)
+
+        self.gui = gui
 
         rules = []
 
@@ -372,7 +384,7 @@ class FortranNamelistHighlighter(QtGui.QSyntaxHighlighter):
                 # We actually want the index of the nth match
                 index = expression.pos(nth)
                 length = len(expression.cap(nth))
-                self.setFormat(index, length, format)
+                self.setFormat(index, length, format[self.gui.dark])
                 index = expression.indexIn(text, index + length)
 
         self.setCurrentBlockState(0)

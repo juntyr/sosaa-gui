@@ -51,7 +51,8 @@ def init_rsm_gui(gui):
 
     gui.rsm_perturbation.setPlaceholderText("return inputs")
     gui.rsm_perturbation_highlight = PythonHighlighter(
-        gui.rsm_perturbation.document()
+        gui,
+        gui.rsm_perturbation.document(),
     )
 
     # Listen to RSM tab changes to lazily update the plots

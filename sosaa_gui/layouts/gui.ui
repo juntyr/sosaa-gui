@@ -2709,7 +2709,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="icarus_tab">
+      <widget class="QWidget" name="rsm_tab">
        <attribute name="title">
         <string>SOSAA RSM</string>
        </attribute>
@@ -3078,15 +3078,7 @@
                    </spacer>
                   </item>
                   <item row="0" column="0" colspan="2">
-                   <widget class="QLabel" name="label_15">
-                    <property name="text">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700; color:#87cefa;&quot;&gt;def&lt;/span&gt; &lt;span style=&quot; font-weight:700; color:#fa8072;&quot;&gt;perturb_inputs&lt;/span&gt;&lt;span style=&quot; font-weight:700; color:#708090;&quot;&gt;(&lt;/span&gt;inputs: pandas&lt;span style=&quot; font-weight:700; color:#ff8c00;&quot;&gt;.&lt;/span&gt;DataFrame&lt;span style=&quot; font-weight:700; color:#708090;&quot;&gt;)&lt;/span&gt; &lt;span style=&quot; font-weight:700; color:#ff8c00;&quot;&gt;-&amp;gt;&lt;/span&gt; pandas&lt;span style=&quot; font-weight:700; color:#ff8c00;&quot;&gt;.&lt;/span&gt;DataFrame:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                   </widget>
+                   <widget class="QLabel" name="rsm_perturbation_header"></widget>
                   </item>
                  </layout>
                 </widget>
