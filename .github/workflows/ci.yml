@@ -20,7 +20,7 @@ jobs:
     - name: Install black
       run: pip install black
     - name: Run the black formatter
-      run: black --diff --check
+      run: black --diff --check .
   isort:
     runs-on: ubuntu-latest
     steps:
@@ -32,7 +32,7 @@ jobs:
     - name: Install isort
       run: pip install isort
     - name: Run the isort linter
-      run: isort --diff --check
+      run: isort --diff --check .
   flake8:
     runs-on: ubuntu-latest
     steps:
@@ -44,4 +44,4 @@ jobs:
     - name: Install flake8
       run: pip install pyproject-flake8
     - name: Run the flake8 linter
-      run: pflake8
+      run: pflake8 .
