@@ -152,13 +152,18 @@ def _update_gui_from_time_settings(settings, gui):
 
     gui.start_date.setDateTime(
         QtCore.QDateTime.fromString(
-            ",".join(f"{s:02}" for s in time.get("start_date", [2023, 4, 1, 0, 0, 0])),
+            ",".join(
+                f"{s:02}"
+                for s in time.get("start_date", [2023, 4, 1, 0, 0, 0])
+            ),
             "yyyy,MM,dd,HH,mm,ss",
         )
     )
     gui.end_date.setDateTime(
         QtCore.QDateTime.fromString(
-            ",".join(f"{s:02}" for s in time.get("end_date", [2023, 4, 1, 0, 0, 0])),
+            ",".join(
+                f"{s:02}" for s in time.get("end_date", [2023, 4, 1, 0, 0, 0])
+            ),
             "yyyy,MM,dd,HH,mm,ss",
         )
     )
@@ -182,7 +187,10 @@ def _update_gui_from_time_settings(settings, gui):
     )
 
     aero_start_date = QtCore.QDateTime.fromString(
-        ",".join(f"{s:02}" for s in time.get("aero_start_date", [2000, 1, 1, 0, 0, 0])),
+        ",".join(
+            f"{s:02}"
+            for s in time.get("aero_start_date", [2000, 1, 1, 0, 0, 0])
+        ),
         "yyyy,MM,dd,HH,mm,ss",
     )
     secs_from_start = gui.start_date.dateTime().secsTo(aero_start_date)
@@ -259,7 +267,9 @@ def _update_gui_from_compile_settings(settings, gui):
 def _update_gui_from_run_settings(settings, gui):
     guis = settings.get("nml_gui", dict())
 
-    gui.launch_cmd.setText(guis.get("launch_cmd", "orterun --oversubscribe -n 4"))
+    gui.launch_cmd.setText(
+        guis.get("launch_cmd", "orterun --oversubscribe -n 4")
+    )
 
 
 def _update_gui_from_rsm_settings(settings, gui):
@@ -284,7 +294,9 @@ def _update_gui_from_rsm_settings(settings, gui):
     gui.rsm_predict_seed.setText(rsm.get("predict_seed", "my-predict-seed"))
     gui.rsm_predict_samples.setValue(rsm.get("predict_samples", 1))
 
-    gui.rsm_perturbation.setPlainText(rsm.get("predict_perturbation", "return inputs"))
+    gui.rsm_perturbation.setPlainText(
+        rsm.get("predict_perturbation", "return inputs")
+    )
 
 
 def _update_gui_from_custom_settings(settings, gui):

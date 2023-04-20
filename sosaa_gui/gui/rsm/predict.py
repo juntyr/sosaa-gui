@@ -45,7 +45,9 @@ def _generate_rsm_prediction_and_update_gui(gui):
             msg.setText(
                 f"Do you want to load the existing RSM prediction or overwrite it?"
             )
-            msg.setInformativeText(f"The file {str(prediction_path)} already exists.")
+            msg.setInformativeText(
+                f"The file {str(prediction_path)} already exists."
+            )
             msg.setWindowTitle("Existing SOSAA RSM Prediction")
             button = msg.exec_()
 
@@ -66,7 +68,9 @@ def _generate_rsm_prediction_and_update_gui(gui):
                 perturbation,
                 gui.rsm_predict_progress,
             ),
-            lambda result: _on_prediction_finished(gui, err=None, result=result),
+            lambda result: _on_prediction_finished(
+                gui, err=None, result=result
+            ),
             lambda err: _on_prediction_finished(gui, err),
         )
     except Exception as err:

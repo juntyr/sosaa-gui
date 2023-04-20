@@ -80,7 +80,9 @@ def init_dirs_gui(gui):
     gui.browse_chem.clicked.connect(changeChemistryDirectory)
 
     def changeChemistryNameDirectory():
-        chem_dir = Path(gui.main_dir.text()).resolve() / gui.chemistry_dir.text()
+        chem_dir = (
+            Path(gui.main_dir.text()).resolve() / gui.chemistry_dir.text()
+        )
 
         path = browsePath(
             title="Choose the chemistry name directory",
@@ -113,7 +115,9 @@ def init_dirs_gui(gui):
         main_dir = Path(gui.main_dir.text()).resolve()
 
         path = browsePath(
-            title="Choose the case directory", directory=True, origin=str(main_dir)
+            title="Choose the case directory",
+            directory=True,
+            origin=str(main_dir),
         )
 
         if path is None:
@@ -141,7 +145,9 @@ def init_dirs_gui(gui):
         case_dir = Path(gui.main_dir.text()).resolve() / gui.case_dir.text()
 
         path = browsePath(
-            title="Choose the case name directory", directory=True, origin=str(case_dir)
+            title="Choose the case name directory",
+            directory=True,
+            origin=str(case_dir),
         )
 
         if path is None:

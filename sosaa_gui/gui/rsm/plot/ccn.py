@@ -82,14 +82,22 @@ def update_plot(gui):
                 / (60 * 60),
                 np.power(
                     10.0,
-                    gui.rsm_prediction[level_mask == h]["log10_ccn_perturbed_pred"]
-                    - gui.rsm_prediction[level_mask == h]["log10_ccn_perturbed_stdv"],
+                    gui.rsm_prediction[level_mask == h][
+                        "log10_ccn_perturbed_pred"
+                    ]
+                    - gui.rsm_prediction[level_mask == h][
+                        "log10_ccn_perturbed_stdv"
+                    ],
                 )
                 - 1,
                 np.power(
                     10.0,
-                    gui.rsm_prediction[level_mask == h]["log10_ccn_perturbed_pred"]
-                    + gui.rsm_prediction[level_mask == h]["log10_ccn_perturbed_stdv"],
+                    gui.rsm_prediction[level_mask == h][
+                        "log10_ccn_perturbed_pred"
+                    ]
+                    + gui.rsm_prediction[level_mask == h][
+                        "log10_ccn_perturbed_stdv"
+                    ],
                 )
                 - 1,
                 color=colours[l],
@@ -102,7 +110,9 @@ def update_plot(gui):
                 / (60 * 60),
                 np.power(
                     10.0,
-                    gui.rsm_prediction[level_mask == h]["log10_ccn_perturbed_pred"],
+                    gui.rsm_prediction[level_mask == h][
+                        "log10_ccn_perturbed_pred"
+                    ],
                 )
                 - 1,
                 color=colours[l],
@@ -114,7 +124,9 @@ def update_plot(gui):
             [
                 h
                 for h in range(
-                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))), 0, 24
+                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))),
+                    0,
+                    24,
                 )
             ]
         )
@@ -122,14 +134,19 @@ def update_plot(gui):
             [
                 (gui.rsm_dt + datetime.timedelta(hours=h)).strftime("%d.%m")
                 for h in range(
-                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))), 0, 24
+                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))),
+                    0,
+                    24,
                 )
             ]
         )
 
         gui.rsm_ccnplot_cb.ax.set_yticks(np.linspace(0, 1, len(level_heights)))
         gui.rsm_ccnplot_cb.ax.set_yticklabels(
-            [f"{int(h)}m" if i % 5 == 0 else "" for i, h in enumerate(level_heights)]
+            [
+                f"{int(h)}m" if i % 5 == 0 else ""
+                for i, h in enumerate(level_heights)
+            ]
         )
 
     gui.rsm_ccnplot_fig.tight_layout()

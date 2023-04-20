@@ -47,21 +47,29 @@ def init_gui_output(gui):
 
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Information)
-            msg.setText(f"The output directory '{output_dir_str}' was created.")
+            msg.setText(
+                f"The output directory '{output_dir_str}' was created."
+            )
             msg.setWindowTitle("Created OUTPUT directory")
             msg.exec_()
         except FileExistsError:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Information)
-            msg.setText(f"The output directory '{output_dir_str}' already existed.")
+            msg.setText(
+                f"The output directory '{output_dir_str}' already existed."
+            )
             msg.setWindowTitle("Created OUTPUT directory")
             msg.exec_()
         except Exception as e:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
-            msg.setText(f"Failed to create the output directory '{output_dir_str}'.")
+            msg.setText(
+                f"Failed to create the output directory '{output_dir_str}'."
+            )
             msg.setInformativeText(str(e))
             msg.setWindowTitle("Invalid OUTPUT directory")
             msg.exec_()
 
-    gui.actionCreate_output_directories.triggered.connect(createOutputDirectories)
+    gui.actionCreate_output_directories.triggered.connect(
+        createOutputDirectories
+    )

@@ -47,7 +47,9 @@ def update_plot(gui):
     )
 
     gui.rsm_diffplot_ax.set_xlabel("Baseline CCN concentration [m$^{-3}$]")
-    gui.rsm_diffplot_ax.set_ylabel("Perturbed Change in CCN concentration [m$^{-3}$]")
+    gui.rsm_diffplot_ax.set_ylabel(
+        "Perturbed Change in CCN concentration [m$^{-3}$]"
+    )
 
     if gui.rsm_prediction is None:
         gui.rsm_diffplot_ax.set_xscale("linear")
@@ -115,11 +117,28 @@ def update_plot(gui):
         gui.rsm_diffplot_cb.ax.set_xticks(
             [
                 (
-                    (h - int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))))
-                    / (-int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))))
+                    (
+                        h
+                        - int(
+                            (
+                                gui.rsm_prediction.index.levels[0][0]
+                                // (60 * 60)
+                            )
+                        )
+                    )
+                    / (
+                        -int(
+                            (
+                                gui.rsm_prediction.index.levels[0][0]
+                                // (60 * 60)
+                            )
+                        )
+                    )
                 )
                 for h in range(
-                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))), 0, 24
+                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))),
+                    0,
+                    24,
                 )
             ]
         )
@@ -127,7 +146,9 @@ def update_plot(gui):
             [
                 (gui.rsm_dt + datetime.timedelta(hours=h)).strftime("%d.%m")
                 for h in range(
-                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))), 0, 24
+                    int((gui.rsm_prediction.index.levels[0][0] // (60 * 60))),
+                    0,
+                    24,
                 )
             ]
         )

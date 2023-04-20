@@ -138,12 +138,16 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
 
         # Keyword, operator, brace, and special function rules
         rules += [
-            (r"\b%s\b" % w, 0, STYLES["keyword"]) for w in PythonHighlighter.keywords
+            (r"\b%s\b" % w, 0, STYLES["keyword"])
+            for w in PythonHighlighter.keywords
         ]
         rules += [
-            (r"%s" % o, 0, STYLES["operator"]) for o in PythonHighlighter.operators
+            (r"%s" % o, 0, STYLES["operator"])
+            for o in PythonHighlighter.operators
         ]
-        rules += [(r"%s" % b, 0, STYLES["brace"]) for b in PythonHighlighter.braces]
+        rules += [
+            (r"%s" % b, 0, STYLES["brace"]) for b in PythonHighlighter.braces
+        ]
         rules += [
             (r"\b(%s)\(" % f, 1, STYLES["function"])
             for f in PythonHighlighter.functions
@@ -160,7 +164,11 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
             # Numeric literals
             (r"\b[+-]?[0-9]+[lL]?\b", 0, STYLES["numbers"]),
             (r"\b[+-]?0[xX][0-9A-Fa-f]+[lL]?\b", 0, STYLES["numbers"]),
-            (r"\b[+-]?[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\b", 0, STYLES["numbers"]),
+            (
+                r"\b[+-]?[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\b",
+                0,
+                STYLES["numbers"],
+            ),
             # Double-quoted string, possibly containing escape sequences
             (r'"[^"\\]*(\\.[^"\\]*)*"', 0, STYLES["string"]),
             # Single-quoted string, possibly containing escape sequences
@@ -170,7 +178,9 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
         ]
 
         # Build a QRegExp for each pattern
-        self.rules = [(QtCore.QRegExp(pat), index, fmt) for (pat, index, fmt) in rules]
+        self.rules = [
+            (QtCore.QRegExp(pat), index, fmt) for (pat, index, fmt) in rules
+        ]
 
     def highlightBlock(self, text):
         """Apply syntax highlighting to the given block of text."""
@@ -188,11 +198,15 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
                 ]:
                     innerIndex = self.tri_single[0].indexIn(text, index + 1)
                     if innerIndex == -1:
-                        innerIndex = self.tri_double[0].indexIn(text, index + 1)
+                        innerIndex = self.tri_double[0].indexIn(
+                            text, index + 1
+                        )
 
                     if innerIndex != -1:
                         tripleQuoteIndexes = range(innerIndex, innerIndex + 3)
-                        self.tripleQuoutesWithinStrings.extend(tripleQuoteIndexes)
+                        self.tripleQuoutesWithinStrings.extend(
+                            tripleQuoteIndexes
+                        )
 
             while index >= 0:
                 # skipping triple quotes within strings
@@ -298,7 +312,8 @@ class FortranNamelistHighlighter(QtGui.QSyntaxHighlighter):
             for o in FortranNamelistHighlighter.operators
         ]
         rules += [
-            (r"%s" % b, 0, STYLES["brace"]) for b in FortranNamelistHighlighter.braces
+            (r"%s" % b, 0, STYLES["brace"])
+            for b in FortranNamelistHighlighter.braces
         ]
 
         # All other rules
@@ -308,7 +323,11 @@ class FortranNamelistHighlighter(QtGui.QSyntaxHighlighter):
             # Numeric literals
             (r"\b[+-]?[0-9]+[lL]?\b", 0, STYLES["numbers"]),
             (r"\b[+-]?0[xX][0-9A-Fa-f]+[lL]?\b", 0, STYLES["numbers"]),
-            (r"\b[+-]?[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\b", 0, STYLES["numbers"]),
+            (
+                r"\b[+-]?[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\b",
+                0,
+                STYLES["numbers"],
+            ),
             # Double-quoted string, possibly containing escape sequences
             (r'"[^"\\]*(\\.[^"\\]*)*"', 0, STYLES["string"]),
             # Single-quoted string, possibly containing escape sequences
@@ -329,7 +348,11 @@ class FortranNamelistHighlighter(QtGui.QSyntaxHighlighter):
 
         # Build a QRegExp for each pattern
         self.rules = [
-            (QtCore.QRegExp(pat, QtCore.Qt.CaseSensitivity.CaseInsensitive), index, fmt)
+            (
+                QtCore.QRegExp(pat, QtCore.Qt.CaseSensitivity.CaseInsensitive),
+                index,
+                fmt,
+            )
             for (pat, index, fmt) in rules
         ]
 

@@ -28,7 +28,9 @@ def load_settings(gui, path):
         content = file.read()
 
     # Hack to ensure that _settings is not mistaken as a local variable
-    globals()["_settings"] = f90nml.reads(_raw_setting_pattern.sub("", content))
+    globals()["_settings"] = f90nml.reads(
+        _raw_setting_pattern.sub("", content)
+    )
 
     # Configure the f90 namelist pretty-printing options
     _settings.indent = "  "
@@ -114,8 +116,12 @@ _version_minor = 0
 
 
 # Regex pattern to insert and extract the raw input from the GUI
-_raw_settings_header = f"! \\/ {'Raw input from the SOSAA GUI'.center(70, '-')} \\/ !"
-_raw_settings_footer = f"! /\\ {'Raw input from the SOSAA GUI'.center(70, '-')} /\\ !"
+_raw_settings_header = (
+    f"! \\/ {'Raw input from the SOSAA GUI'.center(70, '-')} \\/ !"
+)
+_raw_settings_footer = (
+    f"! /\\ {'Raw input from the SOSAA GUI'.center(70, '-')} /\\ !"
+)
 _raw_setting_pattern = re.compile(
     rf"^{re.escape(_raw_settings_header)}$\n(.*?)\n^{re.escape(_raw_settings_footer)}$",
     flags=(re.MULTILINE | re.DOTALL),

@@ -18,7 +18,9 @@ def setup_qt_scaling():
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
 
     # Enable QT highdpi scaling and highdpi icons
-    QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+    QtWidgets.QApplication.setAttribute(
+        QtCore.Qt.AA_EnableHighDpiScaling, True
+    )
     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 
     # Check if scaling is necessary, currently only required on Windows
@@ -35,7 +37,9 @@ def setup_qt_scaling():
             args.append("-NS")
 
     # FIXME petri: check if platform usually works for everyone
-    if (os.name.upper() == "NT" or operating_system == "Windows") and not "-NS" in args:
+    if (
+        os.name.upper() == "NT" or operating_system == "Windows"
+    ) and not "-NS" in args:
         try:
             import ctypes
 
@@ -71,6 +75,8 @@ def setup_qt_style():
     styles = QtWidgets.QStyleFactory.keys()
 
     if "Fusion" in styles:
-        QCoreApplication.instance().setStyle(QtWidgets.QStyleFactory.create("Fusion"))
+        QCoreApplication.instance().setStyle(
+            QtWidgets.QStyleFactory.create("Fusion")
+        )
     else:
         print(f"Available styles: {styles}", flush=True)

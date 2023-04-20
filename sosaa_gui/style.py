@@ -68,15 +68,25 @@ def get_style_palette(hue, dark):
         palette.setColor(QPalette.Link, QColor(coloursystem["C70"]))
         palette.setColor(QPalette.Highlight, QColor(coloursystem["G120"]))
         palette.setColor(QPalette.HighlightedText, QColor(coloursystem["G20"]))
-        palette.setColor(QPalette.Active, QPalette.Button, QColor(coloursystem["G50"]))
         palette.setColor(
-            QPalette.Disabled, QPalette.ButtonText, QColor(coloursystem["G100"])
+            QPalette.Active, QPalette.Button, QColor(coloursystem["G50"])
         )
         palette.setColor(
-            QPalette.Disabled, QPalette.WindowText, QColor(coloursystem["G100"])
+            QPalette.Disabled,
+            QPalette.ButtonText,
+            QColor(coloursystem["G100"]),
         )
-        palette.setColor(QPalette.Disabled, QPalette.Text, QColor(coloursystem["G100"]))
-        palette.setColor(QPalette.Disabled, QPalette.Light, QColor(coloursystem["G30"]))
+        palette.setColor(
+            QPalette.Disabled,
+            QPalette.WindowText,
+            QColor(coloursystem["G100"]),
+        )
+        palette.setColor(
+            QPalette.Disabled, QPalette.Text, QColor(coloursystem["G100"])
+        )
+        palette.setColor(
+            QPalette.Disabled, QPalette.Light, QColor(coloursystem["G30"])
+        )
     else:
         palette.setColor(QPalette.Window, QColor(coloursystem["G120"]))
         palette.setColor(QPalette.WindowText, QColor(coloursystem["G0"]))
@@ -90,15 +100,21 @@ def get_style_palette(hue, dark):
         palette.setColor(QPalette.BrightText, QColor(coloursystem["C10"]))
         palette.setColor(QPalette.Link, QColor(coloursystem["C80"]))
         palette.setColor(QPalette.Highlight, QColor(coloursystem["C30"]))
-        palette.setColor(QPalette.HighlightedText, QColor(coloursystem["G130"]))
-        palette.setColor(QPalette.Active, QPalette.Button, QColor(coloursystem["G100"]))
+        palette.setColor(
+            QPalette.HighlightedText, QColor(coloursystem["G130"])
+        )
+        palette.setColor(
+            QPalette.Active, QPalette.Button, QColor(coloursystem["G100"])
+        )
         palette.setColor(
             QPalette.Disabled, QPalette.ButtonText, QColor(coloursystem["G50"])
         )
         palette.setColor(
             QPalette.Disabled, QPalette.WindowText, QColor(coloursystem["G50"])
         )
-        palette.setColor(QPalette.Disabled, QPalette.Text, QColor(coloursystem["G50"]))
+        palette.setColor(
+            QPalette.Disabled, QPalette.Text, QColor(coloursystem["G50"])
+        )
         palette.setColor(
             QPalette.Disabled, QPalette.Light, QColor(coloursystem["G120"])
         )

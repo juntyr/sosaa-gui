@@ -22,14 +22,18 @@ def init_gui_style(gui):
         colourSelector.setOption(
             QtWidgets.QColorDialog.ColorDialogOption.DontUseNativeDialog
         )
-        colourSelector.setOption(QtWidgets.QColorDialog.ColorDialogOption.NoButtons)
+        colourSelector.setOption(
+            QtWidgets.QColorDialog.ColorDialogOption.NoButtons
+        )
 
         def colourChanged(colour):
             gui.hue = colour.getHsl()[0]
             set_config("style", "hue", str(gui.hue))
             _setLightDarkStyle(gui, gui.dark)
 
-        colourSelector.setCurrentColor(QtGui.QColor(hsl_to_hex(gui.hue, 100, 100)))
+        colourSelector.setCurrentColor(
+            QtGui.QColor(hsl_to_hex(gui.hue, 100, 100))
+        )
         colourSelector.currentColorChanged.connect(colourChanged)
 
         colourSelector.exec_()
@@ -121,7 +125,9 @@ def _loadDefaultFont(gui):
 def _setLightDarkStyle(gui, dark):
     gui.dark = dark
 
-    QCoreApplication.instance().setPalette(get_style_palette(gui.hue, gui.dark))
+    QCoreApplication.instance().setPalette(
+        get_style_palette(gui.hue, gui.dark)
+    )
 
     _refresh_style(gui)
 
@@ -143,9 +149,7 @@ def _refresh_style(gui):
 def buttonStyle(icon):
     icon_path_escaped = resource_path(icon).replace("\\", "\\\\")
 
-    return (
-        f"background-image: url('{icon_path_escaped}');\nbackground-repeat: no-repeat;"
-    )
+    return f"background-image: url('{icon_path_escaped}');\nbackground-repeat: no-repeat;"
 
 
 def _refresh_font(gui, font):

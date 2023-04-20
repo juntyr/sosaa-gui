@@ -48,7 +48,10 @@ def init_compile_gui(gui):
             " ".join(
                 [
                     "cd",
-                    str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
+                    str(
+                        Path(gui.main_dir.text()).resolve()
+                        / gui.code_dir.text()
+                    ),
                     "&&",
                     "make",
                     "sosaa.exe",
@@ -102,7 +105,10 @@ def init_compile_gui(gui):
             " ".join(
                 [
                     "cd",
-                    str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
+                    str(
+                        Path(gui.main_dir.text()).resolve()
+                        / gui.code_dir.text()
+                    ),
                     "&&",
                     "make",
                     "clean",
@@ -140,7 +146,10 @@ def init_compile_gui(gui):
             " ".join(
                 [
                     "cd",
-                    str(Path(gui.main_dir.text()).resolve() / gui.code_dir.text()),
+                    str(
+                        Path(gui.main_dir.text()).resolve()
+                        / gui.code_dir.text()
+                    ),
                     "&&",
                     "make",
                     "cleanchem",

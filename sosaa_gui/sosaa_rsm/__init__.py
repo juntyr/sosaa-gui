@@ -223,7 +223,9 @@ def interpolate_biogenic_emissions(ds: TrajectoryDatasets, key: str):
 
     # Biogenic emissions are limited to boxes at <= 10m height
     biogenic_emission_layers = np.nonzero(out_h <= 10.0)
-    biogenic_emission_layer_height_cumsum = np.cumsum(out_d[biogenic_emission_layers])
+    biogenic_emission_layer_height_cumsum = np.cumsum(
+        out_d[biogenic_emission_layers]
+    )
     biogenic_emission_layer_proportion = (
         biogenic_emission_layer_height_cumsum
         / biogenic_emission_layer_height_cumsum[-1]
@@ -305,9 +307,15 @@ def get_meteorology_features(ds: TrajectoryDatasets):
             "level": np.tile(ds.out["lev"][:].data, ds.out["time"].shape[0]),
             "met_t": interpolate_meteorology_values(ds, "t").flatten(),
             "met_q": interpolate_meteorology_values(ds, "q").flatten(),
-            "met_ssr": interpolate_meteorology_time_values(ds, "ssr").flatten(),
-            "met_lsm": interpolate_meteorology_time_values(ds, "lsm").flatten(),
-            "met_blh": interpolate_meteorology_time_values(ds, "blh").flatten(),
+            "met_ssr": interpolate_meteorology_time_values(
+                ds, "ssr"
+            ).flatten(),
+            "met_lsm": interpolate_meteorology_time_values(
+                ds, "lsm"
+            ).flatten(),
+            "met_blh": interpolate_meteorology_time_values(
+                ds, "blh"
+            ).flatten(),
         }
     ).set_index(["time", "level"])
 
@@ -323,7 +331,9 @@ def get_bio_emissions_features(ds: TrajectoryDatasets):
             "bio_acetaldehyde": interpolate_biogenic_emissions(
                 ds, "acetaldehyde"
             ).flatten(),
-            "bio_acetone": interpolate_biogenic_emissions(ds, "acetone").flatten(),
+            "bio_acetone": interpolate_biogenic_emissions(
+                ds, "acetone"
+            ).flatten(),
             "bio_butanes_and_higher_alkanes": interpolate_biogenic_emissions(
                 ds, "butanes-and-higher-alkanes"
             ).flatten(),
@@ -332,18 +342,28 @@ def get_bio_emissions_features(ds: TrajectoryDatasets):
             ).flatten(),
             "bio_ch4": interpolate_biogenic_emissions(ds, "CH4").flatten(),
             "bio_co": interpolate_biogenic_emissions(ds, "CO").flatten(),
-            "bio_ethane": interpolate_biogenic_emissions(ds, "ethane").flatten(),
-            "bio_ethanol": interpolate_biogenic_emissions(ds, "ethanol").flatten(),
-            "bio_ethene": interpolate_biogenic_emissions(ds, "ethene").flatten(),
+            "bio_ethane": interpolate_biogenic_emissions(
+                ds, "ethane"
+            ).flatten(),
+            "bio_ethanol": interpolate_biogenic_emissions(
+                ds, "ethanol"
+            ).flatten(),
+            "bio_ethene": interpolate_biogenic_emissions(
+                ds, "ethene"
+            ).flatten(),
             "bio_formaldehyde": interpolate_biogenic_emissions(
                 ds, "formaldehyde"
             ).flatten(),
             "bio_hydrogen_cyanide": interpolate_biogenic_emissions(
                 ds, "hydrogen-cyanide"
             ).flatten(),
-            "bio_iosprene": interpolate_biogenic_emissions(ds, "isoprene").flatten(),
+            "bio_iosprene": interpolate_biogenic_emissions(
+                ds, "isoprene"
+            ).flatten(),
             "bio_mbo": interpolate_biogenic_emissions(ds, "MBO").flatten(),
-            "bio_methanol": interpolate_biogenic_emissions(ds, "methanol").flatten(),
+            "bio_methanol": interpolate_biogenic_emissions(
+                ds, "methanol"
+            ).flatten(),
             "bio_methyl_bromide": interpolate_biogenic_emissions(
                 ds, "methyl-bromide"
             ).flatten(),
@@ -362,15 +382,27 @@ def get_bio_emissions_features(ds: TrajectoryDatasets):
             "bio_other_monoterpenes": interpolate_biogenic_emissions(
                 ds, "other-monoterpenes"
             ).flatten(),
-            "bio_pinene_a": interpolate_biogenic_emissions(ds, "pinene-a").flatten(),
-            "bio_pinene_b": interpolate_biogenic_emissions(ds, "pinene-b").flatten(),
-            "bio_propane": interpolate_biogenic_emissions(ds, "propane").flatten(),
-            "bio_propene": interpolate_biogenic_emissions(ds, "propene").flatten(),
+            "bio_pinene_a": interpolate_biogenic_emissions(
+                ds, "pinene-a"
+            ).flatten(),
+            "bio_pinene_b": interpolate_biogenic_emissions(
+                ds, "pinene-b"
+            ).flatten(),
+            "bio_propane": interpolate_biogenic_emissions(
+                ds, "propane"
+            ).flatten(),
+            "bio_propene": interpolate_biogenic_emissions(
+                ds, "propene"
+            ).flatten(),
             "bio_sesquiterpenes": interpolate_biogenic_emissions(
                 ds, "sesquiterpenes"
             ).flatten(),
-            "bio_toluene": interpolate_biogenic_emissions(ds, "toluene").flatten(),
-            "bio_ch2br2": interpolate_biogenic_emissions(ds, "CH2Br2").flatten(),
+            "bio_toluene": interpolate_biogenic_emissions(
+                ds, "toluene"
+            ).flatten(),
+            "bio_ch2br2": interpolate_biogenic_emissions(
+                ds, "CH2Br2"
+            ).flatten(),
             "bio_ch3i": interpolate_biogenic_emissions(ds, "CH3I").flatten(),
             "bio_chbr3": interpolate_biogenic_emissions(ds, "CHBr3").flatten(),
             "bio_dms": interpolate_biogenic_emissions(ds, "DMS").flatten(),
@@ -386,14 +418,30 @@ def get_aer_emissions_features(ds: TrajectoryDatasets):
         {
             "time": np.repeat(get_output_time(ds), ds.out["lev"].shape[0]),
             "level": np.tile(ds.out["lev"][:].data, ds.out["time"].shape[0]),
-            "aer_3_10_nm": interpolate_aerosol_emissions(ds, "3-10nm").flatten(),
-            "aer_10_20_nm": interpolate_aerosol_emissions(ds, "10-20nm").flatten(),
-            "aer_20_30_nm": interpolate_aerosol_emissions(ds, "20-30nm").flatten(),
-            "aer_30_50_nm": interpolate_aerosol_emissions(ds, "30-50nm").flatten(),
-            "aer_50_70_nm": interpolate_aerosol_emissions(ds, "50-70nm").flatten(),
-            "aer_70_100_nm": interpolate_aerosol_emissions(ds, "70-100nm").flatten(),
-            "aer_100_200_nm": interpolate_aerosol_emissions(ds, "100-200nm").flatten(),
-            "aer_200_400_nm": interpolate_aerosol_emissions(ds, "200-400nm").flatten(),
+            "aer_3_10_nm": interpolate_aerosol_emissions(
+                ds, "3-10nm"
+            ).flatten(),
+            "aer_10_20_nm": interpolate_aerosol_emissions(
+                ds, "10-20nm"
+            ).flatten(),
+            "aer_20_30_nm": interpolate_aerosol_emissions(
+                ds, "20-30nm"
+            ).flatten(),
+            "aer_30_50_nm": interpolate_aerosol_emissions(
+                ds, "30-50nm"
+            ).flatten(),
+            "aer_50_70_nm": interpolate_aerosol_emissions(
+                ds, "50-70nm"
+            ).flatten(),
+            "aer_70_100_nm": interpolate_aerosol_emissions(
+                ds, "70-100nm"
+            ).flatten(),
+            "aer_100_200_nm": interpolate_aerosol_emissions(
+                ds, "100-200nm"
+            ).flatten(),
+            "aer_200_400_nm": interpolate_aerosol_emissions(
+                ds, "200-400nm"
+            ).flatten(),
             "aer_400_1000_nm": interpolate_aerosol_emissions(
                 ds, "400-1000nm"
             ).flatten(),
@@ -410,24 +458,48 @@ def get_ant_emissions_features(ds: TrajectoryDatasets):
             "time": np.repeat(get_output_time(ds), ds.out["lev"].shape[0]),
             "level": np.tile(ds.out["lev"][:].data, ds.out["time"].shape[0]),
             "ant_co": interpolate_anthropogenic_emissions(ds, "co").flatten(),
-            "ant_nox": interpolate_anthropogenic_emissions(ds, "nox").flatten(),
-            "ant_co2": interpolate_anthropogenic_emissions(ds, "co2").flatten(),
-            "ant_nh3": interpolate_anthropogenic_emissions(ds, "nh3").flatten(),
-            "ant_ch4": interpolate_anthropogenic_emissions(ds, "ch4").flatten(),
-            "ant_so2": interpolate_anthropogenic_emissions(ds, "so2").flatten(),
-            "ant_nmvoc": interpolate_anthropogenic_emissions(ds, "nmvoc").flatten(),
+            "ant_nox": interpolate_anthropogenic_emissions(
+                ds, "nox"
+            ).flatten(),
+            "ant_co2": interpolate_anthropogenic_emissions(
+                ds, "co2"
+            ).flatten(),
+            "ant_nh3": interpolate_anthropogenic_emissions(
+                ds, "nh3"
+            ).flatten(),
+            "ant_ch4": interpolate_anthropogenic_emissions(
+                ds, "ch4"
+            ).flatten(),
+            "ant_so2": interpolate_anthropogenic_emissions(
+                ds, "so2"
+            ).flatten(),
+            "ant_nmvoc": interpolate_anthropogenic_emissions(
+                ds, "nmvoc"
+            ).flatten(),
             "ant_alcohols": interpolate_anthropogenic_emissions(
                 ds, "alcohols"
             ).flatten(),
-            "ant_ethane": interpolate_anthropogenic_emissions(ds, "ethane").flatten(),
-            "ant_propane": interpolate_anthropogenic_emissions(ds, "propane").flatten(),
-            "ant_butanes": interpolate_anthropogenic_emissions(ds, "butanes").flatten(),
+            "ant_ethane": interpolate_anthropogenic_emissions(
+                ds, "ethane"
+            ).flatten(),
+            "ant_propane": interpolate_anthropogenic_emissions(
+                ds, "propane"
+            ).flatten(),
+            "ant_butanes": interpolate_anthropogenic_emissions(
+                ds, "butanes"
+            ).flatten(),
             "ant_pentanes": interpolate_anthropogenic_emissions(
                 ds, "pentanes"
             ).flatten(),
-            "ant_hexanes": interpolate_anthropogenic_emissions(ds, "hexanes").flatten(),
-            "ant_ethene": interpolate_anthropogenic_emissions(ds, "ethene").flatten(),
-            "ant_propene": interpolate_anthropogenic_emissions(ds, "propene").flatten(),
+            "ant_hexanes": interpolate_anthropogenic_emissions(
+                ds, "hexanes"
+            ).flatten(),
+            "ant_ethene": interpolate_anthropogenic_emissions(
+                ds, "ethene"
+            ).flatten(),
+            "ant_propene": interpolate_anthropogenic_emissions(
+                ds, "propene"
+            ).flatten(),
             "ant_acetylene": interpolate_anthropogenic_emissions(
                 ds, "acetylene"
             ).flatten(),
@@ -440,17 +512,27 @@ def get_ant_emissions_features(ds: TrajectoryDatasets):
             "ant_other_alkenes_and_alkynes": interpolate_anthropogenic_emissions(
                 ds, "other-alkenes-and-alkynes"
             ).flatten(),
-            "ant_benzene": interpolate_anthropogenic_emissions(ds, "benzene").flatten(),
-            "ant_toluene": interpolate_anthropogenic_emissions(ds, "toluene").flatten(),
-            "ant_xylene": interpolate_anthropogenic_emissions(ds, "xylene").flatten(),
+            "ant_benzene": interpolate_anthropogenic_emissions(
+                ds, "benzene"
+            ).flatten(),
+            "ant_toluene": interpolate_anthropogenic_emissions(
+                ds, "toluene"
+            ).flatten(),
+            "ant_xylene": interpolate_anthropogenic_emissions(
+                ds, "xylene"
+            ).flatten(),
             "ant_trimethylbenzene": interpolate_anthropogenic_emissions(
                 ds, "trimethylbenzene"
             ).flatten(),
             "ant_other_aromatics": interpolate_anthropogenic_emissions(
                 ds, "other-aromatics"
             ).flatten(),
-            "ant_esters": interpolate_anthropogenic_emissions(ds, "esters").flatten(),
-            "ant_ethers": interpolate_anthropogenic_emissions(ds, "ethers").flatten(),
+            "ant_esters": interpolate_anthropogenic_emissions(
+                ds, "esters"
+            ).flatten(),
+            "ant_ethers": interpolate_anthropogenic_emissions(
+                ds, "ethers"
+            ).flatten(),
             "ant_formaldehyde": interpolate_anthropogenic_emissions(
                 ds, "formaldehyde"
             ).flatten(),
@@ -556,7 +638,9 @@ def time_level_window_mean(input, t_range, l_range, progress=None):
             if minl == maxl:
                 continue
 
-            output[t, l, :] = np.mean(input[mint:maxt, minl:maxl, :], axis=(0, 1))
+            output[t, l, :] = np.mean(
+                input[mint:maxt, minl:maxl, :], axis=(0, 1)
+            )
 
     if progress is not None:
         progress.update_minor()
@@ -677,7 +761,11 @@ def get_labels_for_dataset(ds: TrajectoryDatasets):
                 )
             ),
             ccn_concentration_np.reshape(
-                (ccn_concentration_np.shape[0], ccn_concentration_np.shape[1], 1)
+                (
+                    ccn_concentration_np.shape[0],
+                    ccn_concentration_np.shape[1],
+                    1,
+                )
             ),
         ],
         axis=2,
@@ -746,7 +834,9 @@ class Clump:
         return np.matmul(X, self.C)
 
 
-def train_test_split(X, Y, test_size=0.25, random_state=None, shuffle=True, clump=0.0):
+def train_test_split(
+    X, Y, test_size=0.25, random_state=None, shuffle=True, clump=0.0
+):
     import numpy as np
     import pandas as pd
 
@@ -769,9 +859,13 @@ def train_test_split(X, Y, test_size=0.25, random_state=None, shuffle=True, clum
 
         C = np.array([c.sample(random_state) for _ in range(n0)])
         (I_train,) = np.nonzero(C)
-        I_train = np.repeat(I_train, n1) * n1 + np.tile(np.arange(n1), len(I_train))
+        I_train = np.repeat(I_train, n1) * n1 + np.tile(
+            np.arange(n1), len(I_train)
+        )
         (I_test,) = np.nonzero(1 - C)
-        I_test = np.repeat(I_test, n1) * n1 + np.tile(np.arange(n1), len(I_test))
+        I_test = np.repeat(I_test, n1) * n1 + np.tile(
+            np.arange(n1), len(I_test)
+        )
     else:
         C = np.array([c.sample(random_state) for _ in range(len(X))])
         (I_train,) = np.nonzero(C)
@@ -860,14 +954,24 @@ def load_and_cache_dataset(
             seed=int.from_bytes(hash_for_dt(dt).digest(4), "little")
         )
 
-        train_features, test_features, train_labels, test_labels = train_test_split(
+        (
+            train_features,
+            test_features,
+            train_labels,
+            test_labels,
+        ) = train_test_split(
             X,
             Y,
             test_size=0.25,
             random_state=rng,
             clump=clump,
         )
-        train_features, valid_features, train_labels, valid_labels = train_test_split(
+        (
+            train_features,
+            valid_features,
+            train_labels,
+            valid_labels,
+        ) = train_test_split(
             train_features,
             train_labels,
             test_size=1.0 / 3.0,
@@ -886,9 +990,9 @@ def load_and_cache_dataset(
     # - only fit on training data
     # - OOD inputs for constants at training time are blown up
     feature_scaler = StandardScaler().fit(train_features)
-    feature_scaler.scale_[np.nonzero(feature_scaler.var_ == 0.0)] = np.nan_to_num(
-        np.inf
-    )
+    feature_scaler.scale_[
+        np.nonzero(feature_scaler.var_ == 0.0)
+    ] = np.nan_to_num(np.inf)
 
     label_scaler = StandardScaler().fit(train_labels)
 
@@ -965,21 +1069,30 @@ class RandomForestSosaaRSM(IcarusRSM):
 
         if progress is not None:
             progress.update_minor(
-                value=0, min=0, max=5, format="Fitting the Truncated PCA OOD Detector"
+                value=0,
+                min=0,
+                max=5,
+                format="Fitting the Truncated PCA OOD Detector",
             )
 
         self.pca = PCA(random_state=rng).fit(X_train)
-        self.bn = np.searchsorted(np.cumsum(self.pca.explained_variance_ratio_), 0.95)
+        self.bn = np.searchsorted(
+            np.cumsum(self.pca.explained_variance_ratio_), 0.95
+        )
 
         if progress is not None:
-            progress.update_minor(format="Fitting Auto-Associative Error Covariance")
+            progress.update_minor(
+                format="Fitting Auto-Associative Error Covariance"
+            )
 
         self.cov = EmpiricalCovariance().fit(
             (self._predict_truncated_pca(X_train) - X_train)
         )
 
         self.err_valid = np.sort(
-            self.cov.mahalanobis(self._predict_truncated_pca(X_valid) - X_valid)
+            self.cov.mahalanobis(
+                self._predict_truncated_pca(X_valid) - X_valid
+            )
         )
 
         if progress is not None:
@@ -1022,11 +1135,15 @@ class RandomForestSosaaRSM(IcarusRSM):
 
         confidence = 1.0 - np.searchsorted(
             self.err_valid,
-            self.cov.mahalanobis((self._predict_truncated_pca(X_test) - X_test)),
+            self.cov.mahalanobis(
+                (self._predict_truncated_pca(X_test) - X_test)
+            ),
         ) / len(self.err_valid)
 
         if progress is not None:
-            progress.update_minor(format="Generating %v/%m Ensemble Predictions")
+            progress.update_minor(
+                format="Generating %v/%m Ensemble Predictions"
+            )
 
         def tree_predict(tree, X_test, progress=None) -> np.ndarray:
             if progress is not None:
@@ -1138,7 +1255,10 @@ def analyse_icarus_predictions(
 
     if progress is not None:
         progress.update_minor(
-            value=0, min=0, max=n_analysis_runs, format="Monte Carlo Analysis Run %v/%m"
+            value=0,
+            min=0,
+            max=n_analysis_runs,
+            format="Monte Carlo Analysis Run %v/%m",
         )
 
     confidence = np.mean(predictions.confidence)
@@ -1150,7 +1270,8 @@ def analyse_icarus_predictions(
         preds = []
         for _ in range(n_uncertain_samples):
             I_conf = (
-                rng.random(size=predictions.confidence.shape) <= predictions.confidence
+                rng.random(size=predictions.confidence.shape)
+                <= predictions.confidence
             )
             (I_conf,) = np.nonzero(I_conf)
 
@@ -1193,7 +1314,9 @@ def calculate_calibration_error(
     sce = 0.0
 
     if progress is not None:
-        progress.update_minor(value=0, min=0, max=N, format="Checking Percentile %p")
+        progress.update_minor(
+            value=0, min=0, max=N, format="Checking Percentile %p"
+        )
 
     for i in range(N + 1):
         if progress is not None:
@@ -1224,7 +1347,11 @@ def analyse_train_test_perforance(
     import numpy as np
 
     def mse_mae_analysis(Y_true, Y_pred, I_pred, rng, **kwargs):
-        from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+        from sklearn.metrics import (
+            mean_absolute_error,
+            mean_squared_error,
+            r2_score,
+        )
 
         Y_true = dataset.Y_scaler.inverse_transform(Y_true[I_pred])
         Y_pred = dataset.Y_scaler.inverse_transform(Y_pred)
@@ -1273,7 +1400,9 @@ def analyse_train_test_perforance(
                 np.mean(Y_pred)
                 if len(Y_pred) > 0
                 else np.mean(
-                    train_predictions[rng.choice(len(train_predictions))].prediction[i]
+                    train_predictions[
+                        rng.choice(len(train_predictions))
+                    ].prediction[i]
                 )
             )
 
@@ -1298,8 +1427,12 @@ def analyse_train_test_perforance(
             progress.update_minor()
 
     train_predictions = IcarusPrediction(
-        prediction=np.array(combined_train_predictions.prediction).reshape(-1, 1),
-        uncertainty=np.array(combined_train_predictions.uncertainty).reshape(-1, 1),
+        prediction=np.array(combined_train_predictions.prediction).reshape(
+            -1, 1
+        ),
+        uncertainty=np.array(combined_train_predictions.uncertainty).reshape(
+            -1, 1
+        ),
         confidence=np.array(combined_train_predictions.confidence),
     )
 
@@ -1316,7 +1449,9 @@ def analyse_train_test_perforance(
     )
 
     if progress is not None:
-        progress.update_major(format="Calculating the Training Calibration Error")
+        progress.update_major(
+            format="Calculating the Training Calibration Error"
+        )
 
     train_rmsce = calculate_calibration_error(
         dataset.Y_scaler.inverse_transform(dataset.Y_train),
@@ -1338,7 +1473,9 @@ def analyse_train_test_perforance(
         )
 
     if progress is not None:
-        progress.update_major(format=f"Combining the Predictions on the Test Dataset")
+        progress.update_major(
+            format=f"Combining the Predictions on the Test Dataset"
+        )
 
         progress.update_minor(
             value=0,
@@ -1363,7 +1500,9 @@ def analyse_train_test_perforance(
                 np.mean(Y_pred)
                 if len(Y_pred) > 0
                 else np.mean(
-                    test_predictions[rng.choice(len(test_predictions))].prediction[i]
+                    test_predictions[
+                        rng.choice(len(test_predictions))
+                    ].prediction[i]
                 )
             )
 
@@ -1388,8 +1527,12 @@ def analyse_train_test_perforance(
             progress.update_minor()
 
     test_predictions = IcarusPrediction(
-        prediction=np.array(combined_test_predictions.prediction).reshape(-1, 1),
-        uncertainty=np.array(combined_test_predictions.uncertainty).reshape(-1, 1),
+        prediction=np.array(combined_test_predictions.prediction).reshape(
+            -1, 1
+        ),
+        uncertainty=np.array(combined_test_predictions.uncertainty).reshape(
+            -1, 1
+        ),
         confidence=np.array(combined_test_predictions.confidence),
     )
 
@@ -1496,7 +1639,9 @@ def generate_perturbed_predictions(
                 format=f"Predicting on the Perturbed Dataset {i}/{n_samples}"
             )
 
-        prtb_predictions.append(model.predict(X_prtb, rng, progress=progress, **kwargs))
+        prtb_predictions.append(
+            model.predict(X_prtb, rng, progress=progress, **kwargs)
+        )
 
     if progress is not None:
         progress.update_major(
@@ -1526,7 +1671,9 @@ def generate_perturbed_predictions(
                 np.mean(Y_pred)
                 if len(Y_pred) > 0
                 else np.mean(
-                    prtb_predictions[rng.choice(len(prtb_predictions))].prediction[i]
+                    prtb_predictions[
+                        rng.choice(len(prtb_predictions))
+                    ].prediction[i]
                 )
             )
 
@@ -1551,8 +1698,12 @@ def generate_perturbed_predictions(
             progress.update_minor()
 
     prtb_predictions = IcarusPrediction(
-        prediction=np.array(combined_prtb_predictions.prediction).reshape(-1, 1),
-        uncertainty=np.array(combined_prtb_predictions.uncertainty).reshape(-1, 1),
+        prediction=np.array(combined_prtb_predictions.prediction).reshape(
+            -1, 1
+        ),
+        uncertainty=np.array(combined_prtb_predictions.uncertainty).reshape(
+            -1, 1
+        ),
         confidence=np.array(combined_prtb_predictions.confidence),
     )
 
@@ -1583,7 +1734,9 @@ def generate_perturbed_predictions(
             df_to_numpy(Y_base).reshape(
                 (Y_base.index.levels[0].size, Y_base.index.levels[1].size, 1)
             ),
-            dataset.Y_scaler.inverse_transform(prtb_predictions.prediction).reshape(
+            dataset.Y_scaler.inverse_transform(
+                prtb_predictions.prediction
+            ).reshape(
                 (Y_base.index.levels[0].size, Y_base.index.levels[1].size, 1)
             ),
             (prtb_predictions.uncertainty * dataset.Y_scaler.scale_).reshape(

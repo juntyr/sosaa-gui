@@ -29,7 +29,7 @@ icarus = [
     "scipy >= 1.9.3",
     "scikit-learn >= 1.1.2",
 ]
-dev = ["black", "build", "bumpver", "isort", "twine"]
+dev = ["black", "build", "bumpver", "flake8", "isort", "twine"]
 
 [project.scripts]
 sosaa-gui = "sosaa_gui:run"
@@ -42,6 +42,10 @@ build-backend = "setuptools.build_meta"
 where = ["."]
 include = ["sosaa_gui*"]
 namespaces = true
+
+[tool.black]
+line-length = 79
+target-version = ['py37']
 
 [tool.bumpver]
 current_version = "0.0.0"

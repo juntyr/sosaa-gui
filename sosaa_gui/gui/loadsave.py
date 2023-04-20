@@ -75,7 +75,10 @@ def _loadSettings(gui):
 
 
 def _loadSettingsWithPath(gui, path):
-    if str(path) != default_settings_path and str(path) != minimal_settings_path:
+    if (
+        str(path) != default_settings_path
+        and str(path) != minimal_settings_path
+    ):
         gui.currentInitFileToSave = path
     else:
         gui.currentInitFileToSave = None

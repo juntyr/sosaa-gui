@@ -124,7 +124,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.saveButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.saveButton.sizePolicy().hasHeightForWidth()
+        )
         self.saveButton.setSizePolicy(sizePolicy)
         self.saveButton.setMinimumSize(QtCore.QSize(74, 28))
         self.saveButton.setMaximumSize(QtCore.QSize(74, 28))
@@ -150,7 +152,10 @@ class Ui_MainWindow(object):
         self.saveDefaults.setObjectName("saveDefaults")
         self.gridLayout_11.addWidget(self.saveDefaults, 0, 5, 1, 1)
         spacerItem = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            40,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
         )
         self.gridLayout_11.addItem(spacerItem, 0, 6, 1, 1)
         self.recompile = QtWidgets.QToolButton(self.centralwidget)
@@ -159,7 +164,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.recompile.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.recompile.sizePolicy().hasHeightForWidth()
+        )
         self.recompile.setSizePolicy(sizePolicy)
         self.recompile.setMinimumSize(QtCore.QSize(107, 28))
         self.recompile.setMaximumSize(QtCore.QSize(107, 28))
@@ -226,7 +233,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_28.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_28.sizePolicy().hasHeightForWidth()
+        )
         self.label_28.setSizePolicy(sizePolicy)
         self.label_28.setMinimumSize(QtCore.QSize(85, 0))
         self.label_28.setObjectName("label_28")
@@ -240,7 +249,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_281.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_281.sizePolicy().hasHeightForWidth()
+        )
         self.label_281.setSizePolicy(sizePolicy)
         self.label_281.setMinimumSize(QtCore.QSize(85, 0))
         self.label_281.setObjectName("label_281")
@@ -363,7 +374,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_27.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_27.sizePolicy().hasHeightForWidth()
+        )
         self.label_27.setSizePolicy(sizePolicy)
         self.label_27.setMinimumSize(QtCore.QSize(71, 0))
         self.label_27.setObjectName("label_27")
@@ -448,7 +461,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label.sizePolicy().hasHeightForWidth()
+        )
         self.label.setSizePolicy(sizePolicy)
         self.label.setMinimumSize(QtCore.QSize(85, 0))
         self.label.setObjectName("label")
@@ -467,14 +482,19 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.description = QtWidgets.QPlainTextEdit(self.groupBox_2)
         sizePolicy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.MinimumExpanding,
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.description.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.description.sizePolicy().hasHeightForWidth()
+        )
         self.description.setSizePolicy(sizePolicy)
         self.description.setMaximumSize(QtCore.QSize(16777215, 150))
-        self.description.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.description.setHorizontalScrollBarPolicy(
+            QtCore.Qt.ScrollBarAlwaysOff
+        )
         self.description.setMaximumBlockCount(0)
         self.description.setObjectName("description")
         self.gridLayout_2.addWidget(self.description, 0, 1, 1, 2)
@@ -486,7 +506,10 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.label_8, 0, 0, 1, 1)
         self.verticalLayout_13.addWidget(self.groupBox_2)
         spacerItem1 = QtWidgets.QSpacerItem(
-            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding
+            20,
+            40,
+            QtWidgets.QSizePolicy.Minimum,
+            QtWidgets.QSizePolicy.Expanding,
         )
         self.verticalLayout_13.addItem(spacerItem1)
         self.horizontalLayout_9.addWidget(self.frame_22)
@@ -640,7 +663,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_92.addWidget(self.groupBox_5)
         self.horizontalLayout_91.addLayout(self.horizontalLayout_92)
         spacerItem2 = QtWidgets.QSpacerItem(
-            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding
+            20,
+            40,
+            QtWidgets.QSizePolicy.Minimum,
+            QtWidgets.QSizePolicy.Expanding,
         )
         self.horizontalLayout_91.addItem(spacerItem2)
         self.tabWidget.addTab(self.module_tab, "")
@@ -736,7 +762,10 @@ class Ui_MainWindow(object):
         self.batchFrFile.setObjectName("batchFrFile")
         self.gridLayout_6.addWidget(self.batchFrFile, 3, 2, 1, 1)
         spacerItem3 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            40,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
         )
         self.gridLayout_6.addItem(spacerItem3, 2, 4, 1, 1)
         self.batchRangeDayBegin = QtWidgets.QDateEdit(self.groupBox_11)
@@ -759,7 +788,10 @@ class Ui_MainWindow(object):
         self.createBashFile.setObjectName("createBashFile")
         self.gridLayout_6.addWidget(self.createBashFile, 3, 0, 1, 1)
         spacerItem4 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            40,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
         )
         self.gridLayout_6.addItem(spacerItem4, 0, 4, 1, 2)
         self.helpBatch = QtWidgets.QToolButton(self.groupBox_11)
@@ -767,7 +799,10 @@ class Ui_MainWindow(object):
         self.gridLayout_6.addWidget(self.helpBatch, 3, 3, 1, 1)
         self.verticalLayout_111.addWidget(self.groupBox_11)
         spacerItem5 = QtWidgets.QSpacerItem(
-            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding
+            20,
+            40,
+            QtWidgets.QSizePolicy.Minimum,
+            QtWidgets.QSizePolicy.Expanding,
         )
         self.verticalLayout_111.addItem(spacerItem5)
         self.horizontalLayout_93.addWidget(self.frame_241)
@@ -799,17 +834,25 @@ class Ui_MainWindow(object):
         self.group_output_list_Vd = QtWidgets.QGroupBox(self.groupBox_4)
         self.group_output_list_Vd.setEnabled(False)
         self.group_output_list_Vd.setObjectName("group_output_list_Vd")
-        self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.group_output_list_Vd)
+        self.verticalLayout_5 = QtWidgets.QVBoxLayout(
+            self.group_output_list_Vd
+        )
         self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.output_list_Vd = QtWidgets.QPlainTextEdit(self.group_output_list_Vd)
+        self.output_list_Vd = QtWidgets.QPlainTextEdit(
+            self.group_output_list_Vd
+        )
         self.output_list_Vd.setObjectName("output_list_Vd")
         self.verticalLayout_5.addWidget(self.output_list_Vd)
         self.gridLayout_3.addWidget(self.group_output_list_Vd, 2, 0, 1, 1)
         self.group_output_list_emi = QtWidgets.QGroupBox(self.groupBox_4)
         self.group_output_list_emi.setObjectName("group_output_list_emi")
-        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.group_output_list_emi)
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout(
+            self.group_output_list_emi
+        )
         self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.output_list_emi = QtWidgets.QPlainTextEdit(self.group_output_list_emi)
+        self.output_list_emi = QtWidgets.QPlainTextEdit(
+            self.group_output_list_emi
+        )
         self.output_list_emi.setObjectName("output_list_emi")
         self.verticalLayout_4.addWidget(self.output_list_emi)
         self.gridLayout_3.addWidget(self.group_output_list_emi, 1, 0, 1, 1)
@@ -845,7 +888,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_22.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_22.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_22.setSizePolicy(sizePolicy)
         self.customKey_22.setObjectName("customKey_22")
         self.gridLayout_16.addWidget(self.customKey_22, 7, 3, 1, 1)
@@ -855,7 +900,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_14.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_14.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_14.setSizePolicy(sizePolicy)
         self.customVal_14.setObjectName("customVal_14")
         self.gridLayout_16.addWidget(self.customVal_14, 14, 1, 1, 1)
@@ -865,7 +912,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_20.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_20.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_20.setSizePolicy(sizePolicy)
         self.customVal_20.setObjectName("customVal_20")
         self.gridLayout_16.addWidget(self.customVal_20, 5, 4, 1, 1)
@@ -875,7 +924,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_22.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_22.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_22.setSizePolicy(sizePolicy)
         self.customVal_22.setObjectName("customVal_22")
         self.gridLayout_16.addWidget(self.customVal_22, 7, 4, 1, 1)
@@ -885,7 +936,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_3.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_3.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_3.setSizePolicy(sizePolicy)
         self.customKey_3.setObjectName("customKey_3")
         self.gridLayout_16.addWidget(self.customKey_3, 3, 0, 1, 1)
@@ -895,7 +948,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_16.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_16.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_16.setSizePolicy(sizePolicy)
         self.customKey_16.setObjectName("customKey_16")
         self.gridLayout_16.addWidget(self.customKey_16, 1, 3, 1, 1)
@@ -905,7 +960,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_28.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_28.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_28.setSizePolicy(sizePolicy)
         self.customVal_28.setObjectName("customVal_28")
         self.gridLayout_16.addWidget(self.customVal_28, 13, 4, 1, 1)
@@ -915,7 +972,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_1.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_1.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_1.setSizePolicy(sizePolicy)
         self.customVal_1.setObjectName("customVal_1")
         self.gridLayout_16.addWidget(self.customVal_1, 1, 1, 1, 1)
@@ -925,7 +984,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_29.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_29.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_29.setSizePolicy(sizePolicy)
         self.customVal_29.setObjectName("customVal_29")
         self.gridLayout_16.addWidget(self.customVal_29, 14, 4, 1, 1)
@@ -935,7 +996,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_14.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_14.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_14.setSizePolicy(sizePolicy)
         self.customKey_14.setObjectName("customKey_14")
         self.gridLayout_16.addWidget(self.customKey_14, 14, 0, 1, 1)
@@ -948,7 +1011,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_28.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_28.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_28.setSizePolicy(sizePolicy)
         self.customKey_28.setObjectName("customKey_28")
         self.gridLayout_16.addWidget(self.customKey_28, 13, 3, 1, 1)
@@ -958,7 +1023,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_17.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_17.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_17.setSizePolicy(sizePolicy)
         self.customKey_17.setObjectName("customKey_17")
         self.gridLayout_16.addWidget(self.customKey_17, 2, 3, 1, 1)
@@ -968,7 +1035,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_27.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_27.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_27.setSizePolicy(sizePolicy)
         self.customVal_27.setObjectName("customVal_27")
         self.gridLayout_16.addWidget(self.customVal_27, 12, 4, 1, 1)
@@ -978,7 +1047,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_21.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_21.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_21.setSizePolicy(sizePolicy)
         self.customKey_21.setObjectName("customKey_21")
         self.gridLayout_16.addWidget(self.customKey_21, 6, 3, 1, 1)
@@ -988,7 +1059,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_13.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_13.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_13.setSizePolicy(sizePolicy)
         self.customVal_13.setObjectName("customVal_13")
         self.gridLayout_16.addWidget(self.customVal_13, 13, 1, 1, 1)
@@ -998,7 +1071,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_29.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_29.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_29.setSizePolicy(sizePolicy)
         self.customKey_29.setObjectName("customKey_29")
         self.gridLayout_16.addWidget(self.customKey_29, 14, 3, 1, 1)
@@ -1008,7 +1083,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_6.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_6.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_6.setSizePolicy(sizePolicy)
         self.customKey_6.setObjectName("customKey_6")
         self.gridLayout_16.addWidget(self.customKey_6, 6, 0, 1, 1)
@@ -1018,7 +1095,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_27.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_27.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_27.setSizePolicy(sizePolicy)
         self.customKey_27.setObjectName("customKey_27")
         self.gridLayout_16.addWidget(self.customKey_27, 12, 3, 1, 1)
@@ -1028,7 +1107,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_3.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_3.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_3.setSizePolicy(sizePolicy)
         self.customVal_3.setObjectName("customVal_3")
         self.gridLayout_16.addWidget(self.customVal_3, 3, 1, 1, 1)
@@ -1038,7 +1119,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_18.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_18.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_18.setSizePolicy(sizePolicy)
         self.customVal_18.setObjectName("customVal_18")
         self.gridLayout_16.addWidget(self.customVal_18, 3, 4, 1, 1)
@@ -1048,7 +1131,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_16.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_16.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_16.setSizePolicy(sizePolicy)
         self.customVal_16.setObjectName("customVal_16")
         self.gridLayout_16.addWidget(self.customVal_16, 1, 4, 1, 1)
@@ -1058,7 +1143,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_2.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_2.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_2.setSizePolicy(sizePolicy)
         self.customVal_2.setObjectName("customVal_2")
         self.gridLayout_16.addWidget(self.customVal_2, 2, 1, 1, 1)
@@ -1068,7 +1155,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_2.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_2.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_2.setSizePolicy(sizePolicy)
         self.customKey_2.setObjectName("customKey_2")
         self.gridLayout_16.addWidget(self.customKey_2, 2, 0, 1, 1)
@@ -1078,7 +1167,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_26.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_26.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_26.setSizePolicy(sizePolicy)
         self.customKey_26.setObjectName("customKey_26")
         self.gridLayout_16.addWidget(self.customKey_26, 11, 3, 1, 1)
@@ -1088,7 +1179,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_17.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_17.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_17.setSizePolicy(sizePolicy)
         self.customVal_17.setObjectName("customVal_17")
         self.gridLayout_16.addWidget(self.customVal_17, 2, 4, 1, 1)
@@ -1098,7 +1191,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_30.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_30.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_30.setSizePolicy(sizePolicy)
         self.customVal_30.setObjectName("customVal_30")
         self.gridLayout_16.addWidget(self.customVal_30, 15, 4, 1, 1)
@@ -1108,7 +1203,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_15.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_15.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_15.setSizePolicy(sizePolicy)
         self.customKey_15.setObjectName("customKey_15")
         self.gridLayout_16.addWidget(self.customKey_15, 15, 0, 1, 1)
@@ -1118,7 +1215,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_13.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_13.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_13.setSizePolicy(sizePolicy)
         self.customKey_13.setObjectName("customKey_13")
         self.gridLayout_16.addWidget(self.customKey_13, 13, 0, 1, 1)
@@ -1128,7 +1227,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_8.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_8.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_8.setSizePolicy(sizePolicy)
         self.customKey_8.setObjectName("customKey_8")
         self.gridLayout_16.addWidget(self.customKey_8, 8, 0, 1, 1)
@@ -1138,7 +1239,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_23.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_23.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_23.setSizePolicy(sizePolicy)
         self.customVal_23.setObjectName("customVal_23")
         self.gridLayout_16.addWidget(self.customVal_23, 8, 4, 1, 1)
@@ -1148,7 +1251,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_20.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_20.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_20.setSizePolicy(sizePolicy)
         self.customKey_20.setObjectName("customKey_20")
         self.gridLayout_16.addWidget(self.customKey_20, 5, 3, 1, 1)
@@ -1158,7 +1263,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_19.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_19.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_19.setSizePolicy(sizePolicy)
         self.customKey_19.setObjectName("customKey_19")
         self.gridLayout_16.addWidget(self.customKey_19, 4, 3, 1, 1)
@@ -1168,7 +1275,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_5.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_5.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_5.setSizePolicy(sizePolicy)
         self.customKey_5.setObjectName("customKey_5")
         self.gridLayout_16.addWidget(self.customKey_5, 5, 0, 1, 1)
@@ -1178,7 +1287,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_9.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_9.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_9.setSizePolicy(sizePolicy)
         self.customVal_9.setObjectName("customVal_9")
         self.gridLayout_16.addWidget(self.customVal_9, 9, 1, 1, 1)
@@ -1188,7 +1299,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_12.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_12.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_12.setSizePolicy(sizePolicy)
         self.customKey_12.setObjectName("customKey_12")
         self.gridLayout_16.addWidget(self.customKey_12, 12, 0, 1, 1)
@@ -1204,7 +1317,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_5.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_5.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_5.setSizePolicy(sizePolicy)
         self.customVal_5.setObjectName("customVal_5")
         self.gridLayout_16.addWidget(self.customVal_5, 5, 1, 1, 1)
@@ -1214,7 +1329,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_23.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_23.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_23.setSizePolicy(sizePolicy)
         self.customKey_23.setObjectName("customKey_23")
         self.gridLayout_16.addWidget(self.customKey_23, 8, 3, 1, 1)
@@ -1224,7 +1341,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_15.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_15.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_15.setSizePolicy(sizePolicy)
         self.customVal_15.setObjectName("customVal_15")
         self.gridLayout_16.addWidget(self.customVal_15, 15, 1, 1, 1)
@@ -1234,7 +1353,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_24.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_24.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_24.setSizePolicy(sizePolicy)
         self.customKey_24.setObjectName("customKey_24")
         self.gridLayout_16.addWidget(self.customKey_24, 9, 3, 1, 1)
@@ -1244,7 +1365,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_1.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_1.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_1.setSizePolicy(sizePolicy)
         self.customKey_1.setObjectName("customKey_1")
         self.gridLayout_16.addWidget(self.customKey_1, 1, 0, 1, 1)
@@ -1254,7 +1377,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_12.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_12.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_12.setSizePolicy(sizePolicy)
         self.customVal_12.setObjectName("customVal_12")
         self.gridLayout_16.addWidget(self.customVal_12, 12, 1, 1, 1)
@@ -1264,7 +1389,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_24.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_24.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_24.setSizePolicy(sizePolicy)
         self.customVal_24.setObjectName("customVal_24")
         self.gridLayout_16.addWidget(self.customVal_24, 9, 4, 1, 1)
@@ -1274,7 +1401,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_6.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_6.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_6.setSizePolicy(sizePolicy)
         self.customVal_6.setObjectName("customVal_6")
         self.gridLayout_16.addWidget(self.customVal_6, 6, 1, 1, 1)
@@ -1284,7 +1413,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_7.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_7.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_7.setSizePolicy(sizePolicy)
         self.customVal_7.setObjectName("customVal_7")
         self.gridLayout_16.addWidget(self.customVal_7, 7, 1, 1, 1)
@@ -1294,7 +1425,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_25.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_25.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_25.setSizePolicy(sizePolicy)
         self.customVal_25.setObjectName("customVal_25")
         self.gridLayout_16.addWidget(self.customVal_25, 10, 4, 1, 1)
@@ -1304,7 +1437,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_30.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_30.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_30.setSizePolicy(sizePolicy)
         self.customKey_30.setObjectName("customKey_30")
         self.gridLayout_16.addWidget(self.customKey_30, 15, 3, 1, 1)
@@ -1314,7 +1449,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_11.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_11.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_11.setSizePolicy(sizePolicy)
         self.customKey_11.setObjectName("customKey_11")
         self.gridLayout_16.addWidget(self.customKey_11, 11, 0, 1, 1)
@@ -1324,7 +1461,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_4.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_4.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_4.setSizePolicy(sizePolicy)
         self.customVal_4.setObjectName("customVal_4")
         self.gridLayout_16.addWidget(self.customVal_4, 4, 1, 1, 1)
@@ -1337,7 +1476,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_11.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_11.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_11.setSizePolicy(sizePolicy)
         self.customVal_11.setObjectName("customVal_11")
         self.gridLayout_16.addWidget(self.customVal_11, 11, 1, 1, 1)
@@ -1347,7 +1488,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_18.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_18.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_18.setSizePolicy(sizePolicy)
         self.customKey_18.setObjectName("customKey_18")
         self.gridLayout_16.addWidget(self.customKey_18, 3, 3, 1, 1)
@@ -1357,7 +1500,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_7.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_7.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_7.setSizePolicy(sizePolicy)
         self.customKey_7.setObjectName("customKey_7")
         self.gridLayout_16.addWidget(self.customKey_7, 7, 0, 1, 1)
@@ -1367,7 +1512,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_10.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_10.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_10.setSizePolicy(sizePolicy)
         self.customKey_10.setObjectName("customKey_10")
         self.gridLayout_16.addWidget(self.customKey_10, 10, 0, 1, 1)
@@ -1377,7 +1524,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_10.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_10.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_10.setSizePolicy(sizePolicy)
         self.customVal_10.setObjectName("customVal_10")
         self.gridLayout_16.addWidget(self.customVal_10, 10, 1, 1, 1)
@@ -1387,7 +1536,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_25.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_25.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_25.setSizePolicy(sizePolicy)
         self.customKey_25.setObjectName("customKey_25")
         self.gridLayout_16.addWidget(self.customKey_25, 10, 3, 1, 1)
@@ -1397,7 +1548,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_21.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_21.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_21.setSizePolicy(sizePolicy)
         self.customVal_21.setObjectName("customVal_21")
         self.gridLayout_16.addWidget(self.customVal_21, 6, 4, 1, 1)
@@ -1407,7 +1560,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_9.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_9.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_9.setSizePolicy(sizePolicy)
         self.customKey_9.setObjectName("customKey_9")
         self.gridLayout_16.addWidget(self.customKey_9, 9, 0, 1, 1)
@@ -1417,7 +1572,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_19.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_19.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_19.setSizePolicy(sizePolicy)
         self.customVal_19.setObjectName("customVal_19")
         self.gridLayout_16.addWidget(self.customVal_19, 4, 4, 1, 1)
@@ -1427,7 +1584,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_8.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_8.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_8.setSizePolicy(sizePolicy)
         self.customVal_8.setObjectName("customVal_8")
         self.gridLayout_16.addWidget(self.customVal_8, 8, 1, 1, 1)
@@ -1437,7 +1596,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customVal_26.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customVal_26.sizePolicy().hasHeightForWidth()
+        )
         self.customVal_26.setSizePolicy(sizePolicy)
         self.customVal_26.setObjectName("customVal_26")
         self.gridLayout_16.addWidget(self.customVal_26, 11, 4, 1, 1)
@@ -1452,7 +1613,9 @@ class Ui_MainWindow(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.customKey_4.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.customKey_4.sizePolicy().hasHeightForWidth()
+        )
         self.customKey_4.setSizePolicy(sizePolicy)
         self.customKey_4.setObjectName("customKey_4")
         self.gridLayout_16.addWidget(self.customKey_4, 4, 0, 1, 1)
@@ -1485,9 +1648,13 @@ class Ui_MainWindow(object):
         self.label_131.setObjectName("label_131")
         self.horizontalLayout_231.addWidget(self.label_131)
         self.horizontalLayout_181.addWidget(self.frame_301)
-        self.currentInitFileContent = QtWidgets.QPlainTextEdit(self.initfile_tab)
+        self.currentInitFileContent = QtWidgets.QPlainTextEdit(
+            self.initfile_tab
+        )
         self.currentInitFileContent.setUndoRedoEnabled(False)
-        self.currentInitFileContent.setLineWrapMode(QtWidgets.QPlainTextEdit.NoWrap)
+        self.currentInitFileContent.setLineWrapMode(
+            QtWidgets.QPlainTextEdit.NoWrap
+        )
         self.currentInitFileContent.setReadOnly(True)
         self.currentInitFileContent.setObjectName("currentInitFileContent")
         self.horizontalLayout_181.addWidget(self.currentInitFileContent)
@@ -1505,15 +1672,24 @@ class Ui_MainWindow(object):
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
         spacerItem6 = QtWidgets.QSpacerItem(
-            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding
+            20,
+            40,
+            QtWidgets.QSizePolicy.Minimum,
+            QtWidgets.QSizePolicy.Expanding,
         )
         self.gridLayout.addItem(spacerItem6, 2, 1, 1, 1)
         spacerItem7 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            40,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
         )
         self.gridLayout.addItem(spacerItem7, 1, 0, 1, 1)
         spacerItem8 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            40,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
         )
         self.gridLayout.addItem(spacerItem8, 1, 2, 1, 1)
         self.terminal_compile = QtWidgets.QWidget(self.compile_tab)
@@ -1522,7 +1698,10 @@ class Ui_MainWindow(object):
         self.terminal_compile.setObjectName("terminal_compile")
         self.gridLayout.addWidget(self.terminal_compile, 1, 1, 1, 1)
         spacerItem9 = QtWidgets.QSpacerItem(
-            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding
+            20,
+            40,
+            QtWidgets.QSizePolicy.Minimum,
+            QtWidgets.QSizePolicy.Expanding,
         )
         self.gridLayout.addItem(spacerItem9, 0, 1, 1, 1)
         self.horizontalLayout_95.addLayout(self.gridLayout)
@@ -1566,7 +1745,10 @@ class Ui_MainWindow(object):
         self.gridLayout1 = QtWidgets.QGridLayout()
         self.gridLayout1.setObjectName("gridLayout1")
         spacerItem10 = QtWidgets.QSpacerItem(
-            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding
+            20,
+            40,
+            QtWidgets.QSizePolicy.Minimum,
+            QtWidgets.QSizePolicy.Expanding,
         )
         self.gridLayout1.addItem(spacerItem10, 2, 1, 1, 1)
         self.terminal_run = QtWidgets.QWidget(self.run_tab)
@@ -1575,15 +1757,24 @@ class Ui_MainWindow(object):
         self.terminal_run.setObjectName("terminal_run")
         self.gridLayout1.addWidget(self.terminal_run, 1, 1, 1, 1)
         spacerItem11 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            40,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
         )
         self.gridLayout1.addItem(spacerItem11, 1, 0, 1, 1)
         spacerItem12 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            40,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
         )
         self.gridLayout1.addItem(spacerItem12, 1, 2, 1, 1)
         spacerItem13 = QtWidgets.QSpacerItem(
-            20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding
+            20,
+            40,
+            QtWidgets.QSizePolicy.Minimum,
+            QtWidgets.QSizePolicy.Expanding,
         )
         self.gridLayout1.addItem(spacerItem13, 0, 1, 1, 1)
         self.horizontalLayout_96.addLayout(self.gridLayout1)
@@ -1650,14 +1841,22 @@ class Ui_MainWindow(object):
         self.horizontalLayout_98.addWidget(self.groupBox_17)
         self.horizontalLayout_42 = QtWidgets.QGridLayout()
         self.horizontalLayout_42.setObjectName("horizontalLayout_42")
-        self.rsm_build_progress_minor = QtWidgets.QProgressBar(self.rsm_build_tab)
+        self.rsm_build_progress_minor = QtWidgets.QProgressBar(
+            self.rsm_build_tab
+        )
         self.rsm_build_progress_minor.setProperty("value", 0)
         self.rsm_build_progress_minor.setObjectName("rsm_build_progress_minor")
-        self.horizontalLayout_42.addWidget(self.rsm_build_progress_minor, 2, 0, 1, 1)
-        self.rsm_build_progress_major = QtWidgets.QProgressBar(self.rsm_build_tab)
+        self.horizontalLayout_42.addWidget(
+            self.rsm_build_progress_minor, 2, 0, 1, 1
+        )
+        self.rsm_build_progress_major = QtWidgets.QProgressBar(
+            self.rsm_build_tab
+        )
         self.rsm_build_progress_major.setProperty("value", 0)
         self.rsm_build_progress_major.setObjectName("rsm_build_progress_major")
-        self.horizontalLayout_42.addWidget(self.rsm_build_progress_major, 1, 0, 1, 1)
+        self.horizontalLayout_42.addWidget(
+            self.rsm_build_progress_major, 1, 0, 1, 1
+        )
         self.rsm_build = QtWidgets.QPushButton(self.rsm_build_tab)
         self.rsm_build.setObjectName("rsm_build")
         self.horizontalLayout_42.addWidget(self.rsm_build, 0, 0, 1, 1)
@@ -1689,21 +1888,27 @@ class Ui_MainWindow(object):
         self.rsm_train_mse = QtWidgets.QLabel(self.groupBox_18)
         self.rsm_train_mse.setText("")
         self.rsm_train_mse.setAlignment(
-            QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter
+            QtCore.Qt.AlignRight
+            | QtCore.Qt.AlignTrailing
+            | QtCore.Qt.AlignVCenter
         )
         self.rsm_train_mse.setObjectName("rsm_train_mse")
         self.gridLayout3.addWidget(self.rsm_train_mse, 0, 1, 1, 1)
         self.rsm_test_mse = QtWidgets.QLabel(self.groupBox_18)
         self.rsm_test_mse.setText("")
         self.rsm_test_mse.setAlignment(
-            QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter
+            QtCore.Qt.AlignRight
+            | QtCore.Qt.AlignTrailing
+            | QtCore.Qt.AlignVCenter
         )
         self.rsm_test_mse.setObjectName("rsm_test_mse")
         self.gridLayout3.addWidget(self.rsm_test_mse, 0, 4, 1, 1)
         self.rsm_train_mae = QtWidgets.QLabel(self.groupBox_18)
         self.rsm_train_mae.setText("")
         self.rsm_train_mae.setAlignment(
-            QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter
+            QtCore.Qt.AlignRight
+            | QtCore.Qt.AlignTrailing
+            | QtCore.Qt.AlignVCenter
         )
         self.rsm_train_mae.setObjectName("rsm_train_mae")
         self.gridLayout3.addWidget(self.rsm_train_mae, 1, 1, 1, 1)
@@ -1713,14 +1918,18 @@ class Ui_MainWindow(object):
         self.rsm_test_mae = QtWidgets.QLabel(self.groupBox_18)
         self.rsm_test_mae.setText("")
         self.rsm_test_mae.setAlignment(
-            QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter
+            QtCore.Qt.AlignRight
+            | QtCore.Qt.AlignTrailing
+            | QtCore.Qt.AlignVCenter
         )
         self.rsm_test_mae.setObjectName("rsm_test_mae")
         self.gridLayout3.addWidget(self.rsm_test_mae, 1, 4, 1, 1)
         self.rsm_train_r2 = QtWidgets.QLabel(self.groupBox_18)
         self.rsm_train_r2.setText("")
         self.rsm_train_r2.setAlignment(
-            QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter
+            QtCore.Qt.AlignRight
+            | QtCore.Qt.AlignTrailing
+            | QtCore.Qt.AlignVCenter
         )
         self.rsm_train_r2.setObjectName("rsm_train_r2")
         self.gridLayout3.addWidget(self.rsm_train_r2, 2, 1, 1, 1)
@@ -1730,7 +1939,9 @@ class Ui_MainWindow(object):
         self.rsm_test_r2 = QtWidgets.QLabel(self.groupBox_18)
         self.rsm_test_r2.setText("")
         self.rsm_test_r2.setAlignment(
-            QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter
+            QtCore.Qt.AlignRight
+            | QtCore.Qt.AlignTrailing
+            | QtCore.Qt.AlignVCenter
         )
         self.rsm_test_r2.setObjectName("rsm_test_r2")
         self.gridLayout3.addWidget(self.rsm_test_r2, 2, 4, 1, 1)
@@ -1740,7 +1951,9 @@ class Ui_MainWindow(object):
         self.rsm_test_rmsce = QtWidgets.QLabel(self.groupBox_18)
         self.rsm_test_rmsce.setText("")
         self.rsm_test_rmsce.setAlignment(
-            QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter
+            QtCore.Qt.AlignRight
+            | QtCore.Qt.AlignTrailing
+            | QtCore.Qt.AlignVCenter
         )
         self.rsm_test_rmsce.setObjectName("rsm_test_rmsce")
         self.gridLayout3.addWidget(self.rsm_test_rmsce, 3, 4, 1, 1)
@@ -1750,7 +1963,9 @@ class Ui_MainWindow(object):
         self.rsm_train_rmsce = QtWidgets.QLabel(self.groupBox_18)
         self.rsm_train_rmsce.setText("")
         self.rsm_train_rmsce.setAlignment(
-            QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter
+            QtCore.Qt.AlignRight
+            | QtCore.Qt.AlignTrailing
+            | QtCore.Qt.AlignVCenter
         )
         self.rsm_train_rmsce.setObjectName("rsm_train_rmsce")
         self.gridLayout3.addWidget(self.rsm_train_rmsce, 3, 1, 1, 1)
@@ -1809,22 +2024,36 @@ class Ui_MainWindow(object):
         self.horizontalLayout_99.addWidget(self.groupBox_31)
         self.horizontalLayout_43 = QtWidgets.QGridLayout()
         self.horizontalLayout_43.setObjectName("horizontalLayout_43")
-        self.rsm_predict_progress_major = QtWidgets.QProgressBar(self.rsm_predict_tab)
+        self.rsm_predict_progress_major = QtWidgets.QProgressBar(
+            self.rsm_predict_tab
+        )
         self.rsm_predict_progress_major.setProperty("value", 0)
-        self.rsm_predict_progress_major.setObjectName("rsm_predict_progress_major")
-        self.horizontalLayout_43.addWidget(self.rsm_predict_progress_major, 1, 0, 1, 1)
+        self.rsm_predict_progress_major.setObjectName(
+            "rsm_predict_progress_major"
+        )
+        self.horizontalLayout_43.addWidget(
+            self.rsm_predict_progress_major, 1, 0, 1, 1
+        )
         self.rsm_predict = QtWidgets.QPushButton(self.rsm_predict_tab)
         self.rsm_predict.setObjectName("rsm_predict")
         self.horizontalLayout_43.addWidget(self.rsm_predict, 0, 0, 1, 1)
-        self.rsm_predict_progress_minor = QtWidgets.QProgressBar(self.rsm_predict_tab)
+        self.rsm_predict_progress_minor = QtWidgets.QProgressBar(
+            self.rsm_predict_tab
+        )
         self.rsm_predict_progress_minor.setProperty("value", 0)
-        self.rsm_predict_progress_minor.setObjectName("rsm_predict_progress_minor")
-        self.horizontalLayout_43.addWidget(self.rsm_predict_progress_minor, 2, 0, 1, 1)
+        self.rsm_predict_progress_minor.setObjectName(
+            "rsm_predict_progress_minor"
+        )
+        self.horizontalLayout_43.addWidget(
+            self.rsm_predict_progress_minor, 2, 0, 1, 1
+        )
         self.horizontalLayout_99.addLayout(self.horizontalLayout_43)
         self.rsm_subtab.addTab(self.rsm_predict_tab, "")
         self.rsm_prediction_tab = QtWidgets.QWidget()
         self.rsm_prediction_tab.setObjectName("rsm_prediction_tab")
-        self.horizontalLayout_910 = QtWidgets.QVBoxLayout(self.rsm_prediction_tab)
+        self.horizontalLayout_910 = QtWidgets.QVBoxLayout(
+            self.rsm_prediction_tab
+        )
         self.horizontalLayout_910.setObjectName("horizontalLayout_910")
         self.rsm_results_subtab = QtWidgets.QTabWidget(self.rsm_prediction_tab)
         self.rsm_results_subtab.setObjectName("rsm_results_subtab")
@@ -1872,7 +2101,9 @@ class Ui_MainWindow(object):
             "actionCreate_output_directories"
         )
         self.actionLoad_minimal_settings = QtWidgets.QAction(MainWindow)
-        self.actionLoad_minimal_settings.setObjectName("actionLoad_minimal_settings")
+        self.actionLoad_minimal_settings.setObjectName(
+            "actionLoad_minimal_settings"
+        )
         self.actionAbout_SOSAA = QtWidgets.QAction(MainWindow)
         self.actionAbout_SOSAA.setObjectName("actionAbout_SOSAA")
         self.actionSOSAA_webpage = QtWidgets.QAction(MainWindow)
@@ -1886,7 +2117,9 @@ class Ui_MainWindow(object):
         self.actionSave_as_defaults = QtWidgets.QAction(MainWindow)
         self.actionSave_as_defaults.setObjectName("actionSave_as_defaults")
         self.actionOpen_output_directory = QtWidgets.QAction(MainWindow)
-        self.actionOpen_output_directory.setObjectName("actionOpen_output_directory")
+        self.actionOpen_output_directory.setObjectName(
+            "actionOpen_output_directory"
+        )
         self.actionSet_Global_Font = QtWidgets.QAction(MainWindow)
         self.actionSet_Global_Font.setObjectName("actionSet_Global_Font")
         self.actionReset_Fonts = QtWidgets.QAction(MainWindow)
@@ -2037,7 +2270,9 @@ class Ui_MainWindow(object):
         self.label_sosaa_exe.setText(_translate("MainWindow", ".exe"))
         self.label.setText(_translate("MainWindow", "Main"))
         self.browse_main.setText(_translate("MainWindow", "..."))
-        self.groupBox_2.setTitle(_translate("MainWindow", "Simulation identifier"))
+        self.groupBox_2.setTitle(
+            _translate("MainWindow", "Simulation identifier")
+        )
         self.description.setToolTip(
             _translate(
                 "MainWindow",
@@ -2063,15 +2298,23 @@ class Ui_MainWindow(object):
                 "<html><head/><body><p>Soil emissions are not yet supported.</p></body></html>",
             )
         )
-        self.flag_emis_soil.setText(_translate("MainWindow", "Use Soil emissions"))
+        self.flag_emis_soil.setText(
+            _translate("MainWindow", "Use Soil emissions")
+        )
         self.flag_chem.setTitle(_translate("MainWindow", "Use Chemistry"))
         self.flag_mix_chem.setText(
-            _translate("MainWindow", "Enable Vertical Mixing of chemical species")
+            _translate(
+                "MainWindow", "Enable Vertical Mixing of chemical species"
+            )
         )
-        self.flag_gasdrydep.setText(_translate("MainWindow", "Use Gas dry deposition"))
+        self.flag_gasdrydep.setText(
+            _translate("MainWindow", "Use Gas dry deposition")
+        )
         self.flag_aero.setTitle(_translate("MainWindow", "Use Aerosols"))
         self.flag_mix_aero.setText(
-            _translate("MainWindow", "Enable Vertical Mixing of aerosol particles")
+            _translate(
+                "MainWindow", "Enable Vertical Mixing of aerosol particles"
+            )
         )
         self.aer_nucleation.setText(
             _translate("MainWindow", "Aerosols includes nucleation")
@@ -2097,7 +2340,9 @@ class Ui_MainWindow(object):
         self.aer_snow_scavenge.setText(
             _translate("MainWindow", "Aerosols includes snow scavenge")
         )
-        self.groupBox_5.setTitle(_translate("MainWindow", "Module timestep options"))
+        self.groupBox_5.setTitle(
+            _translate("MainWindow", "Module timestep options")
+        )
         self.label_dt_emis.setText(_translate("MainWindow", "Emission"))
         self.dt_emis.setSuffix(_translate("MainWindow", " s"))
         self.dt_aero.setSuffix(_translate("MainWindow", " s"))
@@ -2105,22 +2350,30 @@ class Ui_MainWindow(object):
         self.dt_chem.setSuffix(_translate("MainWindow", " s"))
         self.label_dt_chem.setText(_translate("MainWindow", "Chemistry"))
         self.label_dt_mete.setText(_translate("MainWindow", "Meteorology"))
-        self.label_dt_depo.setText(_translate("MainWindow", "Gas Dry Deposition"))
+        self.label_dt_depo.setText(
+            _translate("MainWindow", "Gas Dry Deposition")
+        )
         self.dt_mete.setSuffix(_translate("MainWindow", " s"))
         self.label_dt_aero.setText(_translate("MainWindow", "Aerosol"))
         self.dt_obs.setSuffix(_translate("MainWindow", " s"))
         self.dt_depo.setSuffix(_translate("MainWindow", " s"))
-        self.label_dt_uhma.setText(_translate("MainWindow", "   Internal Aerosol"))
+        self.label_dt_uhma.setText(
+            _translate("MainWindow", "   Internal Aerosol")
+        )
         self.dt_uhma.setSuffix(_translate("MainWindow", " s"))
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.module_tab),
             _translate("MainWindow", "Module options"),
         )
-        self.groupBox_51.setTitle(_translate("MainWindow", "Trajectory options"))
+        self.groupBox_51.setTitle(
+            _translate("MainWindow", "Trajectory options")
+        )
         self.label_14.setText(_translate("MainWindow", "Duration"))
         self.label_12.setText(_translate("MainWindow", "Time Zone"))
         self.label_3.setText(_translate("MainWindow", "UTC+0.00"))
-        self.trajectory_duration.setSuffix(_translate("MainWindow", " full days"))
+        self.trajectory_duration.setSuffix(
+            _translate("MainWindow", " full days")
+        )
         self.groupBox_15.setTitle(_translate("MainWindow", "Runtime options"))
         self.start_date.setDisplayFormat(
             _translate("MainWindow", "dd/MM/yyyy HH:mm:ss")
@@ -2128,9 +2381,15 @@ class Ui_MainWindow(object):
         self.aero_start_offset.setSuffix(_translate("MainWindow", " h"))
         self.aero_start_offset.setPrefix(_translate("MainWindow", "+"))
         self.label_31.setText(_translate("MainWindow", "Start date"))
-        self.end_date.setDisplayFormat(_translate("MainWindow", "dd/MM/yyyy HH:mm:ss"))
-        self.aero_start_label.setText(_translate("MainWindow", "Aerosol Start"))
-        self.aero_start_date.setText(_translate("MainWindow", "01/01/2000 00:00:00"))
+        self.end_date.setDisplayFormat(
+            _translate("MainWindow", "dd/MM/yyyy HH:mm:ss")
+        )
+        self.aero_start_label.setText(
+            _translate("MainWindow", "Aerosol Start")
+        )
+        self.aero_start_date.setText(
+            _translate("MainWindow", "01/01/2000 00:00:00")
+        )
         self.label_18.setText(_translate("MainWindow", "End date"))
         self.groupBox_11.setToolTip(
             _translate(
@@ -2139,29 +2398,49 @@ class Ui_MainWindow(object):
             )
         )
         self.groupBox_11.setTitle(
-            _translate("MainWindow", "Create batch (using the current settings)")
+            _translate(
+                "MainWindow", "Create batch (using the current settings)"
+            )
         )
-        self.batchRangeDay.setText(_translate("MainWindow", "Range (inclusive):"))
-        self.batchRangeDayEnd.setDisplayFormat(_translate("MainWindow", "yyyy-MM-dd"))
+        self.batchRangeDay.setText(
+            _translate("MainWindow", "Range (inclusive):")
+        )
+        self.batchRangeDayEnd.setDisplayFormat(
+            _translate("MainWindow", "yyyy-MM-dd")
+        )
         self.saveBatch.setText(_translate("MainWindow", "Preview batch"))
         self.batchFrFile.setText(_translate("MainWindow", "Pick from file"))
-        self.batchRangeDayBegin.setDisplayFormat(_translate("MainWindow", "yyyy-MM-dd"))
-        self.batchRangeInd.setText(_translate("MainWindow", "Indices (inclusive)"))
-        self.createBashFile.setText(_translate("MainWindow", "Create bash file"))
+        self.batchRangeDayBegin.setDisplayFormat(
+            _translate("MainWindow", "yyyy-MM-dd")
+        )
+        self.batchRangeInd.setText(
+            _translate("MainWindow", "Indices (inclusive)")
+        )
+        self.createBashFile.setText(
+            _translate("MainWindow", "Create bash file")
+        )
         self.helpBatch.setText(_translate("MainWindow", "?"))
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.scenario_tab),
             _translate("MainWindow", "Scenario options"),
         )
-        self.groupBox_4.setTitle(_translate("MainWindow", "Lists of Chemical Species"))
-        self.groupBox_6.setTitle(_translate("MainWindow", "Condensable Species"))
+        self.groupBox_4.setTitle(
+            _translate("MainWindow", "Lists of Chemical Species")
+        )
+        self.groupBox_6.setTitle(
+            _translate("MainWindow", "Condensable Species")
+        )
         self.flag_vapor.setTitle(
-            _translate("MainWindow", "Uncheck to Save All, Check to Select Explicitly")
+            _translate(
+                "MainWindow", "Uncheck to Save All, Check to Select Explicitly"
+            )
         )
         self.group_output_list_Vd.setTitle(
             _translate("MainWindow", "Dry Deposition Velocities")
         )
-        self.group_output_list_emi.setTitle(_translate("MainWindow", "Emission Rates"))
+        self.group_output_list_emi.setTitle(
+            _translate("MainWindow", "Emission Rates")
+        )
         self.groupBox_12.setTitle(_translate("MainWindow", "Output Species"))
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.output_tab),
@@ -2178,15 +2457,21 @@ class Ui_MainWindow(object):
             _translate("MainWindow", "Custom options"),
         )
         self.label_131.setText(
-            _translate("MainWindow", "Current unsaved in-memory INITFILE state:")
+            _translate(
+                "MainWindow", "Current unsaved in-memory INITFILE state:"
+            )
         )
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.initfile_tab),
             _translate("MainWindow", "INITFILE"),
         )
-        self.compile_stop.setText(_translate("MainWindow", "Kill the Terminal"))
+        self.compile_stop.setText(
+            _translate("MainWindow", "Kill the Terminal")
+        )
         self.compile_start.setText(_translate("MainWindow", "Run Compilation"))
-        self.compile_clean.setText(_translate("MainWindow", "Clean SOSAA Artefacts"))
+        self.compile_clean.setText(
+            _translate("MainWindow", "Clean SOSAA Artefacts")
+        )
         self.compile_cleanchem.setText(
             _translate("MainWindow", "Clean Chemistry Artefacts")
         )
@@ -2199,7 +2484,9 @@ class Ui_MainWindow(object):
             _translate("MainWindow", "orterun --oversubscribe -n 4")
         )
         self.label_4.setText(_translate("MainWindow", "Launch command"))
-        self.flag_debug.setText(_translate("MainWindow", "Enable Debug output"))
+        self.flag_debug.setText(
+            _translate("MainWindow", "Enable Debug output")
+        )
         self.model_stop.setText(_translate("MainWindow", "Kill the Terminal"))
         self.model_start.setText(_translate("MainWindow", "Run SOSAA"))
         self.sosaa_subtab.setTabText(
@@ -2228,24 +2515,34 @@ class Ui_MainWindow(object):
             _translate("MainWindow", "SOSAA RSM Test Performance")
         )
         self.label_21.setText(
-            _translate("MainWindow", "Training Set Mean Squared Prediction Error:")
+            _translate(
+                "MainWindow", "Training Set Mean Squared Prediction Error:"
+            )
         )
         self.label_61.setText(
-            _translate("MainWindow", "Training Set Mean Absolute Prediction Error:")
+            _translate(
+                "MainWindow", "Training Set Mean Absolute Prediction Error:"
+            )
         )
         self.label_11.setText(
             _translate("MainWindow", "Test Set Mean Squared Prediction Error:")
         )
-        self.label_51.setText(_translate("MainWindow", "Training Set R2 Score:"))
+        self.label_51.setText(
+            _translate("MainWindow", "Training Set R2 Score:")
+        )
         self.label_19.setText(
-            _translate("MainWindow", "Test Set Mean Absolute Prediction Error:")
+            _translate(
+                "MainWindow", "Test Set Mean Absolute Prediction Error:"
+            )
         )
         self.label_23.setText(_translate("MainWindow", "Test Set R2 Score:"))
         self.label_231.setText(
             _translate("MainWindow", "Test Set Uncertainty Calibration Error:")
         )
         self.label_232.setText(
-            _translate("MainWindow", "Training Set Uncertainty Calibration Error:")
+            _translate(
+                "MainWindow", "Training Set Uncertainty Calibration Error:"
+            )
         )
         self.rsm_subtab.setTabText(
             self.rsm_subtab.indexOf(self.rsm_build_tab),
@@ -2258,7 +2555,9 @@ class Ui_MainWindow(object):
         self.label_52.setText(_translate("MainWindow", "Bootstrap Samples"))
         self.browse_rsm_output.setText(_translate("MainWindow", "..."))
         self.label_62.setText(_translate("MainWindow", "Prediction Seed"))
-        self.groupBox_19.setTitle(_translate("MainWindow", "Input Perturbations"))
+        self.groupBox_19.setTitle(
+            _translate("MainWindow", "Input Perturbations")
+        )
         self.rsm_perturbation.setPlaceholderText(
             _translate("MainWindow", "return inputs")
         )
@@ -2273,7 +2572,9 @@ class Ui_MainWindow(object):
             )
         )
         self.rsm_predict.setText(
-            _translate("MainWindow", "Generate SOSAA RSM Predictions and Save to File")
+            _translate(
+                "MainWindow", "Generate SOSAA RSM Predictions and Save to File"
+            )
         )
         self.rsm_subtab.setTabText(
             self.rsm_subtab.indexOf(self.rsm_predict_tab),
@@ -2304,14 +2605,22 @@ class Ui_MainWindow(object):
         self.actionSave_2.setText(_translate("MainWindow", "Save As"))
         self.actionSave_2.setShortcut(_translate("MainWindow", "Ctrl+Shift+S"))
         self.actionQuit_Ctrl_Q.setText(_translate("MainWindow", "Quit"))
-        self.actionQuit_Ctrl_Q.setToolTip(_translate("MainWindow", "Quit without save"))
+        self.actionQuit_Ctrl_Q.setToolTip(
+            _translate("MainWindow", "Quit without save")
+        )
         self.actionQuit_Ctrl_Q.setShortcut(_translate("MainWindow", "Ctrl+Q"))
         self.actionOpen.setText(_translate("MainWindow", "Load settings"))
         self.actionOpen.setShortcut(_translate("MainWindow", "Ctrl+O"))
-        self.actionPrint.setText(_translate("MainWindow", "Print current INIT"))
+        self.actionPrint.setText(
+            _translate("MainWindow", "Print current INIT")
+        )
         self.actionPrint.setShortcut(_translate("MainWindow", "Ctrl+P"))
-        self.actionSave_to_current.setText(_translate("MainWindow", "Save to current"))
-        self.actionSave_to_current.setShortcut(_translate("MainWindow", "Ctrl+S"))
+        self.actionSave_to_current.setText(
+            _translate("MainWindow", "Save to current")
+        )
+        self.actionSave_to_current.setShortcut(
+            _translate("MainWindow", "Ctrl+S")
+        )
         self.actionCreate_output_directories.setText(
             _translate("MainWindow", "Create output directories")
         )
@@ -2322,8 +2631,12 @@ class Ui_MainWindow(object):
             _translate("MainWindow", "Load minimal settings")
         )
         self.actionAbout_SOSAA.setText(_translate("MainWindow", "About SOSAA"))
-        self.actionSOSAA_webpage.setText(_translate("MainWindow", "SOSAA webpage"))
-        self.actionOnline_manual.setText(_translate("MainWindow", "Online manual"))
+        self.actionSOSAA_webpage.setText(
+            _translate("MainWindow", "SOSAA webpage")
+        )
+        self.actionOnline_manual.setText(
+            _translate("MainWindow", "Online manual")
+        )
         self.actionFileHelp.setText(_translate("MainWindow", "Help"))
         self.actionSave_as_defaults.setText(
             _translate("MainWindow", "Save as defaults")
@@ -2331,17 +2644,23 @@ class Ui_MainWindow(object):
         self.actionOpen_output_directory.setText(
             _translate("MainWindow", "Open output dir with file browser")
         )
-        self.actionSet_Global_Font.setText(_translate("MainWindow", "Set Global Font"))
+        self.actionSet_Global_Font.setText(
+            _translate("MainWindow", "Set Global Font")
+        )
         self.actionReset_Fonts.setText(_translate("MainWindow", "Reset Fonts"))
         self.actionLight.setText(_translate("MainWindow", "Light"))
         self.actionDark.setText(_translate("MainWindow", "Dark"))
-        self.actionChange_Colour.setText(_translate("MainWindow", "Change Colour"))
+        self.actionChange_Colour.setText(
+            _translate("MainWindow", "Change Colour")
+        )
         self.actionSystem.setText(_translate("MainWindow", "System"))
         self.actionReset_Style.setText(_translate("MainWindow", "Reset Style"))
         self.actionRecompile_model.setText(
             _translate("MainWindow", "Recompile the SOSAA model")
         )
-        self.actionRecompile_model.setShortcut(_translate("MainWindow", "Ctrl+Shift+R"))
+        self.actionRecompile_model.setShortcut(
+            _translate("MainWindow", "Ctrl+Shift+R")
+        )
 
 
 if __name__ == "__main__":

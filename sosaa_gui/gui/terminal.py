@@ -21,7 +21,9 @@ def generateTerminalCommand(command: str, frameId):
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Critical)
         msg.setText("Missing terminal")
-        msg.setInformativeText("Please install any of xterm, uxterm, rxvt, or urxvt.")
+        msg.setInformativeText(
+            "Please install any of xterm, uxterm, rxvt, or urxvt."
+        )
         msg.setWindowTitle("Error launching terminal")
         msg.exec_()
 

@@ -55,7 +55,9 @@ def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
         n_trees = gui.rsm_forest.value()
         n_samples = gui.rsm_train_samples.value()
 
-        train_seed = np.random.SeedSequence(list(gui.rsm_train_seed.text().encode()))
+        train_seed = np.random.SeedSequence(
+            list(gui.rsm_train_seed.text().encode())
+        )
         train_rng = np.random.RandomState(np.random.PCG64(train_seed))
         eval_rng = np.random.RandomState(np.random.PCG64(train_seed))
 
@@ -70,8 +72,12 @@ def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
                     | QtWidgets.QMessageBox.Reset
                     | QtWidgets.QMessageBox.Cancel
                 )
-                msg.setText(f"Do you want to load the existing RSM or overwrite it?")
-                msg.setInformativeText(f"The file {str(rsm_path)} already exists.")
+                msg.setText(
+                    f"Do you want to load the existing RSM or overwrite it?"
+                )
+                msg.setInformativeText(
+                    f"The file {str(rsm_path)} already exists."
+                )
                 msg.setWindowTitle("Existing SOSAA RSM")
                 button = msg.exec_()
 
@@ -93,7 +99,9 @@ def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
             button = msg.exec_()
 
             if button == QtWidgets.QMessageBox.Cancel:
-                return _on_build_finished(gui, rsm_should_exist, err=None, result=None)
+                return _on_build_finished(
+                    gui, rsm_should_exist, err=None, result=None
+                )
 
         # Build and evaluate the RSM in a worker thread
         gui.rsm_build_thread = run_in_thread(
@@ -211,9 +219,7 @@ def _on_build_finished(gui, rsm_should_exist: bool, err, result=None):
         # Pretty-print an Icarus prediction
         def fip(p: IcarusPrediction):
             if p.uncertainty is not None:
-                return (
-                    f"({p.prediction:.02} ± {p.uncertainty:.02}) | {p.confidence:.02}"
-                )
+                return f"({p.prediction:.02} ± {p.uncertainty:.02}) | {p.confidence:.02}"
             else:
                 return f"{p.prediction:.02} | {p.confidence:.02}"
 
@@ -252,7 +258,9 @@ def _on_build_finished(gui, rsm_should_exist: bool, err, result=None):
         gui.rsm_plots_dirty = True
 
         # Reset the RSM GUI to allow training a new RSM
-        gui.rsm_build_progress.update_major(value=0, format="No SOSAA RSM is loaded")
+        gui.rsm_build_progress.update_major(
+            value=0, format="No SOSAA RSM is loaded"
+        )
         gui.rsm_build_progress.update_minor(value=0, format="")
 
         gui.rsm_build.setEnabled(True)
@@ -269,5 +277,7 @@ def _on_build_finished(gui, rsm_should_exist: bool, err, result=None):
         ),
     )
     gui.rsm_build_progress.update_minor(
-        value=1, max=1, format=f"The SOSAA RSM is stored at {gui.rsm_path.text()}"
+        value=1,
+        max=1,
+        format=f"The SOSAA RSM is stored at {gui.rsm_path.text()}",
     )

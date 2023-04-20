@@ -66,16 +66,22 @@ class Ui_Dialog(object):
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         spacerItem = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            40,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
         )
         self.horizontalLayout.addItem(spacerItem)
         self.logo = QtWidgets.QLabel(self.frame)
         sizePolicy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred
+            QtWidgets.QSizePolicy.MinimumExpanding,
+            QtWidgets.QSizePolicy.Preferred,
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.logo.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.logo.sizePolicy().hasHeightForWidth()
+        )
         self.logo.setSizePolicy(sizePolicy)
         self.logo.setMinimumSize(QtCore.QSize(320, 120))
         self.logo.setMaximumSize(QtCore.QSize(320, 120))
@@ -83,7 +89,10 @@ class Ui_Dialog(object):
         self.logo.setObjectName("logo")
         self.horizontalLayout.addWidget(self.logo)
         spacerItem1 = QtWidgets.QSpacerItem(
-            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            40,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
         )
         self.horizontalLayout.addItem(spacerItem1)
         self.verticalLayout.addWidget(self.frame)
@@ -98,7 +107,10 @@ class Ui_Dialog(object):
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         spacerItem2 = QtWidgets.QSpacerItem(
-            160, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            160,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
         )
         self.horizontalLayout_2.addItem(spacerItem2)
         self.okgreat = QtWidgets.QPushButton(self.frame_2)
@@ -107,14 +119,19 @@ class Ui_Dialog(object):
         )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.okgreat.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.okgreat.sizePolicy().hasHeightForWidth()
+        )
         self.okgreat.setSizePolicy(sizePolicy)
         self.okgreat.setMinimumSize(QtCore.QSize(0, 25))
         self.okgreat.setMaximumSize(QtCore.QSize(16777215, 25))
         self.okgreat.setObjectName("okgreat")
         self.horizontalLayout_2.addWidget(self.okgreat)
         spacerItem3 = QtWidgets.QSpacerItem(
-            94, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum
+            94,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
         )
         self.horizontalLayout_2.addItem(spacerItem3)
         self.verticalLayout.addWidget(self.frame_2)
