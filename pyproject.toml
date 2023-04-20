@@ -44,8 +44,13 @@ include = ["sosaa_gui*"]
 namespaces = true
 
 [tool.black]
-line-length = 79
 target-version = ['py37']
+line-length = 79
+
+[tool.isort]
+py_version=37
+profile = "black"
+line_length=79
 
 [tool.bumpver]
 current_version = "0.0.0"
