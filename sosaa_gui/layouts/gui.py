@@ -2276,13 +2276,19 @@ class Ui_MainWindow(object):
         self.description.setToolTip(
             _translate(
                 "MainWindow",
-                "Description of the run, max 1000 characters. This will be saved in all output files.",
+                (
+                    "Description of the run, max 1000 characters. This will be"
+                    " saved in all output files."
+                ),
             )
         )
         self.label_8.setToolTip(
             _translate(
                 "MainWindow",
-                "Description of the run, max 1000 characters. This will be saved in all output files.",
+                (
+                    "Description of the run, max 1000 characters. This will be"
+                    " saved in all output files."
+                ),
             )
         )
         self.label_8.setText(_translate("MainWindow", "Desciption:"))
@@ -2295,7 +2301,10 @@ class Ui_MainWindow(object):
         self.flag_emis_soil.setToolTip(
             _translate(
                 "MainWindow",
-                "<html><head/><body><p>Soil emissions are not yet supported.</p></body></html>",
+                (
+                    "<html><head/><body><p>Soil emissions are not yet"
+                    " supported.</p></body></html>"
+                ),
             )
         )
         self.flag_emis_soil.setText(
@@ -2331,7 +2340,10 @@ class Ui_MainWindow(object):
         self.aer_wet_deposition.setToolTip(
             _translate(
                 "MainWindow",
-                "<html><head/><body><p>Aerosol wet deposition is not yet supported.</p></body></html>",
+                (
+                    "<html><head/><body><p>Aerosol wet deposition is not yet"
+                    " supported.</p></body></html>"
+                ),
             )
         )
         self.aer_wet_deposition.setText(
@@ -2394,7 +2406,10 @@ class Ui_MainWindow(object):
         self.groupBox_11.setToolTip(
             _translate(
                 "MainWindow",
-                "<html><head/><body><p>Batched simulations are not yet supported.</p></body></html>",
+                (
+                    "<html><head/><body><p>Batched simulations are not yet"
+                    " supported.</p></body></html>"
+                ),
             )
         )
         self.groupBox_11.setTitle(
@@ -2564,11 +2579,28 @@ class Ui_MainWindow(object):
         self.label_15.setText(
             _translate(
                 "MainWindow",
-                '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">\n'
-                '<html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">\n'
-                "p, li { white-space: pre-wrap; }\n"
-                "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-                '<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:700; color:#87cefa;">def</span> <span style=" font-weight:700; color:#fa8072;">perturb_inputs</span><span style=" font-weight:700; color:#708090;">(</span>inputs: pandas<span style=" font-weight:700; color:#ff8c00;">.</span>DataFrame<span style=" font-weight:700; color:#708090;">)</span> <span style=" font-weight:700; color:#ff8c00;">-&gt;</span> pandas<span style=" font-weight:700; color:#ff8c00;">.</span>DataFrame:</p></body></html>',
+                (
+                    '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"'
+                    ' "http://www.w3.org/TR/REC-html40/strict.dtd">\n<html><head><meta'
+                    ' name="qrichtext" content="1" /><meta charset="utf-8"'
+                    ' /><style type="text/css">\np, li { white-space:'
+                    ' pre-wrap; }\n</style></head><body style="'
+                    " font-family:'Segoe UI'; font-size:9pt;"
+                    ' font-weight:400; font-style:normal;">\n<p style="'
+                    " margin-top:0px; margin-bottom:0px; margin-left:0px;"
+                    " margin-right:0px; -qt-block-indent:0;"
+                    ' text-indent:0px;"><span style=" font-weight:700;'
+                    ' color:#87cefa;">def</span> <span style="'
+                    " font-weight:700;"
+                    ' color:#fa8072;">perturb_inputs</span><span style="'
+                    ' font-weight:700; color:#708090;">(</span>inputs:'
+                    ' pandas<span style=" font-weight:700;'
+                    ' color:#ff8c00;">.</span>DataFrame<span style="'
+                    ' font-weight:700; color:#708090;">)</span> <span style="'
+                    ' font-weight:700; color:#ff8c00;">-&gt;</span>'
+                    ' pandas<span style=" font-weight:700;'
+                    ' color:#ff8c00;">.</span>DataFrame:</p></body></html>'
+                ),
             )
         )
         self.rsm_predict.setText(

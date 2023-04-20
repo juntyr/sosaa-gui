@@ -93,38 +93,38 @@ class PythonHighlighter(QtGui.QSyntaxHighlighter):
         ">",
         ">=",
         # Arithmetic
-        "\+",
+        r"\+",
         "-",
-        "\*",
+        r"\*",
         "/",
         "//",
-        "\%",
-        "\*\*",
+        r"\%",
+        r"\*\*",
         # In-place
-        "\+=",
+        r"\+=",
         "-=",
-        "\*=",
-        "/=",
-        "\%=",
+        r"\*=",
+        r"/=",
+        r"\%=",
         # Bitwise
-        "\^",
-        "\|",
-        "\&",
-        "\~",
+        r"\^",
+        r"\|",
+        r"\&",
+        r"\~",
         ">>",
         "<<",
         # Field access
-        "\.",
+        r"\.",
     ]
 
     # Python braces
     braces = [
-        "\{",
-        "\}",
-        "\(",
-        "\)",
-        "\[",
-        "\]",
+        r"\{",
+        r"\}",
+        r"\(",
+        r"\)",
+        r"\[",
+        r"\]",
     ]
 
     def __init__(self, parent: QtGui.QTextDocument) -> None:
@@ -284,17 +284,17 @@ class FortranNamelistHighlighter(QtGui.QSyntaxHighlighter):
     # Fortran operators
     operators = [
         "=",
-        "\%",
-        "\&",
-        "\/",
+        r"\%",
+        r"\&",
+        r"\/",
     ]
 
     # Fortran braces
     braces = [
-        "\(",
-        "\)",
-        "\[",
-        "\]",
+        r"\(",
+        r"\)",
+        r"\[",
+        r"\]",
     ]
 
     def __init__(self, parent: QtGui.QTextDocument) -> None:
@@ -332,15 +332,20 @@ class FortranNamelistHighlighter(QtGui.QSyntaxHighlighter):
             (r'"[^"\\]*(\\.[^"\\]*)*"', 0, STYLES["string"]),
             # Single-quoted string, possibly containing escape sequences
             (r"'[^'\\]*(\\.[^'\\]*)*'", 0, STYLES["string"]),
-            # FIXME Hack: First part of double-quoted multi-line string, possibly containing escape sequences
+            # FIXME Hack: First part of double-quoted multi-line string,
+            #  possibly containing escape sequences
             (r'"[^&\\]*(\\.[^&\\]*)*&', 0, STYLES["string"]),
-            # FIXME Hack: First part of single-quoted multi-line string, possibly containing escape sequences
+            # FIXME Hack: First part of single-quoted multi-line string,
+            #  possibly containing escape sequences
             (r"'[^&\\]*(\\.[^&\\]*)*&", 0, STYLES["string"]),
-            # FIXME Hack: Middle part of multi-line string, possibly containing escape sequences
+            # FIXME Hack: Middle part of multi-line string,
+            #  possibly containing escape sequences
             (r"&[^&\\]*(\\.[^&\\]*)*&", 0, STYLES["string"]),
-            # FIXME Hack: Last part of double-quoted multi-line string, possibly containing escape sequences
+            # FIXME Hack: Last part of double-quoted multi-line string,
+            #  possibly containing escape sequences
             (r'&[^"\\]*(\\.[^"\\]*)*"', 0, STYLES["string"]),
-            # FIXME Hack: Last part of single-quoted multi-line string, possibly containing escape sequences
+            # FIXME Hack: Last part of single-quoted multi-line string,
+            #  possibly containing escape sequences
             (r"&[^'\\]*(\\.[^'\\]*)*'", 0, STYLES["string"]),
             # From '!' until a newline
             (r"![^\n]*", 0, STYLES["comment"]),

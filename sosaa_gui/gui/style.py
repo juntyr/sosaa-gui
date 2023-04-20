@@ -149,7 +149,10 @@ def _refresh_style(gui):
 def buttonStyle(icon):
     icon_path_escaped = resource_path(icon).replace("\\", "\\\\")
 
-    return f"background-image: url('{icon_path_escaped}');\nbackground-repeat: no-repeat;"
+    return (
+        f"background-image: url('{icon_path_escaped}');\nbackground-repeat:"
+        " no-repeat;"
+    )
 
 
 def _refresh_font(gui, font):

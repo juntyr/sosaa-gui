@@ -43,7 +43,8 @@ def _generate_rsm_prediction_and_update_gui(gui):
                 | QtWidgets.QMessageBox.Cancel
             )
             msg.setText(
-                f"Do you want to load the existing RSM prediction or overwrite it?"
+                "Do you want to load the existing RSM prediction or"
+                " overwrite it?"
             )
             msg.setInformativeText(
                 f"The file {str(prediction_path)} already exists."
@@ -94,7 +95,8 @@ def _on_prediction_finished(gui, err, result=None):
         msg.setIcon(QtWidgets.QMessageBox.Critical)
         msg.setText(f"Optional dependency {err.name} missing")
         msg.setInformativeText(
-            "Please install sosaa-gui with the optional 'icarus' feature enabled."
+            "Please install sosaa-gui with the optional 'icarus' feature"
+            " enabled."
         )
         msg.setWindowTitle("Missing optional dependency")
         msg.exec_()
@@ -131,7 +133,9 @@ def _on_prediction_finished(gui, err, result=None):
     gui.rsm_predict_progress.update_minor(
         value=1,
         max=1,
-        format=f"The SOSAA RSM predictions are stored at {gui.rsm_output.text()}",
+        format=(
+            f"The SOSAA RSM predictions are stored at {gui.rsm_output.text()}"
+        ),
     )
 
 
@@ -153,9 +157,7 @@ import numpy as np
 import pandas as pd
 
 def perturb_inputs(inputs: pandas.DataFrame) -> pandas.DataFrame:
-""" + "".join(
-        f"    {line}" for line in perturbation_code.splitlines(True)
-    )
+""" + "".join(f"    {line}" for line in perturbation_code.splitlines(True))
 
     def perturb_inputs_wrapper(inputs: pd.DataFrame) -> pd.DataFrame:
         locals = dict()

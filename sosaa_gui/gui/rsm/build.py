@@ -73,7 +73,7 @@ def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
                     | QtWidgets.QMessageBox.Cancel
                 )
                 msg.setText(
-                    f"Do you want to load the existing RSM or overwrite it?"
+                    "Do you want to load the existing RSM or overwrite it?"
                 )
                 msg.setInformativeText(
                     f"The file {str(rsm_path)} already exists."
@@ -93,7 +93,7 @@ def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
             msg.setStandardButtons(
                 QtWidgets.QMessageBox.Save | QtWidgets.QMessageBox.Cancel
             )
-            msg.setText(f"Do you want to train a new SOSAA RSM?")
+            msg.setText("Do you want to train a new SOSAA RSM?")
             msg.setInformativeText(f"The file {str(rsm_path)} does not exist.")
             msg.setWindowTitle("Missing SOSAA RSM")
             button = msg.exec_()
@@ -219,7 +219,10 @@ def _on_build_finished(gui, rsm_should_exist: bool, err, result=None):
         # Pretty-print an Icarus prediction
         def fip(p: IcarusPrediction):
             if p.uncertainty is not None:
-                return f"({p.prediction:.02} ± {p.uncertainty:.02}) | {p.confidence:.02}"
+                return (
+                    f"({p.prediction:.02} ± {p.uncertainty:.02}) |"
+                    f" {p.confidence:.02}"
+                )
             else:
                 return f"{p.prediction:.02} | {p.confidence:.02}"
 
@@ -238,7 +241,8 @@ def _on_build_finished(gui, rsm_should_exist: bool, err, result=None):
         msg.setIcon(QtWidgets.QMessageBox.Critical)
         msg.setText(f"Optional dependency {err.name} missing")
         msg.setInformativeText(
-            "Please install sosaa-gui with the optional 'icarus' feature enabled."
+            "Please install sosaa-gui with the optional 'icarus' feature"
+            " enabled."
         )
         msg.setWindowTitle("Missing optional dependency")
         msg.exec_()

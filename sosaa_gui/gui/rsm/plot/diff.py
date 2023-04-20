@@ -37,7 +37,6 @@ def init_plot(gui):
 
 
 def update_plot(gui):
-    import matplotlib as mpl
     import numpy as np
 
     gui.rsm_diffplot_ax.cla()

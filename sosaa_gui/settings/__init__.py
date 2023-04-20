@@ -76,17 +76,20 @@ def save_settings(gui, path):
 def _write_settings_to_file(gui, file, update_version=True):
     update_settings_from_gui(_settings, gui)
 
+    # fmt: off
     file.write(f"! {'='*76} !\n")
     file.write(
-        f"! {f'SOSAA INITFILE {_version_major}.{_version_minor}'.center(76)} !\n"
+        f"! {f'SOSAA INITFILE {_version_major}.{_version_minor}'.center(76)} !\n"  # noqa: E501
     )
     file.write(
-        f"! {('Created at: ' + time.strftime('%B %d %Y, %H:%M:%S', time.localtime())).center(76)} !\n"
+        f"! {('Created at: ' + time.strftime('%B %d %Y, %H:%M:%S', time.localtime())).center(76)} !\n"  # noqa: E501
     )
     file.write(f"! {'='*76} !\n")
+    # fmt: on
 
     if update_version:
-        # Hack to ensure that _version_minor is not mistaken as a local variable
+        # Hack to ensure that _version_minor is not mistaken
+        #  as a local variable
         globals()["_version_minor"] += 1
 
     file.write("\n")
@@ -122,7 +125,9 @@ _raw_settings_header = (
 _raw_settings_footer = (
     f"! /\\ {'Raw input from the SOSAA GUI'.center(70, '-')} /\\ !"
 )
+# fmt: off
 _raw_setting_pattern = re.compile(
-    rf"^{re.escape(_raw_settings_header)}$\n(.*?)\n^{re.escape(_raw_settings_footer)}$",
+    rf"^{re.escape(_raw_settings_header)}$\n(.*?)\n^{re.escape(_raw_settings_footer)}$",  # noqa: E501
     flags=(re.MULTILINE | re.DOTALL),
 )
+# fmt: on

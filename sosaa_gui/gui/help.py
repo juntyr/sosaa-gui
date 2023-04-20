@@ -25,7 +25,8 @@ def init_gui_help(gui):
     def openSOSAAWebpage():
         QtGui.QDesktopServices.openUrl(
             QtCore.QUrl(
-                "https://www.helsinki.fi/en/researchgroups/multi-scale-modelling/sosaa"
+                "https://www.helsinki.fi/en/researchgroups/"
+                "multi-scale-modelling/sosaa"
             )
         )
 

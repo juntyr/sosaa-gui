@@ -68,7 +68,6 @@ def _update_flag_settings_from_gui(settings, gui):
                 # Note: always enable trajectory mode
                 "flag_model_type": 2,
                 "flag_mix_chem": 1 if gui.flag_mix_chem.isChecked() else 0,
-                "flag_aero": 1 if gui.flag_aero.isChecked() else 0,
                 "flag_mix_aero": 1 if gui.flag_mix_aero.isChecked() else 0,
                 # Note: The aerosols are always simulated in parallel
                 "use_parallel_aerosol": True,
@@ -219,14 +218,14 @@ def _update_custom_settings_from_gui(settings, gui):
                 try:
                     value = int(value)
                     break
-                except:
+                except Exception:
                     pass
 
                 # Real value
                 try:
                     value = float(value)
                     break
-                except:
+                except Exception:
                     pass
 
                 # Logical value
@@ -241,14 +240,14 @@ def _update_custom_settings_from_gui(settings, gui):
                 try:
                     value = [int(v) for v in value.split(",")]
                     break
-                except:
+                except Exception:
                     pass
 
                 # Real array
                 try:
                     value = [float(v) for v in value.split(",")]
                     break
-                except:
+                except Exception:
                     pass
 
                 # String value

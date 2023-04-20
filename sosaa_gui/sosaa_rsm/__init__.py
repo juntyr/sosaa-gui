@@ -74,18 +74,20 @@ def get_sosaa_dataset_paths(
     dt: datetime.datetime, input_dir: Path, output_dir: Path
 ) -> TrajectoryPaths:
     out_path = output_dir / "output.nc"
+    # fmt: on
     aer_path = (
         input_dir
-        / f"{dt.strftime('%Y%m%d')}_7daybwd_Hyde_traj_AER_{24-dt.hour:02}_L3.nc"
+        / f"{dt.strftime('%Y%m%d')}_7daybwd_Hyde_traj_AER_{24-dt.hour:02}_L3.nc"  # noqa: E501
     )
     ant_path = (
         input_dir
-        / f"{dt.strftime('%Y%m%d')}_7daybwd_Hyde_traj_ANT_{24-dt.hour:02}_L3.nc"
+        / f"{dt.strftime('%Y%m%d')}_7daybwd_Hyde_traj_ANT_{24-dt.hour:02}_L3.nc"  # noqa: E501
     )
     bio_path = (
         input_dir
-        / f"{dt.strftime('%Y%m%d')}_7daybwd_Hyde_traj_BIO_{24-dt.hour:02}_L3.nc"
+        / f"{dt.strftime('%Y%m%d')}_7daybwd_Hyde_traj_BIO_{24-dt.hour:02}_L3.nc"  # noqa: E501
     )
+    # fmt: off
     met_path = input_dir / f"METEO_{dt.strftime('%Y%m%d')}_R{24-dt.hour:02}.nc"
 
     out_path = out_path.resolve()
@@ -213,7 +215,8 @@ def interpolate_biogenic_emissions(ds: TrajectoryDatasets, key: str):
     out_t = get_output_time(ds)
     out_h = ds.out["lev"][:].data
 
-    # depth of each box layer, assuming level heights are midpoints and end points are clamped
+    # depth of each box layer, assuming level heights are midpoints
+    #  and end points are clamped
     out_d = (
         np.array(list(out_h[1:]) + [out_h[-1]])
         - np.array([out_h[0]] + list(out_h[:-1]))
@@ -509,9 +512,11 @@ def get_ant_emissions_features(ds: TrajectoryDatasets):
             "ant_monoterpenes": interpolate_anthropogenic_emissions(
                 ds, "monoterpenes"
             ).flatten(),
-            "ant_other_alkenes_and_alkynes": interpolate_anthropogenic_emissions(
-                ds, "other-alkenes-and-alkynes"
-            ).flatten(),
+            "ant_other_alkenes_and_alkynes": (
+                interpolate_anthropogenic_emissions(
+                    ds, "other-alkenes-and-alkynes"
+                ).flatten()
+            ),
             "ant_benzene": interpolate_anthropogenic_emissions(
                 ds, "benzene"
             ).flatten(),
@@ -631,14 +636,14 @@ def time_level_window_mean(input, t_range, l_range, progress=None):
         if mint == maxt:
             continue
 
-        for l in range(input.shape[1]):
-            minl = min(max(0, l + l_range[0]), input.shape[1])
-            maxl = max(0, min(l + 1 + l_range[1], input.shape[1]))
+        for lev in range(input.shape[1]):
+            minl = min(max(0, lev + l_range[0]), input.shape[1])
+            maxl = max(0, min(lev + 1 + l_range[1], input.shape[1]))
 
             if minl == maxl:
                 continue
 
-            output[t, l, :] = np.mean(
+            output[t, lev, :] = np.mean(
                 input[mint:maxt, minl:maxl, :], axis=(0, 1)
             )
 
@@ -990,9 +995,9 @@ def load_and_cache_dataset(
     # - only fit on training data
     # - OOD inputs for constants at training time are blown up
     feature_scaler = StandardScaler().fit(train_features)
-    feature_scaler.scale_[
-        np.nonzero(feature_scaler.var_ == 0.0)
-    ] = np.nan_to_num(np.inf)
+    feature_scaler.scale_[np.nonzero(feature_scaler.var_ == 0.0)] = (
+        np.nan_to_num(np.inf)
+    )
 
     label_scaler = StandardScaler().fit(train_labels)
 
@@ -1097,7 +1102,9 @@ class RandomForestSosaaRSM(IcarusRSM):
 
         if progress is not None:
             progress.update_minor(
-                format="Training the Prediction Model and Uncertainty Quantifier"
+                format=(
+                    "Training the Prediction Model and Uncertainty Quantifier"
+                )
             )
 
         self.predictor = RandomForestRegressor(
@@ -1243,10 +1250,14 @@ def train_and_cache_model(
 
 def analyse_icarus_predictions(
     predictions: IcarusPrediction,
-    analysis,  #: Callable[[np.ndarray, np.ndarray, np.random.Generator, dict], np.ndarray],
+    analysis,  #: Callable[[np.ndarray, np.ndarray,
+    #                       np.random.Generator, dict,
+    #                      ], np.ndarray],
     rng,  #: np.random.Generator,
-    n_uncertain_samples: int = 1,  # number of samples to draw from expand each prediction per run
-    n_analysis_runs: int = 100,  # number of repeats of the analysis to gather uncertainty
+    # number of samples to draw from expand each prediction per run
+    n_uncertain_samples: int = 1,
+    # number of repeats of the analysis to gather uncertainty
+    n_analysis_runs: int = 100,
     **kwargs,
 ):
     import numpy as np
@@ -1375,7 +1386,7 @@ def analyse_train_test_perforance(
 
     if progress is not None:
         progress.update_major(
-            format=f"Combining the Predictions on the Training Dataset"
+            format="Combining the Predictions on the Training Dataset"
         )
         progress.update_minor(
             value=0,
@@ -1474,7 +1485,7 @@ def analyse_train_test_perforance(
 
     if progress is not None:
         progress.update_major(
-            format=f"Combining the Predictions on the Test Dataset"
+            format="Combining the Predictions on the Test Dataset"
         )
 
         progress.update_minor(
@@ -1645,7 +1656,7 @@ def generate_perturbed_predictions(
 
     if progress is not None:
         progress.update_major(
-            format=f"Combining the Predictions on the Perturbed Dataset"
+            format="Combining the Predictions on the Perturbed Dataset"
         )
 
         progress.update_minor(

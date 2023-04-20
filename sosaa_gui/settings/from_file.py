@@ -200,12 +200,14 @@ def _update_gui_from_time_settings(settings, gui):
         msg.setIcon(QtWidgets.QMessageBox.Warning)
         msg.setText("Eager early aerosols")
         msg.setInformativeText(
-            "The aerosol simulation cannot start before the simulation itself. Its starting time will be clamped to the simulation start."
+            "The aerosol simulation cannot start before the simulation itself."
+            " Its starting time will be clamped to the simulation start."
         )
         msg.setWindowTitle("Warning loading INITFILE")
         msg.exec_()
 
-    # Calculate aero_start_date based on aero_start_offset based on aero_start_date
+    # Calculate aero_start_date based on aero_start_offset
+    #  based on aero_start_date
     gui.aero_start_offset.setValue(secs_from_start // (60 * 60))
     gui.aero_start_date.setText(
         gui.start_date.dateTime()

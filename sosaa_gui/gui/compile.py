@@ -14,12 +14,14 @@ def init_compile_gui(gui):
     def generateMakeVariables():
         return (
             [
+                # fmt: off
                 f"SOSAA_ROOT={Path(gui.main_dir.text()).resolve()}",
-                f"CODE_DIR={Path(gui.main_dir.text()).resolve() / gui.code_dir.text()}",
-                f"CHEMALL_DIR={Path(gui.main_dir.text()).resolve() / gui.chem_dir.text()}",
-                f"CASE_DIR={Path(gui.main_dir.text()).resolve() / gui.case_dir.text()}",
+                f"CODE_DIR={Path(gui.main_dir.text()).resolve() / gui.code_dir.text()}",  # noqa: E501
+                f"CHEMALL_DIR={Path(gui.main_dir.text()).resolve() / gui.chem_dir.text()}",  # noqa: E501
+                f"CASE_DIR={Path(gui.main_dir.text()).resolve() / gui.case_dir.text()}",  # noqa: E501
                 f"CHEM={gui.chemname_dir.text()}",
                 f"CASE={gui.casename_dir.text()}",
+                # fmt: on
             ]
             + (
                 [f"ALT_NAME={gui.sosaa_exe.text()}"]

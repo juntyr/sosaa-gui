@@ -9,7 +9,7 @@ try:
 
     # "Windows" / "Linux" / "Darwin"
     operating_system = platform.system() or "Linux"
-except:
+except Exception:
     operating_system = "Linux"
 
 
@@ -30,16 +30,16 @@ def setup_qt_scaling():
         args.append(arg.upper())
 
         if "--scaling_" in arg:
-            os.environ[
-                "QT_SCALE_FACTOR"
-            ] = f"{float(arg.replace('--scaling_', '')):3.2f}"
+            os.environ["QT_SCALE_FACTOR"] = (
+                f"{float(arg.replace('--scaling_', '')):3.2f}"
+            )
 
             args.append("-NS")
 
     # FIXME petri: check if platform usually works for everyone
     if (
         os.name.upper() == "NT" or operating_system == "Windows"
-    ) and not "-NS" in args:
+    ) and "-NS" not in args:
         try:
             import ctypes
 
@@ -53,11 +53,14 @@ def setup_qt_scaling():
 
             if scrhgt < 850:
                 sf = sf * scrhgt / 850.0
-        except:
+        except Exception:
             sf = 1
 
             print(
-                f"Failed to get the scaling factor of the screen, falling back to {sf:3.2f}.",
+                (
+                    "Failed to get the scaling factor of the screen, falling"
+                    f" back to {sf:3.2f}."
+                ),
                 flush=True,
             )
 
@@ -65,7 +68,10 @@ def setup_qt_scaling():
 
     if "-NS" in args:
         print(
-            f"Scaling factor overriden to {os.environ['QT_SCALE_FACTOR']} from the commandline.",
+            (
+                "Scaling factor overriden to"
+                f" {os.environ['QT_SCALE_FACTOR']} from the commandline."
+            ),
             flush=True,
         )
 

@@ -145,31 +145,61 @@ class Ui_Dialog(object):
         self.label.setText(
             _translate(
                 "Dialog",
-                '<html><head/><body><p align="center"><span style=" font-weight:700;">SOSAA</span></p><p align="center"><span style=" font-weight:700;">The model to Simulate the Concentration of Organic Vapours, Sulphuric Acid and Aerosol Particles</span></p></body></html>',
+                (
+                    '<html><head/><body><p align="center"><span style="'
+                    ' font-weight:700;">SOSAA</span></p><p'
+                    ' align="center"><span style=" font-weight:700;">The model'
+                    " to Simulate the Concentration of Organic Vapours,"
+                    " Sulphuric Acid and Aerosol"
+                    " Particles</span></p></body></html>"
+                ),
             )
         )
         self.label_2.setText(
             _translate(
                 "Dialog",
-                '<html><head/><body><p align="center">Multiscale Modelling Group, Institute for Atmospheric and Earth System Research (INAR), Helsinki, Finland</p></body></html>',
+                (
+                    '<html><head/><body><p align="center">Multiscale Modelling'
+                    " Group, Institute for Atmospheric and Earth System"
+                    " Research (INAR), Helsinki, Finland</p></body></html>"
+                ),
             )
         )
         self.label_4.setText(
             _translate(
                 "Dialog",
-                '<html><head/><body><p align="center">Development team (alphabetically): </p><p align="center">Michael Boy (team leader), Dean Chen, Petri Clusius, Rosa Gieres, Ditte Morgensen, Sampo Smolander, Juniper Tyree, Luxi Zhou, and Putian Zhou.</p></body></html>',
+                (
+                    '<html><head/><body><p align="center">Development team'
+                    ' (alphabetically): </p><p align="center">Michael Boy'
+                    " (team leader), Dean Chen, Petri Clusius, Rosa Gieres,"
+                    " Ditte Morgensen, Sampo Smolander, Juniper Tyree, Luxi"
+                    " Zhou, and Putian Zhou.</p></body></html>"
+                ),
             )
         )
         self.label_6.setText(
             _translate(
                 "Dialog",
-                '<html><head/><body><p align="center">Contact the SOSAA team at <a href="mailto:sosaa@helsinki.fi"><span style=" text-decoration: underline; color:#007af4;">sosaa@helsinki.fi</span></a></p></body></html>',
+                (
+                    '<html><head/><body><p align="center">Contact the SOSAA'
+                    ' team at <a href="mailto:sosaa@helsinki.fi"><span style="'
+                    " text-decoration: underline;"
+                    ' color:#007af4;">sosaa@helsinki.fi</span></a></p></body></html>'
+                ),
             )
         )
         self.label_7.setText(
             _translate(
                 "Dialog",
-                '<html><head/><body><p align="center"><span style=" font-weight:700;">LICENCE</span></p><p align="center">This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions; see the LICENCE file in the SOSAA GUI root directory.</p></body></html>',
+                (
+                    '<html><head/><body><p align="center"><span style="'
+                    ' font-weight:700;">LICENCE</span></p><p'
+                    ' align="center">This program comes with ABSOLUTELY NO'
+                    " WARRANTY. This is free software, and you are welcome to"
+                    " redistribute it under certain conditions; see the"
+                    " LICENCE file in the SOSAA GUI root"
+                    " directory.</p></body></html>"
+                ),
             )
         )
         self.okgreat.setText(_translate("Dialog", "OK"))

@@ -71,12 +71,13 @@ def update_plot(gui):
 
         gui.rsm_ccnplot_ax.set_title(
             "Predicted CCN Concentration Profile"
-            + f"\nConfidence: {np.mean(gui.rsm_prediction['log10_ccn_perturbed_conf']):.02}"
+            + "\nConfidence:"
+            f" {np.mean(gui.rsm_prediction['log10_ccn_perturbed_conf']):.02}"
         )
 
         colours = mpl.cm.rainbow(np.linspace(0, 1, len(level_heights)))
 
-        for l, h in enumerate(level_heights):
+        for lv, h in enumerate(level_heights):
             gui.rsm_ccnplot_ax.fill_between(
                 gui.rsm_prediction[level_mask == h].index.get_level_values(0)
                 / (60 * 60),
@@ -100,11 +101,11 @@ def update_plot(gui):
                     ],
                 )
                 - 1,
-                color=colours[l],
+                color=colours[lv],
                 alpha=0.35,
             )
 
-        for l, h in enumerate(level_heights):
+        for lv, h in enumerate(level_heights):
             gui.rsm_ccnplot_ax.plot(
                 gui.rsm_prediction[level_mask == h].index.get_level_values(0)
                 / (60 * 60),
@@ -115,7 +116,7 @@ def update_plot(gui):
                     ],
                 )
                 - 1,
-                color=colours[l],
+                color=colours[lv],
             )
 
         gui.rsm_ccnplot_ax.set_yscale("log")

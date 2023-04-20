@@ -31,7 +31,8 @@ def _init_rsm_plots(gui):
         msg.setIcon(QtWidgets.QMessageBox.Critical)
         msg.setText(f"Optional dependency {err.name} missing")
         msg.setInformativeText(
-            "Please install sosaa-gui with the optional 'icarus' feature enabled."
+            "Please install sosaa-gui with the optional 'icarus' feature"
+            " enabled."
         )
         msg.setWindowTitle("Missing optional dependency")
         msg.exec_()

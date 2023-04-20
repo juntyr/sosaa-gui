@@ -98,7 +98,8 @@ def init_dirs_gui(gui):
             msg.setIcon(QtWidgets.QMessageBox.Critical)
             msg.setText("Invalid chemistry name directory")
             msg.setInformativeText(
-                "The chemistry name directory must be inside the chemistry directory."
+                "The chemistry name directory must be inside the chemistry"
+                " directory."
             )
             msg.setWindowTitle("Error selecting directory")
             msg.exec_()
@@ -190,7 +191,8 @@ def init_dirs_gui(gui):
             msg.setIcon(QtWidgets.QMessageBox.Critical)
             msg.setText("Invalid SOSAA executable file")
             msg.setInformativeText(
-                "The SOSAA executable file must be inside the case name directory."
+                "The SOSAA executable file must be inside the case name"
+                " directory."
             )
             msg.setWindowTitle("Error selecting SOSAA executable")
             msg.exec_()
