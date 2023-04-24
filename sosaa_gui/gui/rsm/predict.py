@@ -56,6 +56,8 @@ def _generate_rsm_prediction_and_update_gui(gui):
                 return _on_prediction_finished(gui, err=None, result=None)
 
             overwrite_rsm_prediction = button != QtWidgets.QMessageBox.Open
+        else:
+            overwrite_rsm_prediction = True
 
         # Generate the RSM predictions in a worker thread
         gui.rsm_predict_thread = run_in_thread(
