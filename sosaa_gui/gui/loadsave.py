@@ -125,7 +125,7 @@ def _saveSettings(gui, path=None):
 
 
 def _showCurrentInitFile(gui, path):
-    gui.saveCurrentButton.setStyleSheet(buttonStyle("icons/save.png"))
+    gui.saveCurrentButton.setStyleSheet(buttonStyle("icons/save.svg"))
     gui.saveCurrentButton.setEnabled(True)
     gui.actionSave_to_current.setEnabled(True)
 
@@ -144,7 +144,7 @@ def _showCurrentInitFile(gui, path):
 def _hideCurrentInitFile(gui):
     gui.saveCurrentButton.setEnabled(False)
     gui.actionSave_to_current.setEnabled(False)
-    gui.saveCurrentButton.setStyleSheet(buttonStyle("icons/saveia.png"))
+    gui.saveCurrentButton.setStyleSheet(buttonStyle("icons/save-inactive.svg"))
 
     gui.currentInitFile.setText("")
 

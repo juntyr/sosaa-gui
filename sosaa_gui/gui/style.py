@@ -134,15 +134,15 @@ def _setLightDarkStyle(gui, dark):
 def _refresh_style(gui):
     gui.saveCurrentButton.setStyleSheet(
         buttonStyle(
-            "icons/saveia.png"
+            "icons/save-inactive.svg"
             if gui.currentInitFileToSave is None
-            else "icons/save.png"
+            else "icons/save.svg"
         )
     )
-    gui.saveButton.setStyleSheet(buttonStyle("icons/saveas.png"))
-    gui.loadButton.setStyleSheet(buttonStyle("icons/load.png"))
-    gui.saveDefaults.setStyleSheet(buttonStyle("icons/pack.png"))
-    gui.recompile.setStyleSheet(buttonStyle("icons/recompile.png"))
+    gui.saveButton.setStyleSheet(buttonStyle("icons/save-as.svg"))
+    gui.loadButton.setStyleSheet(buttonStyle("icons/load.svg"))
+    gui.saveDefaults.setStyleSheet(buttonStyle("icons/save-defaults.svg"))
+    gui.recompile.setStyleSheet(buttonStyle("icons/recompile.svg"))
 
     gui.rsm_perturbation_header.setText(
         QtCore.QCoreApplication.translate(

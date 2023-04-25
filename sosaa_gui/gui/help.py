@@ -10,9 +10,9 @@ class About(QtWidgets.QDialog):
         self.ab = about.Ui_Dialog()
         self.ab.setupUi(self)
         self.ab.okgreat.clicked.connect(self.reject)
-        self.setWindowIcon(QtGui.QIcon(resource_path("icons/thebox_ico.png")))
+        self.setWindowIcon(QtGui.QIcon(resource_path("icons/sosaa-icon.svg")))
         self.ab.logo.setPixmap(
-            QtGui.QPixmap(resource_path("icons/ArcaLogoHR.png"))
+            QtGui.QPixmap(resource_path("icons/sosaa-splash.svg"))
         )
 
 

@@ -25,7 +25,7 @@ class QtSosaaGui(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         self.currentInitFileToSave = None
 
         self.setWindowTitle(sosaa_version_pretty)
-        self.setWindowIcon(QtGui.QIcon(resource_path("icons/thebox_ico.png")))
+        self.setWindowIcon(QtGui.QIcon(resource_path("icons/sosaa-icon.svg")))
 
         self.actionQuit_Ctrl_Q.triggered.connect(self.close)
 
