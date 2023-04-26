@@ -51,7 +51,7 @@
    <item>
     <widget class="QLabel" name="label_4">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Development team (alphabetically): &lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Michael Boy (team leader), Petri Clusius, Rosa Gierens, Sampo Smolander, Ditte Taipale, Juniper Tyree, Luxi Zhou, and Putian Zhou.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Development team (alphabetically): &lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Michael Boy (team leader), Dean Chen, Petri Clusius, Rosa Gierens, Sampo Smolander, Ditte Taipale, Juniper Tyree, Luxi Zhou, and Putian Zhou.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
