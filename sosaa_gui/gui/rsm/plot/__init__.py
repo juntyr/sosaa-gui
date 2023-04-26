@@ -10,6 +10,9 @@ def update_rsm_plots(gui):
     if gui.rsm_plots_dirty:
         _init_rsm_plots(gui)
 
+        if not getattr(gui, "rsm_plot_init", False):
+            return
+
         _update_ccn_plot(gui)
         _update_diff_plot(gui)
 
