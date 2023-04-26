@@ -22,7 +22,7 @@ def _generate_rsm_prediction_and_update_gui(gui):
     try:
         import numpy as np
 
-        from ...sosaa_rsm import generate_perturbed_predictions
+        from ...sosaa_rsm.model.perturb import generate_perturbed_predictions
 
         # Configure the prediction
         n_samples = gui.rsm_predict_samples.value()

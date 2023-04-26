@@ -35,7 +35,7 @@ def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
     try:
         import numpy as np
 
-        from ...sosaa_rsm import RandomForestSosaaRSM
+        from ...sosaa_rsm.sosaa_rf import RandomForestSosaaRSM
 
         # Configure the RSM
         input_dir = Path(gui.input_dir.text()).resolve()
@@ -142,11 +142,9 @@ def _train_evaluate_sosaa_rsm_job(
     train_rng,
     eval_rng,
 ):
-    from ...sosaa_rsm import (
-        analyse_train_test_perforance,
-        load_and_cache_dataset,
-        train_and_cache_model,
-    )
+    from ...sosaa_rsm.dataset import load_and_cache_dataset
+    from ...sosaa_rsm.model import train_and_cache_model
+    from ...sosaa_rsm.model.evaluate import analyse_train_test_perforance
 
     gui.rsm_build_progress.update_major(
         value=0, min=0, max=6 + 2 * n_samples, format="Training the SOSAA RSM"
@@ -203,7 +201,7 @@ def _train_evaluate_sosaa_rsm_job(
 
 def _on_build_finished(gui, rsm_should_exist: bool, err, result=None):
     try:
-        from ...sosaa_rsm import IcarusPrediction
+        from ...sosaa_rsm.icarus import IcarusPrediction
 
         if err is not None:
             raise err
