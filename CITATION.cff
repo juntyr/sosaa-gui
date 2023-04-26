@@ -23,7 +23,7 @@ identifiers:
     value: >-
       https://github.com/juntyr/sosaa-gui/releases/tag/msc-tcm
     description: >-
-      The GitHub release URL of version 1.0.0, the commit
+      The GitHub release URL of version 0.1.0, the commit
       submitted for the Master's Thesis.
 repository-code: 'https://github.com/juntyr/sosaa-gui'
 abstract: >-
@@ -35,5 +35,5 @@ keywords:
   - config
 license: GPL-3.0
 commit: msc-tcm
-version: 1.0.0
-date-released: '2023-04-27'
+version: 0.1.0
+date-released: '2023-04-26'

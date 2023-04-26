@@ -13,6 +13,8 @@ The [SOSAA model](https://www.helsinki.fi/en/researchgroups/multi-scale-modellin
 
 The SOSAA GUI provides a graphical user interface to configure, compile, run, and explore the SOSAA model. In particular, it allows the user to load, edit, and save INITFILEs for the model. The GUI is fully independent of SOSAA and can thus be run on a separate machine if needed. However, if SOSAA is installed on the same machine, the GUI can also be used to compile and run the model.
 
+The GUI also provides access to the SOSAA Response Surface Model (RSM), which can be used to approximate the SOSAA model using machine learning. Note, however, that the SOSAA RSM, which is evaluated in [Juniper Tyree](https://github.com/juntyr)'s Masters Thesis on ["Prudent Response Surface Models"](https://github.com/juntyr/prudent-response-surface-models), should currently *only* be used to experiment with and improve the RSM itself.
+
 ## Installation
 
 ### pip

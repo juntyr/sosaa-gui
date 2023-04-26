@@ -8,6 +8,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: publish
+    permissions:
+      id-token: write
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
@@ -22,6 +25,3 @@ jobs:
       run: python -m build
     - name: Publish the package
       uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
