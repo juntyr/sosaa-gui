@@ -66,4 +66,4 @@ push            = false
 
 [tool.bumpver.file_patterns]
 "pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
-"CITATION.cff" = ['version: {version}']
+"CITATION.cff" = ['^version: {version}', 'https://pypi.org/project/sosaa-gui/{version}/', 'https://github.com/juntyr/sosaa-gui/releases/tag/{version}', "date-released: 'YYYY-0M-0D'"]

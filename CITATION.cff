@@ -24,10 +24,8 @@ identifiers:
     description: The Zenodo release
   - type: url
     value: >-
-      https://github.com/juntyr/sosaa-gui/releases/tag/msc-tcm
-    description: >-
-      The GitHub release URL of version 0.1.0, the commit
-      submitted for the Master's Thesis.
+      https://github.com/juntyr/sosaa-gui/releases/tag/0.1.0
+    description: The GitHub release
   - type: url
     value: 'https://pypi.org/project/sosaa-gui/0.1.0/'
     description: The PyPi release
