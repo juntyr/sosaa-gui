@@ -4,7 +4,7 @@ version = "0.0.0"
 requires-python = ">=3.7"
 description = "Graphical User Interface for Configuring, Running, and Approximating the SOSAA Model"
 readme = "README.md"
-license = { file = "LICENSE" }
+license = { file = "LICENSE-GPL" }
 authors = [
     { name = "Juniper Tyree", email = "juniper.tyree@helsinki.fi" },
     { name = "Petri Clusius", email = "petri.clusius@helsinki.fi" },
