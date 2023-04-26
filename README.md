@@ -1,4 +1,7 @@
-# SOSAA GUI &emsp; [![PyPi]][pypi-url] [![License]][gpl-3.0] [![CI Status]][ci-status]
+# SOSAA GUI &emsp; [![DOI]][doi-url] [![PyPi]][pypi-url] [![License]][gpl-3.0] [![CI Status]][ci-status]
+
+[DOI]: https://zenodo.org/badge/607139104.svg
+[doi-url]: https://doi.org/10.5281/zenodo.7868439
 
 [PyPI]: https://img.shields.io/pypi/v/sosaa-gui
 [pypi-url]: https://pypi.org/project/sosaa-gui

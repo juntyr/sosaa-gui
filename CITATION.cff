@@ -19,12 +19,18 @@ authors:
     affiliation: University of Helsinki
     orcid: 'https://orcid.org/0000-0003-3121-0775'
 identifiers:
+  - type: doi
+    value: 10.5281/zenodo.7868439
+    description: The Zenodo release
   - type: url
     value: >-
       https://github.com/juntyr/sosaa-gui/releases/tag/msc-tcm
     description: >-
       The GitHub release URL of version 0.1.0, the commit
       submitted for the Master's Thesis.
+  - type: url
+    value: 'https://pypi.org/project/sosaa-gui/0.1.0/'
+    description: The PyPi release
 repository-code: 'https://github.com/juntyr/sosaa-gui'
 abstract: >-
   The SOSAA GUI provides a graphical user interface to
