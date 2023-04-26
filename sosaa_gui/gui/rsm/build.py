@@ -35,7 +35,17 @@ def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
     try:
         import numpy as np
 
-        from ...sosaa_rsm.sosaa_rf import RandomForestSosaaRSM
+        # SOSAA-RF has slightly more accurate predictions,
+        #  has better performance, and works well with the
+        #  percentile-based OOD scorer.
+        # Future work can take the thesis evaluation
+        #  experiment as inspiration for how to specialise
+        #  support for SOSAA-PADRE-RF (e.g. with direct
+        #  perturbation predictions)
+        # from ...sosaa_rsm.rsms.sosaa_padre_rf import (
+        #     PairwiseDifferenceRegressionRandomForestSosaaRSM as SosaaRSM,
+        # )
+        from ...sosaa_rsm.rsms.sosaa_rf import RandomForestSosaaRSM as SosaaRSM
 
         # Configure the RSM
         input_dir = Path(gui.input_dir.text()).resolve()
@@ -113,7 +123,7 @@ def _train_evaluate_sosaa_rsm(gui, rsm_should_exist: bool):
                 rsm_path,
                 dt,
                 clump,
-                RandomForestSosaaRSM,
+                SosaaRSM,
                 n_trees,
                 n_samples,
                 train_rng,
@@ -167,6 +177,7 @@ def _train_evaluate_sosaa_rsm_job(
         rsm_path,
         overwrite_rsm,
         n_trees=n_trees,
+        n_samples=n_samples,
         progress=gui.rsm_build_progress,
     )
 

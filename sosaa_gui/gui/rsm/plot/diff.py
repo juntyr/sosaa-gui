@@ -87,6 +87,8 @@ def update_plot(gui):
         gui.rsm_diffplot_ax.set_title(
             "Change in Cloud-Condensation-Nuclei (CCN) Concentration"
             + f"\nConfidence: {np.mean(log10_ccn_perturbed_conf):.02}"
+            + "\nWARNING: The SOSAA RSM is currently known to struggle"
+            + " with small perturbations."
         )
 
         for _ in range(gui.rsm_train_samples.value()):

@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from .icarus import IcarusPrediction, IcarusRSM
+from ..icarus import IcarusPrediction, IcarusRSM
 
 
+# SOSAA-RF with a percentile-based confidence score
 class RandomForestSosaaRSM(IcarusRSM):
     def fit(
         self,
@@ -13,6 +14,7 @@ class RandomForestSosaaRSM(IcarusRSM):
         rng,  #: np.random.Generator,
         n_trees: int = 16,
         progress=None,
+        **kwargs,
     ) -> RandomForestSosaaRSM:
         import numpy as np
         from sklearn.covariance import EmpiricalCovariance
@@ -39,7 +41,7 @@ class RandomForestSosaaRSM(IcarusRSM):
 
         if progress is not None:
             progress.update_minor(
-                format="Fitting Auto-Associative Error Covariance"
+                format="Fitting the Auto-Associative Error Covariance"
             )
 
         self.cov = EmpiricalCovariance().fit(
@@ -89,7 +91,7 @@ class RandomForestSosaaRSM(IcarusRSM):
                 value=0,
                 min=0,
                 max=(1 + len(self.predictor.estimators_)),
-                format="Generating Confidence Scores",
+                format="Generating the Confidence Scores",
             )
 
         confidence = 1.0 - np.searchsorted(
@@ -101,18 +103,30 @@ class RandomForestSosaaRSM(IcarusRSM):
 
         if progress is not None:
             progress.update_minor(
-                format="Generating %v/%m Ensemble Predictions"
+                format=(
+                    "Generating"
+                    f" {0}/{len(self.predictor.estimators_)} Ensemble"
+                    " Predictions"
+                )
             )
 
-        def tree_predict(tree, X_test, progress=None) -> np.ndarray:
-            if progress is not None:
-                progress.update_minor()
+        def tree_predict(i, tree, X_test, progress=None) -> np.ndarray:
+            result = tree.predict(X_test)
 
-            return tree.predict(X_test)
+            if progress is not None:
+                progress.update_minor(
+                    format=(
+                        "Generating"
+                        f" {i}/{len(self.predictor.estimators_)} Ensemble"
+                        " Predictions"
+                    )
+                )
+
+            return result
 
         predictions = joblib.Parallel(n_jobs=-1, prefer="threads")(
-            joblib.delayed(tree_predict)(tree, X_test, progress)
-            for tree in self.predictor.estimators_
+            joblib.delayed(tree_predict)(i, tree, X_test, progress)
+            for i, tree in enumerate(self.predictor.estimators_)
         )
 
         prediction = np.mean(np.stack(predictions, axis=0), axis=0).reshape(

@@ -73,6 +73,8 @@ def update_plot(gui):
             "Predicted CCN Concentration Profile"
             + "\nConfidence:"
             f" {np.mean(gui.rsm_prediction['log10_ccn_perturbed_conf']):.02}"
+            + "\nWARNING: The SOSAA RSM is currently known to struggle"
+            + " with small perturbations."
         )
 
         colours = mpl.cm.rainbow(np.linspace(0, 1, len(level_heights)))
