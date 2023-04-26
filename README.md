@@ -1,10 +1,10 @@
 # SOSAA GUI &emsp; [![PyPi]][pypi-url] [![License]][gpl-3.0] [![CI Status]][ci-status]
 
-[License]: https://img.shields.io/badge/License-GPL--3.0-blue.svg
-[gpl-3.0]: https://www.gnu.org/licenses/gpl-3.0.html
-
 [PyPI]: https://img.shields.io/pypi/v/sosaa-gui
 [pypi-url]: https://pypi.org/project/sosaa-gui
+
+[License]: https://img.shields.io/badge/License-GPL--3.0-blue.svg
+[gpl-3.0]: https://www.gnu.org/licenses/gpl-3.0.html
 
 [CI Status]: https://img.shields.io/github/actions/workflow/status/juntyr/sosaa-gui/ci.yml?branch=main&label=CI
 [ci-status]: https://github.com/juntyr/sosaa-gui/actions/workflows/ci.yml?query=branch%3Amain

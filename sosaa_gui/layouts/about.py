@@ -170,9 +170,9 @@ class Ui_Dialog(object):
                 (
                     '<html><head/><body><p align="center">Development team'
                     ' (alphabetically): </p><p align="center">Michael Boy'
-                    " (team leader), Dean Chen, Petri Clusius, Rosa Gieres,"
-                    " Ditte Morgensen, Sampo Smolander, Juniper Tyree, Luxi"
-                    " Zhou, and Putian Zhou.</p></body></html>"
+                    " (team leader), Petri Clusius, Rosa Gierens, Sampo"
+                    " Smolander, Ditte Taipale, Juniper Tyree, Luxi Zhou,"
+                    " and Putian Zhou.</p></body></html>"
                 ),
             )
         )
